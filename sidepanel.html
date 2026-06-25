@@ -18,8 +18,8 @@
         <p>Open any page or email and tap <strong>Summarize</strong>, ask a question, or pull out to‑dos. Long documents are summarized in parts automatically.</p>
       </div>
       <div class="onboard-step" data-step="2" hidden>
-        <h2>Right‑click superpowers</h2>
-        <p>Select text and right‑click <strong>“Ask Local AI”</strong>, or right‑click any image to <strong>extract its text</strong>. Use <strong>🎙 Speak</strong> for voice input.</p>
+        <h2>Right‑click image OCR</h2>
+        <p>Select text and right‑click <strong>“Ask Local AI”</strong>, or right‑click any image to <strong>extract text and fields</strong>. Use <strong>🎙 Speak</strong> for voice input.</p>
       </div>
       <div class="onboard-dots">
         <span class="odot active"></span><span class="odot"></span><span class="odot"></span>
@@ -73,7 +73,9 @@
   <!-- Compact one-line context strip (doubles as transient status) -->
   <div class="context-strip" id="contextStrip">
     <span class="dot live" id="ctxDot"></span>
+    <span id="workspaceMode" class="workspace-mode">Current tab</span>
     <span id="ctxTitle" class="ctx-title">Checking on-device model…</span>
+    <span id="readFreshness" class="read-freshness">Not read</span>
     <button id="refreshCtx" class="icon-btn small" title="Re-read this page" aria-label="Re-read this page">⟳</button>
   </div>
   <!-- hidden inputs kept for logic; real controls live in Settings + More -->
@@ -102,6 +104,7 @@
       <button class="chip primary-chip" data-action="summarize">✦ Summarize</button>
       <button class="chip" data-action="email">✉ Read email</button>
       <button class="chip" id="moreBtn">⋯ More</button>
+      <button class="chip export-chip" id="exportQuickBtn" disabled>Export</button>
     </div>
 
     <!-- Site-safety badge (auto-filled on page change; click for details, ✕ to dismiss) -->
@@ -133,6 +136,10 @@
         <button class="chip" id="compareBtn">⊞ Select tabs…</button>
       </div>
       <div class="more-group">
+        <span class="more-label">Images &amp; OCR</span>
+        <button class="chip primary-chip" id="ocrGuideBtn">Extract text from image</button>
+      </div>
+      <div class="more-group">
         <span class="more-label">Recipes (multi-step)</span>
         <button class="chip" data-recipe="summarize_tabs">🧩 Summarize open tabs</button>
         <button class="chip" data-recipe="headlines">📰 News headlines</button>
@@ -150,10 +157,11 @@
       </div>
       <div class="more-group">
         <span class="more-label">Session &amp; reading</span>
+        <button class="chip" id="exportWorkspaceBtn">Export conversation</button>
         <button class="chip" id="newThreadBtn">＋ New thread</button>
         <button class="chip" id="ignoreToggle">📄 Page: on</button>
       </div>
-      <div class="more-tip">Tip: right-click selected text → “Ask Local AI”, or right-click an image → “Extract details”.</div>
+      <div class="more-tip">Tip: right-click selected text → “Ask Local AI”, or right-click an image → “Extract text/details with Local AI”.</div>
     </div>
 
     <!-- Multi-tab selector (hidden until invoked) -->
@@ -337,7 +345,13 @@
 
     <!-- Developer / debug -->
     <div class="settings-group">
-      <div class="sg-head"><span class="sg-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 18.3 14.4 11a5.5 5.5 0 0 0-6.8-7.3l3.2 3.2-1.1 2.8-2.8 1.1L3.7 7.6A5.5 5.5 0 0 0 11 14.4l7.3 7.3a1 1 0 0 0 1.4 0l2-2a1 1 0 0 0 0-1.4Z"/></svg></span><span class="sg-title">Developer mode</span></div>
+      <div class="sg-head"><span class="sg-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 18.3 14.4 11a5.5 5.5 0 0 0-6.8-7.3l3.2 3.2-1.1 2.8-2.8 1.1L3.7 7.6A5.5 5.5 0 0 0 11 14.4l7.3 7.3a1 1 0 0 0 1.4 0l2-2a1 1 0 0 0 0-1.4Z"/></svg></span><span class="sg-title">Doctor / Developer mode</span></div>
+      <div class="doctor-actions">
+        <button id="doctorRun" class="primary-btn small">Run Doctor</button>
+        <button id="doctorCopy" class="link-btn">Copy report</button>
+      </div>
+      <div id="doctorList" class="health-list"><div class="sg-sub" style="margin:0;">Run Doctor to check model, permissions, storage, active tab, conversation, and diagnostics.</div></div>
+      <p class="sg-sub" style="margin:6px 0 10px;">Diagnostics are local and do not include page text, prompts, images, or extracted OCR text.</p>
       <div class="set-row">
         <span class="set-label">Debug mode<small>Model state, memory, timing &amp; event log</small></span>
         <label class="switch"><input type="checkbox" id="debugMode" aria-label="Debug mode" /><span class="track"></span><span class="knob"></span></label>
@@ -367,7 +381,7 @@
         <div class="debug-row"><span>Benchmark</span><span id="perfBench">—</span></div>
         <p class="sg-sub" style="margin:6px 0 2px;">Chrome runs the built-in AI model on its own backend (GPU/CPU/NPU) — the API exposes no switch, so these measure real latency, not the device used. Lower TTFT &amp; higher tok/s = snappier.</p>
 
-        <div class="debug-head">Event log <span><button id="dbgRefresh" class="link-btn">refresh</button> · <button id="dbgCopy" class="link-btn">copy</button> · <button id="dbgClear" class="link-btn">clear</button></span></div>
+        <div class="debug-head">Diagnostic log <span><button id="dbgRefresh" class="link-btn">refresh</button> · <button id="dbgCopy" class="link-btn">copy</button> · <button id="dbgClear" class="link-btn">clear</button></span></div>
         <pre id="dbgLog" class="debug-log"></pre>
       </div>
     </div>
