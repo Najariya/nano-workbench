@@ -1,61 +1,146 @@
-# Privacy Policy — Local AI Workbench
+# Privacy Policy for Local AI Workbench
 
-_Last updated: 2026_
+_Last updated: June 25, 2026_
 
-**Summary: this extension has no servers of its own and does not collect, sell, or transmit your personal data. The AI runs on your device. A few clearly-labelled, user-initiated features open normal web pages or use Chrome's speech service; these are described below.**
+Local AI Workbench is designed as a **local-first browser AI workbench**. Its purpose is to help you summarize, question, extract, draft, and organize content from pages, emails, documents, images, notes, and tabs you choose to work with.
+
+The short version: **we do not run a backend server, we do not receive your content, we do not sell data, and the core AI work happens locally in Chrome through browser-provided on-device AI APIs.**
+
+## Privacy at a glance
+
+| Area | What it means |
+| --- | --- |
+| 🖥️ On-device first | The main AI features run inside Chrome using browser-provided local AI capabilities. |
+| 🚫 No developer server | The extension has no developer-operated backend, analytics, telemetry, or advertising service. |
+| 🔒 Local storage | Notes, chats, page logs, reading lists, work memory, saved sessions, preferences, and transcripts are stored in your browser. |
+| 🌐 Page access | The extension can read normal web pages only so it can summarize, answer questions, extract details, and follow the active tab. |
+| 🖱️ User controlled | You choose what to read, summarize, attach, right-click, save, delete, or clear. |
+| 💬 Voice note caution | Voice transcription uses Chrome's Web Speech API and may use Google's speech service depending on Chrome, language, and device settings. |
+| 💰 No sale of data | We do not sell, rent, transfer, or monetize your data. |
 
 ## What the extension does
 
-Local AI Workbench uses Chrome's built-in on-device AI through browser-provided AI APIs to summarize pages and emails, parse attached documents, answer questions, extract details from images, draft and rewrite text, and more. The AI processing happens **locally inside your browser**.
+Local AI Workbench provides a Chrome side panel for:
 
-## Data we collect
+- Summarizing and asking questions about the page or email you are viewing.
+- Reading selected text through the right-click menu.
+- Extracting text or details from images through the right-click menu.
+- Parsing attached documents locally where supported.
+- Drafting, rewriting, explaining, and organizing text.
+- Saving local notes, work memory, reading lists, tab sessions, and conversation history.
+- Checking basic page safety signals such as URL, HTTPS status, and visible page indicators.
 
-**None.** The extension operator runs no servers, no analytics, no tracking, and no telemetry. We never receive your data.
+## What we collect
 
-## Data the extension handles locally (never sent to us)
+**We collect nothing.**
 
-To function, the extension processes the following **on your device** and stores it **only in your browser** (IndexedDB / `chrome.storage.local`):
+The extension developer does not receive:
 
-- **Page / email content** — the text of the tab you choose to read, used to generate a response.
-- **Attached documents** — files you attach are parsed in-browser to extract text.
-- **Work memory, voice memos, conversation history, reading list, saved sessions, persona, page log, and preferences** — stored locally so they persist between sessions. They stay on your machine and are removed if you delete them in the app or uninstall the extension.
+- Your web page content.
+- Your emails.
+- Your prompts or answers.
+- Your notes or memos.
+- Your attached documents.
+- Your image content.
+- Your browsing history.
+- Your voice recordings.
+- Your personal information.
 
-## Features that contact the internet (only when you use them)
+There is no developer-operated server for this extension.
 
-These are **user-initiated** and clearly labelled in the app. The extension still has no server of its own; these use the open web or Chrome's own services:
+## What stays on your device
 
-- **Deep research** — opens ordinary web pages (e.g. a search engine and the top results) in browser tabs so their content can be read. Your query is sent to those third-party sites exactly as if you visited them yourself.
-- **Voice input / audio notes** — speech is transcribed by **Chrome's Web Speech API**, which, depending on your Chrome version and language, may send audio to Google's speech service. This is the one feature where audio may leave your device, and only while you actively record. The extension does not record or store audio files.
+To provide the features you request, the extension may process and store the following **locally in Chrome**, using IndexedDB or `chrome.storage.local`:
 
-## Permissions and why they're used
+- Page text and page context from the tab you choose to work with.
+- Email or webmail content when you open an email page and ask the extension to work with it.
+- Selected text sent through the right-click menu.
+- Text or details extracted from images.
+- Text extracted from attached documents.
+- Your prompts, AI responses, saved notes, memos, work memory, reading lists, saved tab sessions, page logs, persona settings, and app preferences.
+- Optional voice memo transcripts. The extension stores transcript text, not audio files.
+- Optional greeting name, if you enter one in settings.
 
-- `sidePanel` — show the side-panel interface.
-- `host_permissions` (`http://*/*`, `https://*/*`) and `scripting` — read and summarize normal web pages, emails, links, products, and safety signals you choose to work with in the side panel. This access is requested once at install so the workbench can follow the active tab without repeated prompts. The extension cannot read Chrome internal pages and does not send page content to a developer server.
-- `storage` — save your notes, memory, persona, and preferences locally.
-- `tabs`, `tabGroups` — list, save, reopen, and tidy/group tabs when you trigger those actions.
-- `contextMenus` — the right-click "Ask Local AI" / "Extract from image" actions.
-- Optional `history` — only requested if you use "Clear recent history"; used solely to clear, never to read or transmit your history.
+This local data remains in your browser unless you delete it in the extension, clear browser storage, or uninstall the extension.
 
-## Data sharing and sale
+## Chrome Web Store data categories
 
-We do not sell, rent, or share your data with anyone. We never receive it in the first place.
+For Chrome Web Store disclosure purposes, this extension may handle the following categories locally:
 
-## Limited Use certification
+| Category | Why it applies |
+| --- | --- |
+| Website content | The extension reads pages, selected text, images, and documents you choose to summarize or analyze. |
+| Web browsing activity | The extension uses the active tab URL/title and may keep local page logs or saved sessions so it can follow your current work. |
+| Personal communications | If you use the extension on email or messaging web pages, it may process that visible content locally. |
+| User-generated content | Prompts, answers, notes, memos, transcripts, reading lists, and saved workspace content are created by you and stored locally. |
+| Personally identifiable information | Only if you voluntarily enter a name for greeting or save personal content in notes/prompts. |
 
-This product's use of information received from Chrome APIs and from the user adheres to the [Chrome Web Store User Data Policy](https://developer.chrome.com/docs/webstore/program-policies/user-data-faq), including the **Limited Use** requirements. Data processed by the extension is used only to provide and improve the user-facing features described above, is processed locally on the user's device, is **not** transferred to the developer, is **not** sold, and is **not** used for advertising, creditworthiness, or any purpose unrelated to the extension's single purpose.
+These disclosures do **not** mean the developer receives this data. They mean the extension may handle this data locally to provide its features.
 
-## Third parties
+## When information may leave your device
 
-The extension operator uses no third-party services. Bundled open-source libraries (PDF.js, Mammoth.js, the Inter font) run locally and make no network calls. The third-party websites opened by the research/shopping features have their own privacy policies.
+Most features are local. The following user-initiated cases may involve the internet or third-party services:
+
+- **Opening web pages:** If you use research, shopping, or link-opening features, Chrome opens normal web pages. Those websites receive requests just as they would if you visited them directly.
+- **Voice input:** Chrome's Web Speech API may send audio to Google's speech service for transcription depending on your Chrome version, language, operating system, and settings. The extension does not store audio files.
+- **External websites:** Any website you visit has its own privacy policy and behavior outside this extension's control.
+
+The extension itself does not send your page content, prompts, notes, documents, images, or saved local history to a developer server.
+
+## Permissions explained
+
+| Permission | Why it is needed |
+| --- | --- |
+| `sidePanel` | Shows the Local AI Workbench interface inside Chrome's side panel. |
+| `host_permissions` for `http://*/*` and `https://*/*` | Lets the workbench read normal web pages you choose to work with, follow the active tab, summarize pages, extract visible text, inspect basic safety signals, and avoid repeated permission prompts. |
+| `scripting` | Runs short page-reading scripts on normal web pages so the extension can collect visible text and page signals for your requested action. |
+| `storage` | Saves local notes, memory, chats, reading lists, sessions, preferences, page logs, and transcripts in your browser. |
+| `tabs` | Identifies the active tab, tab title, URL, and tab state so the side panel can work with the page you are viewing. |
+| `tabGroups` | Supports user-triggered tab grouping and workspace organization. |
+| `contextMenus` | Adds right-click actions for selected text and images, such as asking the local AI or extracting text/details from an image. |
+| Optional `history` | Requested only if you choose the clear-history command. It is used to delete recent history after confirmation, not to read or transmit your history. |
+
+The extension cannot read Chrome internal pages such as `chrome://` pages.
+
+## Data sharing
+
+We do not:
+
+- Sell your data.
+- Rent your data.
+- Transfer your data to advertisers.
+- Use your data for ads.
+- Use your data for creditworthiness or lending.
+- Allow humans to read your local content.
+- Send your local content to a developer server.
+
+## Limited Use
+
+Local AI Workbench uses information from Chrome APIs and user actions only to provide the extension's visible, user-facing features. The extension is designed to comply with the Chrome Web Store User Data Policy and Limited Use requirements:
+
+- Data is used only for the extension's single purpose.
+- Data is processed locally where the extension controls the processing path.
+- Data is not sold.
+- Data is not used for advertising.
+- Data is not transferred to the developer.
+- Data is not used for unrelated profiling.
+
+## Third-party components
+
+Bundled libraries such as PDF.js, Mammoth.js, and local fonts run inside the extension package. They are included to parse files or render the user interface locally.
+
+Chrome itself and the websites you choose to open are separate from this extension and may have their own privacy practices.
 
 ## Children
 
-This extension is not directed to children under 13 and collects no data from anyone.
+This extension is not directed to children under 13. The developer does not knowingly collect data from children or from any other users.
 
-## Changes
+## Changes to this policy
 
-Any future changes to this policy will be reflected in this file in the project's repository, with an updated date above.
+Future changes will be published in this file in the public GitHub repository. The date at the top will be updated when the policy changes.
 
 ## Contact
 
-Questions? Open an issue at https://github.com/Najariya/nano-workbench/issues.
+Questions or concerns can be opened as a GitHub issue:
+
+https://github.com/Najariya/nano-workbench/issues
