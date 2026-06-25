@@ -4,7 +4,7 @@ A Chrome side-panel workbench for Chrome's built-in on-device AI. It helps summa
 
 The extension is designed around local processing: prompts run through Chrome's built-in AI APIs, and notes/history are stored in the browser with IndexedDB or `chrome.storage.local`.
 
-The Chrome Web Store package uses `activeTab` for active-page reading and optional runtime site access as a fallback. The extension does not request broad required host permissions at install time.
+The Chrome Web Store package uses `activeTab` for active-page reading and optional runtime page-reading access as a fallback. The extension does not request broad required host permissions at install time.
 
 ## Features
 
@@ -36,7 +36,7 @@ The Chrome Web Store package uses `activeTab` for active-page reading and option
 The source in this repository is the extension package. To create a zip for upload:
 
 ```sh
-zip -r -X local-ai-workbench-store-v6.7.2.zip \
+zip -r -X local-ai-workbench-store-v6.7.3.zip \
   manifest.json PRIVACY.md mic-permission.html mic-permission.js \
   fonts icons safety.js sidepanel.css background.js docparse.js \
   sidepanel.html sidepanel.js db.js md.js lib export.js
