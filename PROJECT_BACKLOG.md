@@ -49,6 +49,9 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | IMP-023 | Done | P2 | Accessibility | Review keyboard and screen-reader paths. | `docs/accessibility-review.md` records current coverage and manual checks. |
 | IMP-024 | Done | P2 | Store assets | Add polished screenshot/video script for next version. | `store-assets/NEXT_VERSION_SCRIPT.md` covers summary, OCR, local privacy, and per-tab workspace visuals. |
 | IMP-025 | Done | P2 | Release notes | Create next-version release notes template. | `docs/release-notes-template.md` is ready for store update notes. |
+| IMP-026 | Done | P1 | Reliability | Add Doctor diagnostics and guarded tab switching. | Doctor checks model/storage/page/workspace state, keeps safe local diagnostics, and active-tab changes wait while an AI run is in progress. |
+| IMP-027 | Parked | P2 | Capture | Explore multi-page long screenshots. | Future design covers full-page and multi-page capture, stitching, redaction, and export without adding permissions until needed. |
+| IMP-028 | Parked | P2 | Meetings | Improve meeting notes capture. | Future design covers quick recording, transcript cleanup, local summary/export, and clear disclosure for any browser speech-recognition cloud behavior. |
 
 ## Backlog
 
@@ -88,6 +91,12 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | IMP-018 | Done | Improve OCR result confidence and recheck guidance. | Image extraction can be imperfect. | OCR output clearly marks low-confidence fields and recommends rechecking important values. |
 | IMP-019 | Done | Add "copy clean text" and "copy fields" consistency. | OCR users need fast copy/export. | Text, JSON, and detected fields have predictable copy actions. |
 
+### P1: Reliability and Diagnostics
+
+| ID | Status | Work item | Why it matters | Acceptance criteria |
+| --- | --- | --- | --- | --- |
+| IMP-026 | Done | Add Doctor diagnostics and guarded tab switching. | Users need a reliable way to understand model, storage, permission, tab, and workspace state without opening DevTools. | Doctor shows pass/fail checks, copyable safe diagnostics, and tab switches are queued while an AI response is running instead of silently interrupting the model session. |
+
 ### P2: Workspace Polish
 
 | ID | Status | Work item | Why it matters | Acceptance criteria |
@@ -95,6 +104,13 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | IMP-020 | Done | Improve saved sessions as workspaces. | Saved tabs and conversations should feel connected. | A saved session can be reopened with its related local notes/conversation summary. |
 | IMP-021 | Done | Add lightweight workspace names. | Users need human labels for ongoing work. | User can rename a pinned workspace locally. |
 | IMP-022 | Done | Add local export of workspace. | Sensitive users may want portable local records. | Workspace can export to Markdown/text without any network transfer. |
+
+### P2: Future Product Ideas
+
+| ID | Status | Work item | Why it matters | Acceptance criteria |
+| --- | --- | --- | --- | --- |
+| IMP-027 | Parked | Explore multi-page long screenshots. | Long screenshots are a natural browser-workbench capability for research, records, and sharing. | Design should cover full-page capture, multi-page/stitching behavior, local redaction, export formats, and permission impact before implementation. |
+| IMP-028 | Parked | Improve meeting notes capture. | Meeting notes are a high-value local AI workflow when capture, cleanup, and summarization are frictionless. | Design should cover quick start/stop, local transcript cleanup, summary/action items, export, privacy copy, and clear voice-processing disclosure. |
 
 ### P2: Quality, Accessibility, and Store Assets
 

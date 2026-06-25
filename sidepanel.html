@@ -104,6 +104,7 @@
       <button class="chip primary-chip" data-action="summarize">✦ Summarize</button>
       <button class="chip" data-action="email">✉ Read email</button>
       <button class="chip" id="moreBtn">⋯ More</button>
+      <button class="chip export-chip" id="exportQuickBtn" disabled>Export</button>
     </div>
 
     <!-- Site-safety badge (auto-filled on page change; click for details, ✕ to dismiss) -->
@@ -158,7 +159,7 @@
         <span class="more-label">Session &amp; reading</span>
         <button class="chip" id="pinWorkspaceBtn">📌 Pin workspace</button>
         <button class="chip" id="renameWorkspaceBtn">Rename workspace</button>
-        <button class="chip" id="exportWorkspaceBtn">Export workspace</button>
+        <button class="chip" id="exportWorkspaceBtn">Export conversation</button>
         <button class="chip" id="newThreadBtn">＋ New thread</button>
         <button class="chip" id="ignoreToggle">📄 Page: on</button>
       </div>
@@ -346,7 +347,13 @@
 
     <!-- Developer / debug -->
     <div class="settings-group">
-      <div class="sg-head"><span class="sg-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 18.3 14.4 11a5.5 5.5 0 0 0-6.8-7.3l3.2 3.2-1.1 2.8-2.8 1.1L3.7 7.6A5.5 5.5 0 0 0 11 14.4l7.3 7.3a1 1 0 0 0 1.4 0l2-2a1 1 0 0 0 0-1.4Z"/></svg></span><span class="sg-title">Developer mode</span></div>
+      <div class="sg-head"><span class="sg-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 18.3 14.4 11a5.5 5.5 0 0 0-6.8-7.3l3.2 3.2-1.1 2.8-2.8 1.1L3.7 7.6A5.5 5.5 0 0 0 11 14.4l7.3 7.3a1 1 0 0 0 1.4 0l2-2a1 1 0 0 0 0-1.4Z"/></svg></span><span class="sg-title">Doctor / Developer mode</span></div>
+      <div class="doctor-actions">
+        <button id="doctorRun" class="primary-btn small">Run Doctor</button>
+        <button id="doctorCopy" class="link-btn">Copy report</button>
+      </div>
+      <div id="doctorList" class="health-list"><div class="sg-sub" style="margin:0;">Run Doctor to check model, permissions, storage, active tab, workspace, and diagnostics.</div></div>
+      <p class="sg-sub" style="margin:6px 0 10px;">Diagnostics are local and do not include page text, prompts, images, or extracted OCR text.</p>
       <div class="set-row">
         <span class="set-label">Debug mode<small>Model state, memory, timing &amp; event log</small></span>
         <label class="switch"><input type="checkbox" id="debugMode" aria-label="Debug mode" /><span class="track"></span><span class="knob"></span></label>
@@ -376,7 +383,7 @@
         <div class="debug-row"><span>Benchmark</span><span id="perfBench">—</span></div>
         <p class="sg-sub" style="margin:6px 0 2px;">Chrome runs the built-in AI model on its own backend (GPU/CPU/NPU) — the API exposes no switch, so these measure real latency, not the device used. Lower TTFT &amp; higher tok/s = snappier.</p>
 
-        <div class="debug-head">Event log <span><button id="dbgRefresh" class="link-btn">refresh</button> · <button id="dbgCopy" class="link-btn">copy</button> · <button id="dbgClear" class="link-btn">clear</button></span></div>
+        <div class="debug-head">Diagnostic log <span><button id="dbgRefresh" class="link-btn">refresh</button> · <button id="dbgCopy" class="link-btn">copy</button> · <button id="dbgClear" class="link-btn">clear</button></span></div>
         <pre id="dbgLog" class="debug-log"></pre>
       </div>
     </div>
