@@ -1,22 +1,40 @@
-# Privacy Policy for Local AI Workbench
+<p align="center">
+  <img src="icons/icon-128.png" width="92" alt="Local AI Workbench icon">
+</p>
 
-_Last updated: June 25, 2026_
+<h1 align="center">Privacy Policy</h1>
+
+<p align="center">
+  <strong>Local AI Workbench</strong><br>
+  Private by design. Local by default. No developer access to your content.
+</p>
+
+<p align="center">
+  <em>Last updated: June 25, 2026</em>
+</p>
+
+---
 
 Local AI Workbench is designed as a **local-first browser AI workbench**. Its purpose is to help you summarize, question, extract, draft, and organize content from pages, emails, documents, images, notes, and tabs you choose to work with.
 
-The short version: **we do not run a backend server, we do not receive your content, we do not sell data, and the core AI work happens locally in Chrome through browser-provided on-device AI APIs.**
+## The trust promise
+
+> The developer does not have access to your page content, emails, prompts, notes, documents, images, local history, or saved workspaces. The extension has no developer-operated server, no analytics, no telemetry, and no advertising system. Because we do not receive your data, there is no path for us to sell it, inspect it, train on it, profile you with it, or use it for any unrelated purpose.
+
+The core AI work happens locally in Chrome through browser-provided on-device AI APIs. Your local data stays in your browser unless you choose to delete it, clear browser storage, or uninstall the extension.
 
 ## Privacy at a glance
 
 | Area | What it means |
 | --- | --- |
-| 🖥️ On-device first | The main AI features run inside Chrome using browser-provided local AI capabilities. |
-| 🚫 No developer server | The extension has no developer-operated backend, analytics, telemetry, or advertising service. |
+| 🖥️ On-device AI | The main AI features run inside Chrome using browser-provided local AI capabilities. |
+| 🔐 No developer access | The developer does not receive or view your private content. |
+| 🚫 No backend server | The extension has no developer-operated backend, analytics, telemetry, or advertising service. |
 | 🔒 Local storage | Notes, chats, page logs, reading lists, work memory, saved sessions, preferences, and transcripts are stored in your browser. |
 | 🌐 Page access | The extension can read normal web pages only so it can summarize, answer questions, extract details, and follow the active tab. |
 | 🖱️ User controlled | You choose what to read, summarize, attach, right-click, save, delete, or clear. |
 | 💬 Voice note caution | Voice transcription uses Chrome's Web Speech API and may use Google's speech service depending on Chrome, language, and device settings. |
-| 💰 No sale of data | We do not sell, rent, transfer, or monetize your data. |
+| 💰 No data business | We cannot sell or monetize data we never receive. |
 
 ## What the extension does
 
@@ -34,7 +52,7 @@ Local AI Workbench provides a Chrome side panel for:
 
 **We collect nothing.**
 
-The extension developer does not receive:
+As the developer, I do not receive:
 
 - Your web page content.
 - Your emails.
@@ -46,7 +64,7 @@ The extension developer does not receive:
 - Your voice recordings.
 - Your personal information.
 
-There is no developer-operated server for this extension.
+There is no developer-operated server, dashboard, account system, analytics panel, or remote database for this extension.
 
 ## What stays on your device
 
