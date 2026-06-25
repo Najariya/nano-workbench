@@ -50,17 +50,85 @@ Update backlog status honestly:
 
 ## Required Work Report Format
 
-Every final response for project work must include these sections, even if brief:
+Every final response for project work must be table-first. Prefer Markdown tables over prose so the user can scan status quickly.
+
+Every project final response must include these tables, even if brief:
+
+1. `Work Report`
+2. `Success Criteria`
+3. `Tests`
+4. `Kanban Snapshot`
+5. `Next Deliverable`
+
+### Work Report Table
+
+Use this exact table shape:
+
+| Field | Status / Details |
+| --- | --- |
+| Picked deliverable | Backlog item, phase, bug, or task selected for this turn. |
+| Delivered | What was actually changed. |
+| Files changed | Key files touched. |
+| Test result | `Passed`, `Failed`, or `Not fully tested`. |
+| Manual test needed | Exact user test need, or `None`. |
+| GitHub status | Local only, committed, pushed, merged, or not committed by design. |
+
+### Success Criteria Table
+
+Report each criterion as a row:
+
+| Criterion | Status | Evidence |
+| --- | --- | --- |
+| User-visible behavior works | Passed / Failed / Not tested | Short proof. |
+| No new permissions | Passed / Failed / N/A | Manifest check or explanation. |
+
+### Tests Table
+
+Report all checks as rows:
+
+| Test / Check | Status | Notes |
+| --- | --- | --- |
+| `node --check sidepanel.js` | Passed | Syntax check. |
+| Browser manual test | Needs user | Give exact test steps below if not performed. |
+
+### Kanban Snapshot Table
+
+Every project final response must include the current Kanban status from `PROJECT_BACKLOG.md`. Keep it compact, but always include it.
+
+Use this shape:
+
+| Column | Items |
+| --- | --- |
+| Done | IDs completed or confirmed done in this turn / current focus. |
+| In progress | IDs currently being worked. |
+| Next | The next backlog ID to pick up. |
+| Backlog | Important upcoming IDs, grouped briefly. |
+
+If the backlog file was not read in the turn, say so in the `Kanban Snapshot` table and use the last known status carefully.
+
+### Next Deliverable Table
+
+Always name the next action:
+
+| Next deliverable | Why this is next | Success criteria |
+| --- | --- | --- |
+| `IMP-014` | Improves user confidence in page context. | Freshness is visible and refresh updates it. |
+
+## Required Content In The Tables
+
+The final response must still cover these concepts, but inside the tables:
 
 ```text
 Picked deliverable
 Delivered
+Files changed
 Success criteria
 Tests run
 Test result
 Manual test needed
 Next deliverable
 GitHub status
+Kanban board status
 ```
 
 ### Picked deliverable
