@@ -38,6 +38,9 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | IMP-014 | Done | P1 | Reading quality | Make page-read freshness visible. | Context strip shows a last-read timestamp or an unread reason, and the refresh control re-reads the page. |
 | IMP-015 | Done | P1 | Trust | Add source label to AI responses. | Page, email, and document-grounded responses include a compact source label. |
 | IMP-016 | Done | P1 | Long pages | Improve long-page chunking feedback. | Long summaries report part-by-part progress before the combined answer. |
+| IMP-017 | Done | P1 | OCR | Make image OCR action more prominent in onboarding and UI. | Onboarding, More sheet, context-menu copy, and store assets now surface the OCR workflow clearly. |
+| IMP-018 | Done | P1 | OCR | Improve OCR result confidence and recheck guidance. | Medium, low, or partial OCR outputs show explicit recheck guidance for important values. |
+| IMP-019 | Done | P1 | OCR | Add "copy clean text" and "copy fields" consistency. | OCR results expose Copy text, Copy fields when fields exist, and Copy JSON. |
 
 ## Backlog
 
@@ -73,9 +76,9 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 
 | ID | Status | Work item | Why it matters | Acceptance criteria |
 | --- | --- | --- | --- | --- |
-| IMP-017 | Backlog | Make image OCR action more prominent in onboarding and UI. | This is a standout feature and should be obvious. | Onboarding, More sheet, and screenshots/video all make OCR discoverable. |
-| IMP-018 | Backlog | Improve OCR result confidence and recheck guidance. | Image extraction can be imperfect. | OCR output clearly marks low-confidence fields and recommends rechecking important values. |
-| IMP-019 | Backlog | Add "copy clean text" and "copy fields" consistency. | OCR users need fast copy/export. | Text, JSON, and detected fields have predictable copy actions. |
+| IMP-017 | Done | Make image OCR action more prominent in onboarding and UI. | This is a standout feature and should be obvious. | Onboarding, More sheet, and screenshots/video all make OCR discoverable. |
+| IMP-018 | Done | Improve OCR result confidence and recheck guidance. | Image extraction can be imperfect. | OCR output clearly marks low-confidence fields and recommends rechecking important values. |
+| IMP-019 | Done | Add "copy clean text" and "copy fields" consistency. | OCR users need fast copy/export. | Text, JSON, and detected fields have predictable copy actions. |
 
 ### P2: Workspace Polish
 

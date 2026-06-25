@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Local AI Workbench",
-  "version": "6.8.1",
-  "version_name": "6.8.1 - Context quality test",
+  "version": "6.8.2",
+  "version_name": "6.8.2 - OCR workflow polish",
   "description": "On-device AI side panel for Chrome: summarize pages, read documents, draft text, and keep private local notes.",
   "minimum_chrome_version": "138",
   "permissions": ["sidePanel", "storage", "scripting", "tabs", "contextMenus", "tabGroups"],

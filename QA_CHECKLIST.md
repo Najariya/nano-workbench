@@ -80,10 +80,12 @@ Expected result: every command exits successfully with no syntax error.
 ### Right-Click Image OCR
 
 - Right-click an image that contains text.
-- Choose **Extract details from image**.
+- Choose **Extract text/details with Local AI**.
 - Confirm the side panel opens.
 - Confirm the OCR result appears with copied text/fields available.
 - Confirm low-confidence or hard-to-read outputs do not overclaim certainty.
+- Confirm **Copy text**, **Copy fields** when fields exist, and **Copy JSON** are available and copy the expected content.
+- Confirm medium, low, or partial OCR results show recheck guidance for important values.
 
 ### Documents
 
@@ -144,6 +146,19 @@ Run these checks for the `6.8.1 - Context quality test` build:
 - Turn on **Ignore page - generic chat** and confirm the message explains that generic chat is intentionally not reading the page.
 - Open a page with little or no readable text and confirm **Summarize** gives a next action instead of only saying "Nothing to read".
 - Attach a document and ask a question; confirm the answer source label identifies the attached document.
+
+## OCR Workflow Regression Gate
+
+Run these checks for the `6.8.2 - OCR workflow polish` build:
+
+- Confirm `chrome://extensions` shows version `6.8.2`.
+- Open the first-run onboarding if available and confirm the third card names right-click image OCR.
+- Open **More** and confirm **Images & OCR -> Extract text from image** is visible.
+- Click **Extract text from image** and confirm the assistant explains the right-click and attach-image paths.
+- Right-click an image containing text and choose **Extract text/details with Local AI**.
+- Confirm the OCR result has a confidence badge and shows recheck guidance when confidence is medium, low, or partial.
+- Confirm **Copy text**, **Copy fields** when fields exist, and **Copy JSON** copy the expected output.
+- Confirm `store-assets/README.md` keeps the OCR screenshot and promo frame in the listing story.
 
 ## Packaging Gate
 

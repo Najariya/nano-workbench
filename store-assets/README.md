@@ -18,6 +18,18 @@ Generated assets for the Chrome Web Store listing.
 - Small promotional tile: 440 x 280 PNG.
 - Promo video source file: 1280 x 720 H.264 MP4. Upload this MP4 to YouTube before using the Chrome Web Store promo video field.
 
+## Listing Story
+
+Use the assets in this order so the OCR feature is visible early:
+
+1. `screenshots/01-workbench-actions.png` - show the side-panel workbench on a real page.
+2. `screenshots/02-image-ocr-right-click.png` - show the right-click image OCR workflow prominently.
+3. `screenshots/03-model-setup.png` - show the one-time local model setup.
+4. `screenshots/04-settings-safety.png` - show local controls, safety, and reading settings.
+5. `screenshots/05-model-download-context.png` - show the model download/ready state in Chrome.
+
+The promo video should keep `frame-03-ocr.png` as a dedicated OCR beat: right-click an image, extract text/fields locally, then copy clean text, fields, or JSON.
+
 ## Source
 
 The source contact sheet is `source/asset-board.html`.
