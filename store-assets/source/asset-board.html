@@ -15,540 +15,93 @@
       src: url("../../fonts/inter-600.woff2") format("woff2");
       font-weight: 600;
     }
-    :root {
-      --ink: #f2f5fb;
-      --muted: #a7b1c4;
-      --line: #2b3447;
-      --panel: #141925;
-      --panel-2: #1b2230;
-      --page: #f4f7fb;
-      --page-ink: #1d2433;
-      --blue: #5b8def;
-      --violet: #818cf8;
-      --green: #65d39b;
-      --amber: #f4c45a;
-      --red: #ff8e8e;
+    * {
+      box-sizing: border-box;
     }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; }
     body {
+      margin: 0;
+      padding: 32px;
       font-family: InterWB, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--ink);
-      background: #0e121a;
+      color: #f8fafc;
+      background: #0f131b;
       letter-spacing: 0;
     }
-    .canvas {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      background:
-        linear-gradient(180deg, #0f1420 0%, #111827 62%, #162032 100%);
-      overflow: hidden;
+    header {
+      max-width: 1160px;
+      margin: 0 auto 28px;
     }
-    .top-label {
-      position: absolute;
-      top: 26px;
-      left: 42px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 15px;
-      color: var(--muted);
-      z-index: 5;
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.12;
     }
-    .app-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      background: var(--violet);
-      color: #111827;
-      font-weight: 600;
-      box-shadow: 0 14px 40px rgba(129, 140, 248, .22);
+    p {
+      margin: 0;
+      color: #bac4d4;
+      line-height: 1.55;
     }
-    .browser {
-      position: absolute;
-      left: 42px;
-      right: 42px;
-      top: 82px;
-      bottom: 42px;
-      border: 1px solid rgba(174, 187, 208, .24);
-      border-radius: 18px;
-      overflow: hidden;
-      background: var(--page);
-      box-shadow: 0 28px 80px rgba(0, 0, 0, .46);
-    }
-    .chrome-bar {
-      height: 54px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 0 18px;
-      background: #202838;
-      border-bottom: 1px solid #303a4f;
-    }
-    .traffic { display: flex; gap: 8px; }
-    .traffic span { width: 11px; height: 11px; border-radius: 50%; display: block; }
-    .traffic span:nth-child(1) { background: #ff6b6b; }
-    .traffic span:nth-child(2) { background: #f4c45a; }
-    .traffic span:nth-child(3) { background: #65d39b; }
-    .address {
-      flex: 1;
-      height: 30px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      padding: 0 14px;
-      color: #c8d2e4;
-      background: #121826;
-      font-size: 12px;
-    }
-    .browser-body {
-      display: grid;
-      grid-template-columns: 1fr 404px;
-      height: calc(100% - 54px);
-    }
-    .page {
-      padding: 42px 48px;
-      color: var(--page-ink);
-      background: linear-gradient(180deg, #f8fafc 0%, #edf2f8 100%);
-    }
-    .page-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      border: 1px solid #d9e0ec;
-      border-radius: 999px;
-      color: #41516d;
-      background: white;
-      font-size: 12px;
-      font-weight: 600;
-    }
-    .page h1 {
-      margin: 22px 0 12px;
-      max-width: 620px;
-      color: #172033;
-      font-size: 40px;
-      line-height: 1.08;
-      font-weight: 600;
-    }
-    .page p {
-      max-width: 640px;
-      color: #526179;
-      font-size: 16px;
-      line-height: 1.65;
-    }
-    .page-grid {
+    .grid {
+      max-width: 1160px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-      max-width: 690px;
-      margin-top: 28px;
+      gap: 22px;
     }
-    .page-card {
-      min-height: 118px;
-      border: 1px solid #dce3ef;
-      border-radius: 8px;
-      padding: 18px;
-      background: rgba(255, 255, 255, .78);
-      box-shadow: 0 12px 28px rgba(68, 82, 111, .08);
-    }
-    .page-card b { display: block; margin-bottom: 8px; color: #253049; font-size: 14px; }
-    .page-card span { color: #60708b; font-size: 13px; line-height: 1.55; }
-    .side-panel {
-      border-left: 1px solid #2c3446;
-      background: #0f1117;
-      color: var(--ink);
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-    }
-    .side-top {
-      height: 55px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 15px;
-      border-bottom: 1px solid #242c3c;
-      background: #111722;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      font-weight: 600;
-      font-size: 14px;
-    }
-    .brand .app-mark { width: 26px; height: 26px; border-radius: 7px; font-size: 13px; box-shadow: none; }
-    .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 0 5px rgba(101, 211, 155, .16);
-    }
-    .context {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 12px 14px 8px;
-      padding: 8px 12px;
-      border: 1px solid #2b3447;
-      border-radius: 999px;
-      background: #151b27;
-      color: #d7ddeb;
-      font-size: 12px;
-      min-width: 0;
-    }
-    .context span:last-child {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .tabs {
-      display: flex;
-      gap: 18px;
-      margin: 0 14px;
-      padding: 7px 2px 0;
-      border-bottom: 1px solid #283044;
-      color: var(--muted);
-      font-size: 12px;
-    }
-    .tabs b {
-      color: var(--ink);
-      padding-bottom: 8px;
-      border-bottom: 2px solid var(--violet);
-      font-weight: 600;
-    }
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 14px;
-    }
-    .chip {
-      border: 1px solid #2d374d;
-      border-radius: 999px;
-      background: #171e2b;
-      padding: 8px 12px;
-      color: #e2e7f2;
-      font-size: 12px;
-      font-weight: 600;
-    }
-    .chip.primary {
-      border-color: transparent;
-      background: #242d48;
-      color: #b9c0ff;
-    }
-    .chat {
-      flex: 1;
-      padding: 0 14px 14px;
-      overflow: hidden;
-    }
-    .message {
-      margin-bottom: 14px;
-      line-height: 1.55;
-      font-size: 13px;
-    }
-    .message.user {
-      max-width: 88%;
-      margin-left: auto;
-      padding: 10px 12px;
-      border-radius: 14px 14px 5px 14px;
-      background: #283157;
-    }
-    .answer {
-      border: 1px solid #2a3448;
-      border-radius: 8px;
-      padding: 14px;
-      background: #151b27;
-      box-shadow: 0 12px 34px rgba(0, 0, 0, .22);
-    }
-    .answer h3 {
-      margin: 0 0 8px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .answer ul {
-      margin: 8px 0 0;
-      padding-left: 18px;
-      color: #cbd3e3;
-    }
-    .answer li { margin: 7px 0; }
-    .composer {
-      margin: 0 14px 14px;
-      border-top: 1px solid #283044;
-      padding-top: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .input {
-      flex: 1;
-      min-height: 42px;
-      border: 1px solid #303a4f;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      padding: 0 12px;
-      color: #77849a;
-      background: #151b22;
-      font-size: 12px;
-    }
-    .send {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: #111827;
-      background: var(--violet);
-      font-weight: 600;
-    }
-    .privacy-bar {
-      position: absolute;
-      left: 66px;
-      bottom: 60px;
-      display: flex;
-      gap: 10px;
-      padding: 10px 13px;
-      border: 1px solid rgba(101, 211, 155, .28);
-      border-radius: 999px;
-      background: rgba(16, 26, 30, .92);
-      color: #bcf4d4;
-      font-size: 12px;
-      font-weight: 600;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, .22);
-    }
-    .doc-page .page h1 { font-size: 38px; }
-    .doc-page .page-grid { gap: 14px; margin-top: 22px; }
-    .doc-page .page-card { min-height: 104px; padding: 15px; }
-    .ocr-card {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .field {
-      border: 1px solid #303a4f;
-      border-radius: 8px;
-      padding: 10px;
-      background: #111722;
-    }
-    .field small { display: block; color: var(--muted); font-size: 10px; margin-bottom: 4px; }
-    .field b { font-size: 12px; }
-    .promo .canvas {
-      width: 440px;
-      height: 280px;
-      background: #101723;
-    }
-    .promo .promo-wrap {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      grid-template-columns: 1fr 174px;
-      gap: 18px;
-      padding: 26px 24px;
-      align-items: center;
-    }
-    .promo-copy h1 {
-      margin: 10px 0 8px;
-      color: var(--ink);
-      font-size: 28px;
-      line-height: 1.04;
-      font-weight: 600;
-    }
-    .promo-copy p {
+    figure {
       margin: 0;
-      color: #c4ccdc;
-      font-size: 12.5px;
-      line-height: 1.45;
-    }
-    .promo-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: #bcf4d4;
-      font-size: 11px;
-      font-weight: 600;
-    }
-    .mini-panel {
-      height: 224px;
-      border: 1px solid #2d374d;
-      border-radius: 12px;
-      background: #0f1117;
       overflow: hidden;
-      box-shadow: 0 20px 46px rgba(0, 0, 0, .32);
+      border: 1px solid #2f3a4d;
+      border-radius: 10px;
+      background: #151b25;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .28);
     }
-    .mini-top { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 9px; background: #121826; border-bottom: 1px solid #283044; font-size: 10px; }
-    .mini-body { padding: 10px; }
-    .mini-chip { display: inline-block; margin: 0 5px 8px 0; padding: 6px 8px; border-radius: 999px; background: #242d48; color: #c5cbff; font-size: 9px; font-weight: 600; }
-    .mini-answer { border: 1px solid #2d374d; border-radius: 8px; padding: 9px; color: #dfe5f1; background: #151b27; font-size: 9.5px; line-height: 1.45; }
-    .mini-answer div { margin: 4px 0; }
-    .video-title {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      padding: 70px;
-      text-align: center;
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #0b0f16;
     }
-    .video-title h1 {
-      margin: 18px auto 12px;
-      max-width: 780px;
-      font-size: 62px;
-      line-height: 1.02;
+    figcaption {
+      padding: 13px 15px;
+      color: #dce4ef;
+      font-size: 14px;
       font-weight: 600;
     }
-    .video-title p {
-      margin: 0 auto;
-      max-width: 760px;
-      color: #cbd3e3;
-      font-size: 22px;
-      line-height: 1.45;
+    .tile {
+      max-width: 440px;
     }
-    .video-frame .browser { left: 70px; right: 70px; top: 64px; bottom: 64px; }
-    .video-frame .top-label { display: none; }
-    .video-frame .privacy-bar { bottom: 78px; left: 96px; }
-    .video-frame .composer { display: none; }
-    .video-frame .chat { padding-bottom: 16px; }
   </style>
 </head>
 <body>
-  <main class="canvas" id="root"></main>
-  <script>
-    const scene = new URLSearchParams(location.search).get("scene") || "summary";
-    const root = document.getElementById("root");
-
-    function chromeFrame({ mode = "summary" } = {}) {
-      const doc = mode === "doc";
-      const comparison = mode === "compare";
-      return `
-        <div class="top-label"><span class="app-mark">◈</span><span>Gemini Nano Workbench · private on-device AI for Chrome</span></div>
-        <section class="browser ${doc ? "doc-page" : ""}">
-          <div class="chrome-bar">
-            <div class="traffic"><span></span><span></span><span></span></div>
-            <div class="address">https://example.com/${doc ? "invoice-review" : comparison ? "research-tabs" : "market-brief"}</div>
-          </div>
-          <div class="browser-body">
-            <article class="page">
-              <span class="page-pill">${doc ? "Attached document" : comparison ? "Open tabs" : "Current page"} · processed locally</span>
-              <h1>${doc ? "Invoice and document review without uploading files" : comparison ? "Compare research across open tabs" : "Summarize the page you are already reading"}</h1>
-              <p>${doc ? "Attach PDFs, DOCX files, images, notes, and receipts. Nano Workbench extracts the text in the browser and helps answer focused questions." : comparison ? "Select multiple tabs, ask for a briefing, and get a local synthesis without copying text between windows." : "Open any article, email, or dashboard. The side panel reads the chosen page, creates a concise summary, and keeps work memory on your device."}</p>
-              <div class="page-grid">
-                <div class="page-card"><b>${doc ? "Local parsing" : "No cloud account"}</b><span>${doc ? "Bundled PDF and DOCX parsers run in Chrome." : "Uses Chrome built-in AI and local browser storage."}</span></div>
-                <div class="page-card"><b>${doc ? "Extract fields" : "Page-aware chat"}</b><span>${doc ? "Find totals, dates, names, action items, and events." : "Ask questions about the active page or selected text."}</span></div>
-                <div class="page-card"><b>${comparison ? "Tab cleanup" : "Private memory"}</b><span>${comparison ? "Summarize, group, and reopen tab sessions." : "Save notes, memos, reading lists, and sessions locally."}</span></div>
-                <div class="page-card"><b>${doc ? "Export answers" : "Useful outputs"}</b><span>${doc ? "Save answers as Word, Markdown, text, or calendar files." : "Draft replies, create key points, collect links, and export."}</span></div>
-              </div>
-            </article>
-            ${sidePanel(mode)}
-          </div>
-        </section>
-        <div class="privacy-bar"><span class="dot"></span><span>No server · no analytics · local storage</span></div>`;
-    }
-
-    function sidePanel(mode) {
-      const doc = mode === "doc";
-      const comparison = mode === "compare";
-      return `
-        <aside class="side-panel">
-          <div class="side-top">
-            <div class="brand"><span class="app-mark">◈</span><span>Nano Workbench</span></div>
-            <span class="dot"></span>
-          </div>
-          <div class="context"><span class="dot"></span><span>${doc ? "Attachment loaded: invoice-q2.pdf" : comparison ? "6 tabs selected for comparison" : "Reading: Market brief and strategy memo"}</span></div>
-          <div class="tabs"><b>Assist</b><span>History</span><span>Memos</span><span>Settings</span></div>
-          <div class="chips">
-            <span class="chip primary">✦ Summarize</span>
-            <span class="chip">${doc ? "Extract fields" : comparison ? "Compare tabs" : "Read email"}</span>
-            <span class="chip">⋯ More</span>
-          </div>
-          <div class="chat">
-            <div class="message user">${doc ? "What should I check before approving this?" : comparison ? "Compare these tabs and give me the decision points." : "Summarize this page and pull out action items."}</div>
-            <div class="answer">
-              <h3>${doc ? "Document review" : comparison ? "Cross-tab briefing" : "Page summary"}</h3>
-              ${doc ? docAnswer() : comparison ? compareAnswer() : summaryAnswer()}
-            </div>
-          </div>
-          <div class="composer"><div class="input">Ask anything · type / for commands</div><div class="send">➤</div></div>
-        </aside>`;
-    }
-
-    function summaryAnswer() {
-      return `<ul>
-        <li>Revenue trend is positive, but customer support volume is rising.</li>
-        <li>Two follow-ups: confirm pricing rollout and prepare a partner note.</li>
-        <li>Suggested draft reply is ready with a concise, professional tone.</li>
-      </ul>`;
-    }
-    function compareAnswer() {
-      return `<ul>
-        <li>Three sources agree demand is growing for browser-native AI workflows.</li>
-        <li>Risk: availability depends on supported Chrome versions and device specs.</li>
-        <li>Recommendation: launch with clear setup guidance and privacy-first positioning.</li>
-      </ul>`;
-    }
-    function docAnswer() {
-      return `<div class="ocr-card">
-        <div class="field"><small>Total</small><b>$4,820.00</b></div>
-        <div class="field"><small>Due date</small><b>Jul 14, 2026</b></div>
-        <div class="field"><small>Vendor</small><b>Northstar Labs</b></div>
-        <div class="field"><small>Flag</small><b>Confirm tax ID</b></div>
-      </div>
-      <ul>
-        <li>Values were extracted locally from the attached file.</li>
-        <li>No document upload or API key required.</li>
-      </ul>`;
-    }
-
-    function promoTile() {
-      root.className = "canvas promo";
-      root.innerHTML = `
-        <div class="promo-wrap">
-          <section class="promo-copy">
-            <span class="promo-kicker"><span class="dot"></span> Runs on device</span>
-            <h1>Gemini Nano Workbench</h1>
-            <p>Summarize pages, read documents, draft text, and keep private notes inside Chrome.</p>
-          </section>
-          <section class="mini-panel">
-            <div class="mini-top"><span class="app-mark">◈</span><b>Nano Workbench</b></div>
-            <div class="mini-body">
-              <span class="mini-chip">Summarize</span><span class="mini-chip">Docs</span><span class="mini-chip">Memory</span>
-              <div class="mini-answer">
-                <div><b>Page summary</b></div>
-                <div>3 key points</div>
-                <div>2 action items</div>
-                <div>stored locally</div>
-              </div>
-            </div>
-          </section>
-        </div>`;
-    }
-
-    function videoTitle() {
-      root.innerHTML = `
-        <section class="video-title">
-          <div>
-            <span class="app-mark" style="width:64px;height:64px;border-radius:16px;margin:auto;font-size:28px;">◈</span>
-            <h1>Gemini Nano Workbench</h1>
-            <p>Private on-device AI for summarizing pages, reading documents, comparing tabs, and drafting text in Chrome.</p>
-          </div>
-        </section>`;
-    }
-
-    if (scene === "promo") {
-      promoTile();
-    } else if (scene === "video-title") {
-      root.className = "canvas video-frame";
-      videoTitle();
-    } else {
-      root.className = "canvas" + (scene.startsWith("video") ? " video-frame" : "");
-      const mode = scene.includes("doc") ? "doc" : scene.includes("compare") ? "compare" : "summary";
-      root.innerHTML = chromeFrame({ mode });
-    }
-  </script>
+  <header>
+    <h1>Gemini Nano Workbench Store Assets</h1>
+    <p>Final Chrome Web Store upload set generated from the real screenshots captured on June 25, 2026.</p>
+  </header>
+  <main class="grid">
+    <figure>
+      <img src="../screenshots/01-workbench-actions.png" alt="Real Chrome side-panel summary screenshot" />
+      <figcaption>01 - Workbench summary in Chrome, 1280 x 800</figcaption>
+    </figure>
+    <figure>
+      <img src="../screenshots/02-image-ocr-right-click.png" alt="Right-click image OCR onboarding screenshot" />
+      <figcaption>02 - Image OCR onboarding highlight, 1280 x 800</figcaption>
+    </figure>
+    <figure>
+      <img src="../screenshots/03-model-setup.png" alt="Gemini Nano model setup screenshot" />
+      <figcaption>03 - Gemini Nano setup and ready states, 1280 x 800</figcaption>
+    </figure>
+    <figure>
+      <img src="../screenshots/04-settings-safety.png" alt="Settings and site safety screenshot" />
+      <figcaption>04 - Settings, safety, and persona controls, 1280 x 800</figcaption>
+    </figure>
+    <figure>
+      <img src="../screenshots/05-model-download-context.png" alt="Model download card in Chrome screenshot" />
+      <figcaption>05 - Model download in real Chrome context, 1280 x 800</figcaption>
+    </figure>
+    <figure class="tile">
+      <img src="../promo/small-promo-tile-440x280.png" alt="Small promotional tile" />
+      <figcaption>Small promotional tile, 440 x 280</figcaption>
+    </figure>
+  </main>
 </body>
 </html>

@@ -82,12 +82,16 @@ https://github.com/Najariya/nano-workbench/blob/main/PRIVACY.md
 5. Type a question in the composer and send it.
 6. Attach a small `.txt`, `.pdf`, or `.docx` file and ask a question about it.
 7. Select text on a page, right-click, and choose **Ask Nano**.
-8. Optional: use **Settings > Developer mode > Run check** to view model/storage/mic capability status.
+8. Right-click an image on a page and choose **Extract details from image** to verify the OCR workflow.
+9. Optional: use **Settings > Developer mode > Run check** to view model/storage/mic capability status.
 
 ## Listing Assets
 
-- Screenshot 1: `store-assets/screenshots/01-page-summary.png`
-- Screenshot 2: `store-assets/screenshots/02-document-review.png`
+- Screenshot 1: `store-assets/screenshots/01-workbench-actions.png`
+- Screenshot 2: `store-assets/screenshots/02-image-ocr-right-click.png`
+- Screenshot 3: `store-assets/screenshots/03-model-setup.png`
+- Screenshot 4: `store-assets/screenshots/04-settings-safety.png`
+- Screenshot 5: `store-assets/screenshots/05-model-download-context.png`
 - Small promotional tile: `store-assets/promo/small-promo-tile-440x280.png`
 - Optional promo video file: `store-assets/promo/gemini-nano-workbench-promo.mp4`
 

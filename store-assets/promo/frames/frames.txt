@@ -1,9 +1,11 @@
 file 'frame-01-title.png'
 duration 3
 file 'frame-02-summary.png'
-duration 3
-file 'frame-03-doc.png'
-duration 3
-file 'frame-04-compare.png'
-duration 3
-file 'frame-04-compare.png'
+duration 4
+file 'frame-03-ocr.png'
+duration 5
+file 'frame-04-model.png'
+duration 4
+file 'frame-05-settings.png'
+duration 4
+file 'frame-05-settings.png'
