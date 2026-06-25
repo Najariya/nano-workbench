@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Gemini Nano Workbench",
+  "name": "Local AI Workbench",
   "version": "6.7",
   "description": "On-device AI side panel for Chrome: summarize pages, read documents, draft text, and keep private local notes.",
   "minimum_chrome_version": "138",
@@ -14,7 +14,7 @@
     "default_path": "sidepanel.html"
   },
   "action": {
-    "default_title": "Open Gemini Nano Workbench",
+    "default_title": "Open Local AI Workbench",
     "default_icon": {
       "16": "icons/icon-16.png",
       "48": "icons/icon-48.png",

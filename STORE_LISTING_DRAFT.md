@@ -4,7 +4,7 @@ Use this as the working copy for the Chrome Web Store Developer Dashboard.
 
 ## Basic Details
 
-**Name:** Gemini Nano Workbench
+**Name:** Local AI Workbench
 
 **Summary:**
 On-device AI side panel for Chrome: summarize pages, read documents, draft text, and keep private local notes.
@@ -17,11 +17,11 @@ On-device AI side panel for Chrome: summarize pages, read documents, draft text,
 
 ## Single Purpose
 
-Gemini Nano Workbench is an on-device AI side panel for Chrome that helps users understand, summarize, and work with the page, email, tab, document, or note they choose, while keeping data local in the browser.
+Local AI Workbench is an on-device AI side panel for Chrome that helps users understand, summarize, and work with the page, email, tab, document, or note they choose, while keeping data local in the browser.
 
 ## Detailed Description
 
-Gemini Nano Workbench brings Chrome's built-in on-device AI into a practical side-panel workspace.
+Local AI Workbench brings Chrome's built-in on-device AI into a practical side-panel workspace.
 
 Use it to summarize articles and emails, ask questions about the current page, compare multiple tabs, attach local documents, extract details from images, draft or rewrite text, save private work memory, and export useful answers.
 
@@ -50,7 +50,7 @@ Supports multi-tab summarize/compare, reading selected open tabs, opening user-r
 Supports the user-triggered tab cleanup feature that groups related open tabs.
 
 **contextMenus**  
-Adds right-click actions for selected text and images: "Ask Nano" and "Extract details from image".
+Adds right-click actions for selected text and images: "Ask Local AI" and "Extract details from image".
 
 **host permissions: `http://*/*` and `https://*/*`**  
 Needed to read user-selected web pages across normal websites for summarization, email reading, tab comparison, link/product extraction, image extraction, and site-safety checks.
@@ -81,7 +81,7 @@ https://github.com/Najariya/nano-workbench/blob/main/PRIVACY.md
 4. Click **Summarize** to verify the current page is summarized locally.
 5. Type a question in the composer and send it.
 6. Attach a small `.txt`, `.pdf`, or `.docx` file and ask a question about it.
-7. Select text on a page, right-click, and choose **Ask Nano**.
+7. Select text on a page, right-click, and choose **Ask Local AI**.
 8. Right-click an image on a page and choose **Extract details from image** to verify the OCR workflow.
 9. Optional: use **Settings > Developer mode > Run check** to view model/storage/mic capability status.
 
@@ -93,6 +93,6 @@ https://github.com/Najariya/nano-workbench/blob/main/PRIVACY.md
 - Screenshot 4: `store-assets/screenshots/04-settings-safety.png`
 - Screenshot 5: `store-assets/screenshots/05-model-download-context.png`
 - Small promotional tile: `store-assets/promo/small-promo-tile-440x280.png`
-- Optional promo video file: `store-assets/promo/gemini-nano-workbench-promo.mp4`
+- Optional promo video file: `store-assets/promo/local-ai-workbench-promo.mp4`
 
 Chrome Web Store expects a YouTube URL for the promo video field, so upload the MP4 to YouTube first if you want to include it.

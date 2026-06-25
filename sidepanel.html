@@ -10,8 +10,8 @@
     <div class="onboard-card">
       <div class="onboard-logo">◈</div>
       <div class="onboard-step" data-step="0">
-        <h2>Welcome to Nano Workbench</h2>
-        <p>A private AI powered by Google's Gemini Nano, running on your device inside Chrome — no accounts, no API keys. Your text and notes stay local.</p>
+        <h2>Welcome to Local AI Workbench</h2>
+        <p>A private AI workbench powered by Chrome's built-in on-device model — no accounts, no API keys. Your text and notes stay local.</p>
       </div>
       <div class="onboard-step" data-step="1" hidden>
         <h2>It reads what you're viewing</h2>
@@ -19,7 +19,7 @@
       </div>
       <div class="onboard-step" data-step="2" hidden>
         <h2>Right‑click superpowers</h2>
-        <p>Select text and right‑click <strong>“Ask Nano”</strong>, or right‑click any image to <strong>extract its text</strong>. Use <strong>🎙 Speak</strong> for voice input.</p>
+        <p>Select text and right‑click <strong>“Ask Local AI”</strong>, or right‑click any image to <strong>extract its text</strong>. Use <strong>🎙 Speak</strong> for voice input.</p>
       </div>
       <div class="onboard-dots">
         <span class="odot active"></span><span class="odot"></span><span class="odot"></span>
@@ -36,12 +36,12 @@
     <div class="setup-card">
       <div class="setup-logo">◈</div>
       <h2 id="setupTitle">Setting up on-device AI</h2>
-      <p class="setup-sub">Powered by <strong>Google's Gemini Nano</strong>, running locally inside Chrome — not the cloud Gemini.</p>
+      <p class="setup-sub">Powered by <strong>Chrome's built-in on-device AI</strong>, running locally in the browser.</p>
 
       <div id="setupBody" class="setup-body"></div>
 
       <div id="setupProgress" class="progress-wrap" hidden>
-        <div class="progress-label">Downloading Gemini Nano… <span id="setupPct">0</span>%</div>
+        <div class="progress-label">Downloading on-device model… <span id="setupPct">0</span>%</div>
         <div class="bar"><div id="setupBar" class="bar-fill"></div></div>
       </div>
 
@@ -51,14 +51,14 @@
         <button id="setupClose" class="link-btn" hidden>Close</button>
       </div>
 
-      <p class="setup-note">Once downloaded (~2 GB, one time), the AI works offline — the text you summarize, ask about, and your saved notes stay on your device. Gemini Nano is a small model: great for summaries and drafts, but it can be wrong, so verify anything important. Note: the optional voice‑input feature uses Chrome's speech recognition, which may process audio in the cloud.</p>
+      <p class="setup-note">Once downloaded (~2 GB, one time), the AI works offline — the text you summarize, ask about, and your saved notes stay on your device. The built-in model is small: great for summaries and drafts, but it can be wrong, so verify anything important. Note: the optional voice-input feature uses Chrome's speech recognition, which may process audio in the cloud.</p>
     </div>
   </div>
 
   <header class="topbar">
     <div class="brand">
       <span class="logo">◈</span>
-      <div class="title">Nano Workbench</div>
+      <div class="title">Local AI Workbench</div>
       <span id="statusDot" class="status-dot" title="On-device model status"></span>
     </div>
     <div class="head-actions">
@@ -153,7 +153,7 @@
         <button class="chip" id="newThreadBtn">＋ New thread</button>
         <button class="chip" id="ignoreToggle">📄 Page: on</button>
       </div>
-      <div class="more-tip">Tip: right-click selected text → “Ask Nano”, or right-click an image → “Extract details”.</div>
+      <div class="more-tip">Tip: right-click selected text → “Ask Local AI”, or right-click an image → “Extract details”.</div>
     </div>
 
     <!-- Multi-tab selector (hidden until invoked) -->
@@ -196,7 +196,7 @@
         <button class="cmd-item" data-cmd="new_thread"><span>↺</span> Start a new conversation</button>
       </div>
 
-      <textarea id="prompt" rows="2" placeholder="Ask anything · type / for commands" aria-label="Message Nano"></textarea>
+      <textarea id="prompt" rows="2" placeholder="Ask anything · type / for commands" aria-label="Message Local AI"></textarea>
       <div class="composer-actions">
         <input type="file" id="fileInput" accept=".txt,.md,.csv,.json,.log,.rtf,.pdf,.docx,.png,.jpg,.jpeg,.webp,.gif,.bmp" hidden />
         <button id="attachBtn" class="icon-btn" title="Attach a document or image" aria-label="Attach a document or image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5 12.5 20a4.95 4.95 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L10.1 17.8a1.65 1.65 0 0 1-2.3-2.3l7.8-7.8"/></svg></button>
@@ -365,7 +365,7 @@
         <div class="debug-row"><span>Last response</span><span id="perfLast">—</span></div>
         <div class="debug-row"><span>Session average</span><span id="perfAvg">—</span></div>
         <div class="debug-row"><span>Benchmark</span><span id="perfBench">—</span></div>
-        <p class="sg-sub" style="margin:6px 0 2px;">Chrome runs Gemini Nano on its own backend (GPU/CPU/NPU) — the API exposes no switch, so these measure real latency, not the device used. Lower TTFT &amp; higher tok/s = snappier.</p>
+        <p class="sg-sub" style="margin:6px 0 2px;">Chrome runs the built-in AI model on its own backend (GPU/CPU/NPU) — the API exposes no switch, so these measure real latency, not the device used. Lower TTFT &amp; higher tok/s = snappier.</p>
 
         <div class="debug-head">Event log <span><button id="dbgRefresh" class="link-btn">refresh</button> · <button id="dbgCopy" class="link-btn">copy</button> · <button id="dbgClear" class="link-btn">clear</button></span></div>
         <pre id="dbgLog" class="debug-log"></pre>

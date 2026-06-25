@@ -1,4 +1,4 @@
-# Gemini Nano Workbench
+# Local AI Workbench
 
 A Chrome side-panel workbench for Chrome's built-in on-device AI. It helps summarize pages and email, answer questions about the active tab, compare open tabs, parse attached documents, draft text, extract image details, save local notes, and manage private work memory.
 
@@ -10,7 +10,7 @@ The extension is designed around local processing: prompts run through Chrome's 
 - Ask questions about the active tab or an attached document.
 - Parse local text, Markdown, CSV, JSON, PDF, DOCX, and image files.
 - Compare and summarize multiple open tabs.
-- Right-click selected text to ask Nano, or right-click an image to extract text/details.
+- Right-click selected text to ask Local AI, or right-click an image to extract text/details.
 - Voice input and voice memos through Chrome's Web Speech API.
 - Local conversation history, work memory, reading list, page log, and saved tab sessions.
 - Site-safety heuristics, tab grouping, calendar export, and DOCX/Markdown/text export.
@@ -19,7 +19,7 @@ The extension is designed around local processing: prompts run through Chrome's 
 
 - Google Chrome 138 or newer.
 - A desktop environment supported by Chrome's built-in AI APIs.
-- Gemini Nano / Chrome built-in AI enabled and downloaded in Chrome.
+- Chrome built-in on-device AI enabled and downloaded.
 
 ## Local Install
 
@@ -34,7 +34,7 @@ The extension is designed around local processing: prompts run through Chrome's 
 The source in this repository is the extension package. To create a zip for upload:
 
 ```sh
-zip -r -X gemini-nano-workbench-store-v6.7.zip \
+zip -r -X local-ai-workbench-store-v6.7.zip \
   manifest.json PRIVACY.md mic-permission.html mic-permission.js \
   fonts icons safety.js sidepanel.css background.js docparse.js \
   sidepanel.html sidepanel.js db.js md.js lib export.js

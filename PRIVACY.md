@@ -1,4 +1,4 @@
-# Privacy Policy — Gemini Nano Workbench
+# Privacy Policy — Local AI Workbench
 
 _Last updated: 2026_
 
@@ -6,7 +6,7 @@ _Last updated: 2026_
 
 ## What the extension does
 
-Gemini Nano Workbench uses Chrome's built-in on-device AI (the Prompt API / Gemini Nano) to summarize pages and emails, parse attached documents, answer questions, extract details from images, draft and rewrite text, and more. The AI processing happens **locally inside your browser**.
+Local AI Workbench uses Chrome's built-in on-device AI through browser-provided AI APIs to summarize pages and emails, parse attached documents, answer questions, extract details from images, draft and rewrite text, and more. The AI processing happens **locally inside your browser**.
 
 ## Data we collect
 
@@ -33,7 +33,7 @@ These are **user-initiated** and clearly labelled in the app. The extension stil
 - `activeTab`, `scripting`, `host_permissions` (http/https) — read the text of the page you ask it to act on, and run on-page actions you trigger (extract products, gather links, find the cart button).
 - `storage` — save your notes, memory, persona, and preferences locally.
 - `tabs`, `tabGroups` — multi-tab summarize/compare and tidy/group tabs.
-- `contextMenus` — the right-click "Ask Nano" / "Extract from image" actions.
+- `contextMenus` — the right-click "Ask Local AI" / "Extract from image" actions.
 - Optional `history` — only requested if you use "Clear recent history"; used solely to clear, never to read or transmit your history.
 
 ## Data sharing and sale
