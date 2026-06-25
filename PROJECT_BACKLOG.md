@@ -34,6 +34,10 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | IMP-003 | Done | P0 | Reliability | Establish regression checks for the submitted 6.7.4 behavior. | `QA_CHECKLIST.md` covers static checks, page read, active-tab switch, right-click selection, right-click image OCR, settings, history, and privacy URL. |
 | IMP-004 | Done | P1 | UX | Make current tab/context state more visible in the side panel. | Context strip now shows Current tab, Generic chat, Pinned workspace, or No readable page. |
 | IMP-005 | Done | P1 | Multi-tab | Improve active-tab switching behavior. | Switching tabs loads that tab's local workspace and clears stale page context before re-reading. |
+| IMP-013 | Done | P1 | Reading quality | Improve "Nothing to read" diagnostics. | The side panel explains generic-chat, internal-page, no-text, and blocked-page states with a next action. |
+| IMP-014 | Done | P1 | Reading quality | Make page-read freshness visible. | Context strip shows a last-read timestamp or an unread reason, and the refresh control re-reads the page. |
+| IMP-015 | Done | P1 | Trust | Add source label to AI responses. | Page, email, and document-grounded responses include a compact source label. |
+| IMP-016 | Done | P1 | Long pages | Improve long-page chunking feedback. | Long summaries report part-by-part progress before the combined answer. |
 
 ## Backlog
 
@@ -60,10 +64,10 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 
 | ID | Status | Work item | Why it matters | Acceptance criteria |
 | --- | --- | --- | --- | --- |
-| IMP-013 | Backlog | Improve "Nothing to read" diagnostics. | Users need to know whether the page blocks scripts, is internal, or has no readable text. | Error message explains likely cause and gives next action. |
-| IMP-014 | Backlog | Make page-read freshness visible. | Stale context is dangerous in tab-heavy work. | Context strip shows when the page was last read and offers a clear refresh action. |
-| IMP-015 | Backlog | Add source label to AI responses. | Users should know which page/doc/image was used. | Responses include a compact source label when page or document context is used. |
-| IMP-016 | Backlog | Improve long-page chunking feedback. | On-device context limits are real; users need transparent progress. | Long page summarization reports chunk progress and avoids silent truncation. |
+| IMP-013 | Done | Improve "Nothing to read" diagnostics. | Users need to know whether the page blocks scripts, is internal, or has no readable text. | Error message explains likely cause and gives next action. |
+| IMP-014 | Done | Make page-read freshness visible. | Stale context is dangerous in tab-heavy work. | Context strip shows when the page was last read and offers a clear refresh action. |
+| IMP-015 | Done | Add source label to AI responses. | Users should know which page/doc/image was used. | Responses include a compact source label when page or document context is used. |
+| IMP-016 | Done | Improve long-page chunking feedback. | On-device context limits are real; users need transparent progress. | Long page summarization reports chunk progress and avoids silent truncation. |
 
 ### P1: OCR and Right-Click Flow
 

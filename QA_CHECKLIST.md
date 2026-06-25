@@ -130,6 +130,21 @@ When the experimental per-tab workspace feature is implemented, add these checks
 - No new permission appears.
 - No page content is transferred outside local browser storage.
 
+## Context Quality Regression Gate
+
+Run these checks for the `6.8.1 - Context quality test` build:
+
+- Confirm `chrome://extensions` shows version `6.8.1`.
+- Open a normal readable `https://` page and reload the unpacked extension.
+- Confirm the context strip changes from `Not read` to `Read HH:MM` after the page is read.
+- Click the context refresh button and confirm the read timestamp updates.
+- Ask a page-grounded question and confirm the answer starts with a compact source label.
+- Use **Summarize** on a long page and confirm progress shows the current part and total parts before the final summary.
+- Open `chrome://extensions` or another internal Chrome page and confirm the message explains that browser/internal pages cannot be read.
+- Turn on **Ignore page - generic chat** and confirm the message explains that generic chat is intentionally not reading the page.
+- Open a page with little or no readable text and confirm **Summarize** gives a next action instead of only saying "Nothing to read".
+- Attach a document and ask a question; confirm the answer source label identifies the attached document.
+
 ## Packaging Gate
 
 Only package after the above checks pass:
