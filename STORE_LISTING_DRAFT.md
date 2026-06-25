@@ -38,7 +38,10 @@ Displays the extension's main workbench interface in Chrome's side panel.
 Stores user preferences, conversation history, local work memory, voice memo text, reading list items, saved tab sessions, and page logs locally in the browser.
 
 **activeTab**  
-Lets the extension read the active page only after the user opens or uses the workbench for that page. This avoids requesting broad all-site host access in the first store submission.
+Lets the extension read the active page after the user opens or uses the workbench for that page. This keeps page reading tied to the user's active-tab action.
+
+**optional host permissions: `http://*/*`, `https://*/*`**  
+Requested only when active-page reading cannot run with the temporary `activeTab` grant. This lets the user grant site access at runtime for the current site so the extension can summarize or read that page. It is optional and is not required at install.
 
 **scripting**  
 Injects short page-reading scripts into pages the user chooses so the side panel can summarize page text, selected text, emails, links, products, and safety signals.

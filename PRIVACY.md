@@ -31,6 +31,7 @@ These are **user-initiated** and clearly labelled in the app. The extension stil
 
 - `sidePanel` — show the side-panel interface.
 - `activeTab`, `scripting` — read the active page only after you open or use the workbench for that page, and run on-page actions you trigger (extract products, gather links, find the cart button).
+- Optional site access (`http://*/*`, `https://*/*`) — requested only if active-page reading needs your runtime approval for a site. It lets the workbench read that page after you grant access; it is not required at install.
 - `storage` — save your notes, memory, persona, and preferences locally.
 - `tabs`, `tabGroups` — list, save, reopen, and tidy/group tabs when you trigger those actions.
 - `contextMenus` — the right-click "Ask Local AI" / "Extract from image" actions.
