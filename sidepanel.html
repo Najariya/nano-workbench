@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+  <!-- First-run onboarding (shown once) -->
+  <div id="onboarding" class="onboard" hidden>
+    <div class="onboard-card">
+      <div class="onboard-logo">◈</div>
+      <div class="onboard-step" data-step="0">
+        <h2>Welcome to Nano Workbench</h2>
+        <p>A private AI powered by Google's Gemini Nano, running on your device inside Chrome — no accounts, no API keys. Your text and notes stay local.</p>
+      </div>
+      <div class="onboard-step" data-step="1" hidden>
+        <h2>It reads what you're viewing</h2>
+        <p>Open any page or email and tap <strong>Summarize</strong>, ask a question, or pull out to‑dos. Long documents are summarized in parts automatically.</p>
+      </div>
+      <div class="onboard-step" data-step="2" hidden>
+        <h2>Right‑click superpowers</h2>
+        <p>Select text and right‑click <strong>“Ask Nano”</strong>, or right‑click any image to <strong>extract its text</strong>. Use <strong>🎙 Speak</strong> for voice input.</p>
+      </div>
+      <div class="onboard-dots">
+        <span class="odot active"></span><span class="odot"></span><span class="odot"></span>
+      </div>
+      <div class="onboard-actions">
+        <button id="onbSkip" class="link-btn">Skip</button>
+        <button id="onbNext" class="primary-btn small">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Model setup / activation -->
+  <div id="setup" class="setup" hidden>
+    <div class="setup-card">
+      <div class="setup-logo">◈</div>
+      <h2 id="setupTitle">Setting up on-device AI</h2>
+      <p class="setup-sub">Powered by <strong>Google's Gemini Nano</strong>, running locally inside Chrome — not the cloud Gemini.</p>
+
+      <div id="setupBody" class="setup-body"></div>
+
+      <div id="setupProgress" class="progress-wrap" hidden>
+        <div class="progress-label">Downloading Gemini Nano… <span id="setupPct">0</span>%</div>
+        <div class="bar"><div id="setupBar" class="bar-fill"></div></div>
+      </div>
+
+      <div class="setup-actions">
+        <button id="setupPrimary" class="primary-btn small" hidden></button>
+        <button id="setupDocs" class="link-btn">Setup guide</button>
+        <button id="setupClose" class="link-btn" hidden>Close</button>
+      </div>
+
+      <p class="setup-note">Once downloaded (~2 GB, one time), the AI works offline — the text you summarize, ask about, and your saved notes stay on your device. Gemini Nano is a small model: great for summaries and drafts, but it can be wrong, so verify anything important. Note: the optional voice‑input feature uses Chrome's speech recognition, which may process audio in the cloud.</p>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◈</span>
+      <div class="title">Nano Workbench</div>
+      <span id="statusDot" class="status-dot" title="On-device model status"></span>
+    </div>
+    <div class="head-actions">
+      <button id="resetBtn" class="icon-btn" title="New conversation" aria-label="Start a new conversation">↺</button>
+      <button id="settingsBtn" class="icon-btn" title="Settings" aria-label="Open settings">⚙</button>
+    </div>
+  </header>
+
+  <!-- visually-hidden live region for screen readers -->
+  <div id="status" class="sr-only" role="status" aria-live="polite">Checking on-device model…</div>
+
+  <!-- Compact one-line context strip (doubles as transient status) -->
+  <div class="context-strip" id="contextStrip">
+    <span class="dot live" id="ctxDot"></span>
+    <span id="ctxTitle" class="ctx-title">Checking on-device model…</span>
+    <button id="refreshCtx" class="icon-btn small" title="Re-read this page" aria-label="Re-read this page">⟳</button>
+  </div>
+  <!-- hidden inputs kept for logic; real controls live in Settings + More -->
+  <input type="checkbox" id="autoRead" checked hidden />
+  <input type="checkbox" id="ignorePage" hidden />
+
+  <!-- Attached document chip -->
+  <div id="attachBar" class="attach-bar" hidden>
+    <span class="attach-icon">📎</span>
+    <span id="attachName" class="attach-name">file</span>
+    <span id="attachMeta" class="attach-meta"></span>
+    <button id="attachRemove" class="item-del" title="Remove">✕</button>
+  </div>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="assist">Assist</button>
+    <button class="tab" data-tab="history">History</button>
+    <button class="tab" data-tab="memos">Memos</button>
+    <button class="tab" data-tab="settings">⚙ Settings</button>
+  </nav>
+
+  <!-- ASSIST -->
+  <section class="panel active" data-panel="assist">
+    <!-- Just a few primary actions stay visible (hidden in focus mode) -->
+    <div class="quick-actions" id="qaPrimary">
+      <button class="chip primary-chip" data-action="summarize">✦ Summarize</button>
+      <button class="chip" data-action="email">✉ Read email</button>
+      <button class="chip" id="moreBtn">⋯ More</button>
+    </div>
+
+    <!-- Site-safety badge (auto-filled on page change; click for details, ✕ to dismiss) -->
+    <div id="siteBadge" class="site-badge" hidden>
+      <button id="siteBadgeMain" class="site-badge-main" aria-label="Site safety — open details"></button>
+      <button id="siteBadgeClose" class="site-badge-close" title="Dismiss" aria-label="Dismiss safety badge">✕</button>
+    </div>
+
+    <!-- Recording indicator for audio notes -->
+    <div id="meetingBar" class="meeting-bar" hidden>
+      <span class="rec-dot"></span>
+      <span class="meeting-label">Recording your mic…</span>
+      <span id="meetingText" class="meeting-text"></span>
+      <button id="meetingStop" class="chip">Stop &amp; summarize</button>
+    </div>
+
+    <!-- Compact bar shown only while chatting -->
+    <div id="focusBar">
+      <button class="chip" id="focusActions">✦ Actions</button>
+      <button class="expand-btn" id="expandBtn" title="Show all controls">⌄ Menus</button>
+    </div>
+
+    <!-- Everything else lives in a tidy, grouped sheet -->
+    <div id="moreSheet" class="more-sheet" hidden>
+      <div class="more-group">
+        <span class="more-label">This page</span>
+        <button class="chip" data-action="keypoints">Key points</button>
+        <button class="chip" data-action="reply">Draft reply</button>
+        <button class="chip" id="compareBtn">⊞ Select tabs…</button>
+      </div>
+      <div class="more-group">
+        <span class="more-label">Recipes (multi-step)</span>
+        <button class="chip" data-recipe="summarize_tabs">🧩 Summarize open tabs</button>
+        <button class="chip" data-recipe="headlines">📰 News headlines</button>
+        <button class="chip" data-recipe="extract_products">🛍 Extract products</button>
+        <button class="chip" data-recipe="gather_links">🔗 Gather links/contacts</button>
+        <button class="chip" id="audioNotesBtn">🎙 Audio notes</button>
+      </div>
+      <div class="more-group">
+        <span class="more-label">Writing (uses selected text)</span>
+        <button class="chip ghost" data-wt="rewrite">Rewrite</button>
+        <button class="chip ghost" data-wt="grammar">Fix grammar</button>
+        <button class="chip ghost" data-wt="formal">More formal</button>
+        <button class="chip ghost" data-wt="friendly">Friendlier</button>
+        <button class="chip ghost" data-wt="translate">Translate→EN</button>
+      </div>
+      <div class="more-group">
+        <span class="more-label">Session &amp; reading</span>
+        <button class="chip" id="newThreadBtn">＋ New thread</button>
+        <button class="chip" id="ignoreToggle">📄 Page: on</button>
+      </div>
+      <div class="more-tip">Tip: right-click selected text → “Ask Nano”, or right-click an image → “Extract details”.</div>
+    </div>
+
+    <!-- Multi-tab selector (hidden until invoked) -->
+    <div id="tabPicker" class="compare-picker" hidden>
+      <div class="compare-head">Select tabs, then choose an action</div>
+      <ul id="tabList" class="tabpick-list"></ul>
+      <div class="compare-actions">
+        <button id="tpSummarize" class="primary-btn small">Summarize</button>
+        <button id="tpCompare" class="chip">Compare</button>
+        <button id="tpGroup" class="chip">Group</button>
+        <button id="tpClose" class="chip">Close</button>
+        <button id="tpCancel" class="link-btn">Cancel</button>
+      </div>
+    </div>
+
+    <div class="chat" id="chat" role="log" aria-live="polite" aria-label="Conversation"></div>
+
+    <div id="voiceHint" class="voice-wave" hidden role="status" aria-label="Listening">
+      <canvas id="waveform" class="waveform" width="220" height="20"></canvas>
+      <span class="voice-dot"></span>
+    </div>
+
+    <div class="composer">
+      <!-- Slash command palette (hidden until "/" or commands) -->
+      <div id="cmdPalette" class="cmd-palette" hidden>
+        <div class="cmd-palette-head">Quick commands</div>
+        <button class="cmd-item" data-cmd="save_memory"><span>📌</span> Save a note to memory</button>
+        <button class="cmd-item" data-cmd="summarize_page"><span>✦</span> Summarize this page</button>
+        <button class="cmd-item" data-cmd="check_site"><span>🛡</span> Check if this site is safe</button>
+        <button class="cmd-item" data-cmd="research"><span>🔎</span> Deep research a question</button>
+        <button class="cmd-item" data-cmd="reading_mode"><span>📖</span> Reading mode (clean view)</button>
+        <button class="cmd-item" data-cmd="save_page"><span>📑</span> Save page to reading list</button>
+        <button class="cmd-item" data-cmd="reading_list"><span>📚</span> Show reading list</button>
+        <button class="cmd-item" data-cmd="add_event"><span>📅</span> Add event from this page</button>
+        <button class="cmd-item" data-cmd="save_session"><span>💾</span> Save tab session</button>
+        <button class="cmd-item" data-cmd="open_sessions"><span>🗂</span> Open a saved session</button>
+        <button class="cmd-item" data-cmd="arrange_tabs"><span>🧩</span> Tidy my tabs</button>
+        <button class="cmd-item" data-cmd="clear_history"><span>🧹</span> Clear recent history…</button>
+        <button class="cmd-item" data-cmd="set_tone"><span>🎚</span> Change tone</button>
+        <button class="cmd-item" data-cmd="new_thread"><span>↺</span> Start a new conversation</button>
+      </div>
+
+      <textarea id="prompt" rows="2" placeholder="Ask anything · type / for commands" aria-label="Message Nano"></textarea>
+      <div class="composer-actions">
+        <input type="file" id="fileInput" accept=".txt,.md,.csv,.json,.log,.rtf,.pdf,.docx,.png,.jpg,.jpeg,.webp,.gif,.bmp" hidden />
+        <button id="attachBtn" class="icon-btn" title="Attach a document or image" aria-label="Attach a document or image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5 12.5 20a4.95 4.95 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L10.1 17.8a1.65 1.65 0 0 1-2.3-2.3l7.8-7.8"/></svg></button>
+        <!-- Permanent mic: hold-to-talk, or double-click to latch hands-free -->
+        <button id="micBtn" class="mic-fab" title="Tap to lock-record · hold to talk" aria-label="Voice input: tap to lock-record, hold to talk"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3Z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 11a6 6 0 0 0 12 0M12 18v3"/></svg></button>
+        <span class="spacer"></span>
+        <span id="capacityBar" class="capacity" title="How full the AI's reading capacity is" aria-label="Context capacity"><span id="capacityFill" class="capacity-fill"></span></span>
+        <button id="stop" class="link-btn" hidden aria-label="Stop generating">■ Stop</button>
+        <button id="run" class="fab-send" disabled title="Send" aria-label="Send message"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.4 20.4 21 12 3.4 3.6 3 10l12 2-12 2 .4 6.4Z"/></svg></button>
+      </div>
+    </div>
+
+    <div id="progress-wrap" class="progress-wrap" hidden>
+      <div class="progress-label">Downloading model… <span id="pct">0</span>%</div>
+      <div class="bar"><div id="dl" class="bar-fill"></div></div>
+    </div>
+  </section>
+
+  <!-- HISTORY -->
+  <section class="panel" data-panel="history">
+    <div class="panel-head"><span>Conversation history</span><button id="clearHistory" class="link-btn">Clear all</button></div>
+    <ul id="historyList" class="list"></ul>
+    <div class="empty" id="historyEmpty">Your saved conversations will appear here.</div>
+  </section>
+
+  <!-- MEMOS (voice → AI-organized note) -->
+  <section class="panel" data-panel="memos">
+    <div class="panel-head"><span>Voice memos</span><button id="clearMemos" class="link-btn">Clear all</button></div>
+    <button id="recordMemo" class="memo-record">🎙 Record a memo</button>
+    <div id="memoStatus" class="memo-status" hidden></div>
+    <ul id="memoList" class="list"></ul>
+    <div class="empty" id="memoEmpty">Tap “Record a memo”, speak, and I'll save it as a tidy note.</div>
+  </section>
+
+  <!-- SETTINGS (premium card sections) -->
+  <section class="panel" data-panel="settings">
+
+    <!-- Appearance -->
+    <div class="settings-group">
+      <div class="sg-head"><span class="sg-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6 2 11c0 4.4 3.6 8 8 8 .7 0 1.3-.6 1.3-1.3 0-.4-.2-.7-.4-1-.2-.3-.4-.6-.4-1 0-.7.6-1.2 1.3-1.2H13c3.3 0 6-2.7 6-6 0-3.6-3.1-6.5-7-6.5Zm-5.5 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z"/></svg></span><span class="sg-title">Appearance</span></div>
+      <div class="set-row">
+        <span class="set-label">Dark mode</span>
+        <label class="switch"><input type="checkbox" id="themeSwitch" aria-label="Dark mode" /><span class="track"></span><span class="knob"></span></label>
+      </div>
+      <label class="field">
+        <span class="field-label">Your name (for the greeting)</span>
+        <input id="displayName" type="text" placeholder="e.g. Naveen" autocomplete="off" />
+      </label>
+    </div>
+
+    <!-- Reading -->
+    <div class="settings-group">
+      <div class="sg-head"><span class="sg-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 5.5C10.3 4.5 8.2 4 6 4c-1 0-2 .1-3 .4-.6.1-1 .6-1 1.2v12c0 .8.7 1.4 1.5 1.2.8-.2 1.6-.3 2.5-.3 1.9 0 3.7.5 5 1.5V5.5Zm2 14c1.3-1 3.1-1.5 5-1.5.9 0 1.7.1 2.5.3.8.2 1.5-.4 1.5-1.2v-12c0-.6-.4-1.1-1-1.2C21 4 20 4 19 4c-2.2 0-4.3.5-6 1.5v14Z"/></svg></span><span class="sg-title">Reading</span></div>
+      <div class="set-row">
+        <span class="set-label">Auto-read the tab I'm viewing<small>Pick up the open page automatically</small></span>
+        <label class="switch"><input type="checkbox" id="autoReadSet" checked aria-label="Auto-read the tab" /><span class="track"></span><span class="knob"></span></label>
+      </div>
+      <div class="set-row">
+        <span class="set-label">Ignore page — generic chat<small>Chat without reading the current page</small></span>
+        <label class="switch"><input type="checkbox" id="ignorePageSet" aria-label="Ignore page, generic chat" /><span class="track"></span><span class="knob"></span></label>
+      </div>
+    </div>
+
+    <!-- Site safety -->
+    <div class="settings-group">
+      <div class="sg-head"><span class="sg-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1 13-3.5-3.5 1.4-1.4L11 12.2l4.1-4.1 1.4 1.4L11 15Z"/></svg></span><span class="sg-title">Site safety</span></div>
+      <div class="set-row">
+        <span class="set-label">Auto-check site safety<small>Rate each new page on-device</small></span>
+        <label class="switch"><input type="checkbox" id="autoSafetySet" checked aria-label="Auto-check site safety" /><span class="track"></span><span class="knob"></span></label>
+      </div>
+      <p class="sg-sub">Checks run on-device from the address &amp; page signals (HTTPS, look-alike domains, insecure login forms, trackers). A browser extension can't read the TLS certificate, so this is a heuristic aid — not proof.</p>
+    </div>
+
+    <!-- Persona -->
+    <div class="settings-group">
+      <div class="sg-head"><span class="sg-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm3.8 6.2-2 5a1 1 0 0 1-.6.6l-5 2c-.8.3-1.6-.5-1.3-1.3l2-5a1 1 0 0 1 .6-.6l5-2c.8-.3 1.6.5 1.3 1.3ZM12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></svg></span><span class="sg-title">Assistant persona</span></div>
+      <p class="sg-sub">Shapes how the model behaves. Added to every prompt.</p>
+      <label class="field">
+        <span class="field-label">Tone</span>
+        <select id="pTone">
+          <option value="formal">Formal &amp; professional</option>
+          <option value="neutral">Neutral / balanced</option>
+          <option value="friendly">Warm &amp; friendly</option>
+          <option value="concise">Terse &amp; to-the-point</option>
+        </select>
+      </label>
+      <label class="field">
+        <span class="field-label">Role</span>
+        <select id="pRole">
+          <option value="assistant">My personal work assistant</option>
+          <option value="analyst">Analyst / researcher</option>
+          <option value="editor">Writing editor</option>
+          <option value="generic">General-purpose helper</option>
+        </select>
+      </label>
+      <div class="set-row">
+        <span class="set-label">Ask when in doubt<small>Clarify instead of guessing</small></span>
+        <label class="switch"><input type="checkbox" id="pAskWhenUnsure" checked aria-label="Ask when in doubt" /><span class="track"></span><span class="knob"></span></label>
+      </div>
+      <div class="set-row">
+        <span class="set-label">Never invent facts<small>If missing, ask me</small></span>
+        <label class="switch"><input type="checkbox" id="pNoFabricate" checked aria-label="Never invent facts" /><span class="track"></span><span class="knob"></span></label>
+      </div>
+      <div class="set-row">
+        <span class="set-label">Cite the source<small>Point to where page/doc info came from</small></span>
+        <label class="switch"><input type="checkbox" id="pCite" aria-label="Cite the source" /><span class="track"></span><span class="knob"></span></label>
+      </div>
+      <label class="field" style="margin-top:12px;">
+        <span class="field-label">Extra custom instructions</span>
+        <textarea id="pCustom" rows="3" placeholder="e.g. I'm a product manager. Prefer bullet points. Sign drafts as 'Naveen'."></textarea>
+      </label>
+      <div class="persona-actions">
+        <button id="savePersona" class="primary-btn small">Save persona</button>
+        <button id="resetPersona" class="link-btn">Reset</button>
+      </div>
+      <details class="preview">
+        <summary>Preview system instructions</summary>
+        <pre id="personaPreview" class="persona-preview"></pre>
+      </details>
+    </div>
+
+    <!-- Work memory -->
+    <div class="settings-group">
+      <div class="sg-head"><span class="sg-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 2a3.5 3.5 0 0 0-3.5 3.5c0 .2 0 .4.1.6A3 3 0 0 0 4 9c0 .6.2 1.2.5 1.7A3 3 0 0 0 4 13a3 3 0 0 0 2 2.8V17a3 3 0 0 0 5 2.2V4.5A2.5 2.5 0 0 0 9 2Zm6 0a2.5 2.5 0 0 0-2 2.5v14.7A3 3 0 0 0 18 17v-1.2A3 3 0 0 0 20 13a3 3 0 0 0-.5-2.3c.3-.5.5-1.1.5-1.7a3 3 0 0 0-1.6-2.9c.1-.2.1-.4.1-.6A3.5 3.5 0 0 0 15 2Z"/></svg></span><span class="sg-title">Work memory</span></div>
+      <div class="add-row">
+        <input id="memInput" type="text" placeholder="e.g. Manager: Priya · Atlas ships Aug 1" />
+        <button id="addMem" class="primary-btn small">Save</button>
+      </div>
+      <ul id="memList" class="list"></ul>
+    </div>
+
+    <!-- Page log -->
+    <div class="settings-group">
+      <div class="sg-head"><span class="sg-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6Zm7 1.5V8a1 1 0 0 0 1 1h4.5L13 3.5ZM8 12h8v2H8v-2Zm0 4h8v2H8v-2Z"/></svg></span><span class="sg-title">Recent page log</span><button id="clearLog" class="link-btn">Clear</button></div>
+      <ul id="logList" class="list compact"></ul>
+      <div class="empty" id="logEmpty">Pages you summarize get logged here.</div>
+    </div>
+
+    <!-- Developer / debug -->
+    <div class="settings-group">
+      <div class="sg-head"><span class="sg-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 18.3 14.4 11a5.5 5.5 0 0 0-6.8-7.3l3.2 3.2-1.1 2.8-2.8 1.1L3.7 7.6A5.5 5.5 0 0 0 11 14.4l7.3 7.3a1 1 0 0 0 1.4 0l2-2a1 1 0 0 0 0-1.4Z"/></svg></span><span class="sg-title">Developer mode</span></div>
+      <div class="set-row">
+        <span class="set-label">Debug mode<small>Model state, memory, timing &amp; event log</small></span>
+        <label class="switch"><input type="checkbox" id="debugMode" aria-label="Debug mode" /><span class="track"></span><span class="knob"></span></label>
+      </div>
+      <div id="debugBox" class="debug-box" hidden>
+        <div class="debug-row"><span>Extension version</span><span id="dbgVer">—</span></div>
+        <div class="debug-row"><span>Chrome</span><span id="dbgChrome">—</span></div>
+        <div class="debug-row"><span>Model state</span><span id="dbgAvail">—</span></div>
+        <div class="debug-row"><span>Context usage</span><span id="dbgCtx">—</span></div>
+        <div class="debug-row"><span>JS heap (used / limit)</span><span id="dbgMem">—</span></div>
+        <div class="debug-row"><span>Storage used</span><span id="dbgStore">—</span></div>
+        <div class="debug-row"><span>Active session</span><span id="dbgSess">—</span></div>
+        <div class="debug-row"><span>Last run</span><span id="dbgTime">—</span></div>
+        <div class="debug-row"><span>Events logged</span><span id="dbgCount">—</span></div>
+
+        <div class="debug-head">Health check <button id="healthRun" class="link-btn">Run check</button></div>
+        <div id="healthList" class="health-list"><div class="sg-sub" style="margin:0;">Run a check to verify the model, storage, mic, permissions &amp; WebGPU.</div></div>
+
+        <div class="debug-head">Storage <button id="storageRefresh" class="link-btn">refresh</button></div>
+        <div class="debug-row"><span>Backend</span><span id="dbgBackend">—</span></div>
+        <div id="storageList"></div>
+        <p class="sg-sub" style="margin:6px 0 2px;">Your notes, memory, threads, reading list &amp; sessions are stored locally in your browser (IndexedDB, with chrome.storage as fallback) — never uploaded.</p>
+
+        <div class="debug-head">Performance <button id="perfRun" class="link-btn">Run benchmark</button></div>
+        <div class="debug-row"><span>Last response</span><span id="perfLast">—</span></div>
+        <div class="debug-row"><span>Session average</span><span id="perfAvg">—</span></div>
+        <div class="debug-row"><span>Benchmark</span><span id="perfBench">—</span></div>
+        <p class="sg-sub" style="margin:6px 0 2px;">Chrome runs Gemini Nano on its own backend (GPU/CPU/NPU) — the API exposes no switch, so these measure real latency, not the device used. Lower TTFT &amp; higher tok/s = snappier.</p>
+
+        <div class="debug-head">Experimental: WebGPU engine</div>
+        <div class="set-row" style="padding:7px 0;">
+          <span class="set-label">Use a WebGPU model instead of Nano<small>Loads a separate small model on first use (opt-in)</small></span>
+          <label class="switch"><input type="checkbox" id="webgpuToggle" aria-label="Use WebGPU model" /><span class="track"></span><span class="knob"></span></label>
+        </div>
+        <div id="webgpuStatus" class="sg-sub" style="margin:2px 0 6px;"></div>
+        <div class="debug-head">Event log <span><button id="dbgRefresh" class="link-btn">refresh</button> · <button id="dbgCopy" class="link-btn">copy</button> · <button id="dbgClear" class="link-btn">clear</button></span></div>
+        <pre id="dbgLog" class="debug-log"></pre>
+      </div>
+    </div>
+  </section>
+
+  <div id="toast" class="toast">Copied!</div>
+
+  <!-- Bundled, offline parsing libs (no remote code) -->
+  <script src="db.js"></script>
+  <script src="md.js"></script>
+  <script src="safety.js"></script>
+  <script src="export.js"></script>
+  <script src="lib/mammoth.browser.min.js"></script>
+  <script type="module" src="docparse.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+</html>
