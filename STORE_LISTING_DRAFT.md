@@ -84,8 +84,11 @@ https://github.com/Najariya/nano-workbench/blob/main/PRIVACY.md
 7. Select text on a page, right-click, and choose **Ask Nano**.
 8. Optional: use **Settings > Developer mode > Run check** to view model/storage/mic capability status.
 
-## Required Assets Still Needed
+## Listing Assets
 
-- At least one 1280 x 800 or 640 x 400 screenshot.
-- 440 x 280 small promotional tile.
-- Optional larger promotional assets if desired.
+- Screenshot 1: `store-assets/screenshots/01-page-summary.png`
+- Screenshot 2: `store-assets/screenshots/02-document-review.png`
+- Small promotional tile: `store-assets/promo/small-promo-tile-440x280.png`
+- Optional promo video file: `store-assets/promo/gemini-nano-workbench-promo.mp4`
+
+Chrome Web Store expects a YouTube URL for the promo video field, so upload the MP4 to YouTube first if you want to include it.

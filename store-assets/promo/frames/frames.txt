@@ -1,0 +1,9 @@
+file 'frame-01-title.png'
+duration 3
+file 'frame-02-summary.png'
+duration 3
+file 'frame-03-doc.png'
+duration 3
+file 'frame-04-compare.png'
+duration 3
+file 'frame-04-compare.png'
