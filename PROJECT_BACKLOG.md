@@ -32,8 +32,8 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | IMP-001 | Done | P0 | Planning | Create a real improvement backlog for the experiment branch. | Backlog exists in repo, separates store-safe baseline from experiments, and gives clear next implementation slices. |
 | IMP-002 | Done | P0 | Tab context | Design per-tab workspace behavior before implementation. | `docs/per-tab-workspaces.md` defines automatic tab context, pinned tab workspaces, storage model, UI states, and edge cases. |
 | IMP-003 | Done | P0 | Reliability | Establish regression checks for the submitted 6.7.4 behavior. | `QA_CHECKLIST.md` covers static checks, page read, active-tab switch, right-click selection, right-click image OCR, settings, history, and privacy URL. |
-| IMP-004 | Next | P1 | UX | Make current tab/context state more visible in the side panel. | User can tell whether the assistant is reading the current tab, generic chat, a saved workspace, or a pinned workspace. |
-| IMP-005 | Backlog | P1 | Multi-tab | Improve active-tab switching behavior. | Switching tabs updates page context predictably, does not mix old page content into new page answers, and does not erase the prior tab's useful conversation. |
+| IMP-004 | Done | P1 | UX | Make current tab/context state more visible in the side panel. | Context strip now shows Current tab, Generic chat, Pinned workspace, or No readable page. |
+| IMP-005 | Done | P1 | Multi-tab | Improve active-tab switching behavior. | Switching tabs loads that tab's local workspace and clears stale page context before re-reading. |
 
 ## Backlog
 
@@ -50,11 +50,11 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | ID | Status | Work item | Why it matters | Acceptance criteria |
 | --- | --- | --- | --- | --- |
 | IMP-002 | Done | Write per-tab workspace spec. | The feature touches thread history, active tab changes, context reading, and saved sessions. | `docs/per-tab-workspaces.md` covers storage keys, tab identity, pinned behavior, UI labels, and cleanup. |
-| IMP-008 | Next | Add workspace state model. | The extension needs to remember which conversation belongs to which active tab. | Local state maps tab or pinned URL to thread ID without sending data anywhere. |
-| IMP-009 | Backlog | Auto-switch conversation on tab change. | User should not manually rebuild context every time they move between tabs. | Active tab change loads the matching tab workspace or creates a new one. |
-| IMP-010 | Backlog | Add "Pin this tab workspace". | Some work should survive tab reloads or tab ID changes. | User can pin a workspace to URL/title and return to it later. |
-| IMP-011 | Backlog | Add workspace indicator. | Users need to know what the AI is currently grounded in. | Context strip clearly shows Current tab, Generic chat, Pinned workspace, or Saved session. |
-| IMP-012 | Backlog | Cleanup stale tab workspaces. | Prevent local storage clutter. | Closed/unseen temporary tab workspaces are cleaned after a safe retention period. |
+| IMP-008 | Done | Add workspace state model. | The extension needs to remember which conversation belongs to which active tab. | Local `tabWorkspaces` records map tab or pinned URL to local thread IDs without sending data anywhere. |
+| IMP-009 | Done | Auto-switch conversation on tab change. | User should not manually rebuild context every time they move between tabs. | Active tab change loads the matching tab workspace or creates a new one. |
+| IMP-010 | Done | Add "Pin this tab workspace". | Some work should survive tab reloads or tab ID changes. | User can pin/unpin a workspace from More -> Session & reading. |
+| IMP-011 | Done | Add workspace indicator. | Users need to know what the AI is currently grounded in. | Context strip clearly shows Current tab, Generic chat, Pinned workspace, or No readable page. |
+| IMP-012 | Done | Cleanup stale tab workspaces. | Prevent local storage clutter. | Temporary workspaces older than the local retention window are cleaned when workspaces are saved. |
 
 ### P1: Context and Reading Quality
 

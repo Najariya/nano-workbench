@@ -73,6 +73,7 @@
   <!-- Compact one-line context strip (doubles as transient status) -->
   <div class="context-strip" id="contextStrip">
     <span class="dot live" id="ctxDot"></span>
+    <span id="workspaceMode" class="workspace-mode">Current tab</span>
     <span id="ctxTitle" class="ctx-title">Checking on-device model…</span>
     <button id="refreshCtx" class="icon-btn small" title="Re-read this page" aria-label="Re-read this page">⟳</button>
   </div>
@@ -150,6 +151,7 @@
       </div>
       <div class="more-group">
         <span class="more-label">Session &amp; reading</span>
+        <button class="chip" id="pinWorkspaceBtn">📌 Pin workspace</button>
         <button class="chip" id="newThreadBtn">＋ New thread</button>
         <button class="chip" id="ignoreToggle">📄 Page: on</button>
       </div>

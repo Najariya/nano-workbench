@@ -1,7 +1,22 @@
 # Per-Tab Workspaces Experiment
 
 _Branch: `codex/per-tab-workspaces`_  
-_Status: design ready; implementation not started_
+_Status: minimal test build implemented in `6.8.0`_
+
+## 6.8.0 Test Build
+
+The first bare working version includes:
+
+- Local `tabWorkspaces` records stored in the browser.
+- One temporary workspace per normal web tab.
+- Automatic workspace switching when Chrome reports an active-tab change.
+- Stale page context is cleared immediately on workspace switch before the new page is re-read.
+- A visible workspace mode label in the context strip.
+- Generic chat is separated from page-grounded work.
+- A **Pin workspace / Unpin workspace** button under **More -> Session & reading**.
+- Old temporary workspace records are cleaned after the retention window when workspace state is saved.
+
+This build does not add new permissions and does not change the local-only privacy model.
 
 ## Goal
 

@@ -114,12 +114,20 @@ Expected result: every command exits successfully with no syntax error.
 
 When the experimental per-tab workspace feature is implemented, add these checks:
 
-- Tab A and Tab B keep separate conversations.
-- Switching from Tab A to Tab B restores Tab B's workspace.
-- Returning to Tab A restores Tab A's workspace.
-- Pinning a workspace survives reload or tab closure as designed.
-- Generic chat remains separate from page-grounded work.
-- A stale or closed temporary workspace is cleaned safely.
+- Confirm the extension version shows `6.8.0` in `chrome://extensions`.
+- Open Tab A on a normal web page.
+- Ask one question in Tab A.
+- Open Tab B on a different normal web page.
+- Confirm the context strip changes to Tab B and the old Tab A page content is not reused.
+- Ask one question in Tab B.
+- Switch back to Tab A and confirm Tab A's conversation returns.
+- Switch back to Tab B and confirm Tab B's conversation returns.
+- In Tab A, open **More -> Session & reading -> Pin workspace**.
+- Confirm the context strip changes to **Pinned workspace**.
+- Toggle **Ignore page - generic chat** and confirm the context strip changes to **Generic chat**.
+- Ask a generic question and confirm it does not use the page.
+- Turn generic chat off and confirm the current tab workspace returns.
+- No new permission appears.
 - No page content is transferred outside local browser storage.
 
 ## Packaging Gate
