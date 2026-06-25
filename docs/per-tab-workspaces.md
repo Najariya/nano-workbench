@@ -3,6 +3,15 @@
 _Branch: `codex/per-tab-workspaces`_  
 _Status: minimal test build implemented in `6.8.0`_
 
+## QA Decision
+
+After user testing on June 25, 2026, the visible workspace management layer was retired:
+
+- Do not ship **Pin workspace**, **Unpin workspace**, or **Rename workspace** controls.
+- Keep the useful current-tab behavior: the side panel follows the active tab, clears stale page context, and re-reads the current page.
+- Keep simple **Export conversation** and **New thread** controls.
+- Future product focus moves to quick screenshots, long screenshots, OCR, and voice / meeting-note capture.
+
 ## 6.8.0 Test Build
 
 The first bare working version includes:

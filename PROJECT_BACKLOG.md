@@ -24,16 +24,17 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 - Treat broad page access as a core capability, but make the product behavior transparent.
 - Preserve the right-click image OCR workflow as a prominent feature.
 - Prefer small refinements with clear acceptance criteria over large rewrites.
+- After QA, do not ship user-facing pin/rename workspace management. Keep the product centered on the current tab, conversation export, screenshots, OCR, and voice capture.
 
 ## Current Focus
 
 | ID | Status | Priority | Area | Work item | Acceptance criteria |
 | --- | --- | --- | --- | --- | --- |
 | IMP-001 | Done | P0 | Planning | Create a real improvement backlog for the experiment branch. | Backlog exists in repo, separates store-safe baseline from experiments, and gives clear next implementation slices. |
-| IMP-002 | Done | P0 | Tab context | Design per-tab workspace behavior before implementation. | `docs/per-tab-workspaces.md` defines automatic tab context, pinned tab workspaces, storage model, UI states, and edge cases. |
+| IMP-002 | Done | P0 | Tab context | Design current-tab context behavior before implementation. | `docs/per-tab-workspaces.md` is retained as the experiment note; pin/rename workspace management is retired after QA. |
 | IMP-003 | Done | P0 | Reliability | Establish regression checks for the submitted 6.7.4 behavior. | `QA_CHECKLIST.md` covers static checks, page read, active-tab switch, right-click selection, right-click image OCR, settings, history, and privacy URL. |
-| IMP-004 | Done | P1 | UX | Make current tab/context state more visible in the side panel. | Context strip now shows Current tab, Generic chat, Pinned workspace, or No readable page. |
-| IMP-005 | Done | P1 | Multi-tab | Improve active-tab switching behavior. | Switching tabs loads that tab's local workspace and clears stale page context before re-reading. |
+| IMP-004 | Done | P1 | UX | Make current tab/context state more visible in the side panel. | Context strip now shows Current tab, Generic chat, or No readable page. |
+| IMP-005 | Done | P1 | Multi-tab | Improve active-tab switching behavior. | Switching tabs follows the active tab, clears stale page context, and re-reads the current page without exposing workspace management. |
 | IMP-013 | Done | P1 | Reading quality | Improve "Nothing to read" diagnostics. | The side panel explains generic-chat, internal-page, no-text, and blocked-page states with a next action. |
 | IMP-014 | Done | P1 | Reading quality | Make page-read freshness visible. | Context strip shows a last-read timestamp or an unread reason, and the refresh control re-reads the page. |
 | IMP-015 | Done | P1 | Trust | Add source label to AI responses. | Page, email, and document-grounded responses include a compact source label. |
@@ -43,15 +44,18 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | IMP-019 | Done | P1 | OCR | Add "copy clean text" and "copy fields" consistency. | OCR results expose Copy text, Copy fields when fields exist, and Copy JSON. |
 | IMP-006 | Done | P0 | Release | Document release promotion steps. | `docs/testing-and-release-flow.md` now defines promotion, packaging, and dashboard upload order. |
 | IMP-007 | Done | P0 | Store review | Keep permission/privacy copy aligned with manifest. | `docs/permission-privacy-alignment.md` maps permissions to listing and privacy policy language. |
-| IMP-020 | Done | P2 | Workspaces | Improve saved sessions as workspaces. | Saved sessions now keep local workspace/thread summary metadata and can restore the saved conversation. |
-| IMP-021 | Done | P2 | Workspaces | Add lightweight workspace names. | Pinned workspaces can be renamed locally from More -> Session & reading. |
-| IMP-022 | Done | P2 | Workspaces | Add local export of workspace. | Current workspace can export to local Markdown without network transfer. |
+| IMP-020 | Done | P2 | Sessions | Keep saved tab sessions simple. | Saved sessions reopen tabs and may restore the related conversation, but no longer expose workspace naming/pinning. |
+| IMP-021 | Dropped | P2 | Workspaces | Add lightweight workspace names. | Dropped after QA because naming/pinning workspaces was confusing and low-value. |
+| IMP-022 | Done | P2 | Export | Add local export of conversation. | Current conversation exports to local Markdown without network transfer. |
 | IMP-023 | Done | P2 | Accessibility | Review keyboard and screen-reader paths. | `docs/accessibility-review.md` records current coverage and manual checks. |
 | IMP-024 | Done | P2 | Store assets | Add polished screenshot/video script for next version. | `store-assets/NEXT_VERSION_SCRIPT.md` covers summary, OCR, local privacy, and per-tab workspace visuals. |
 | IMP-025 | Done | P2 | Release notes | Create next-version release notes template. | `docs/release-notes-template.md` is ready for store update notes. |
-| IMP-026 | Done | P1 | Reliability | Add Doctor diagnostics and guarded tab switching. | Doctor checks model/storage/page/workspace state, keeps safe local diagnostics, and active-tab changes wait while an AI run is in progress. |
-| IMP-027 | Parked | P2 | Capture | Explore multi-page long screenshots. | Future design covers full-page and multi-page capture, stitching, redaction, and export without adding permissions until needed. |
-| IMP-028 | Parked | P2 | Meetings | Improve meeting notes capture. | Future design covers quick recording, transcript cleanup, local summary/export, and clear disclosure for any browser speech-recognition cloud behavior. |
+| IMP-026 | Done | P1 | Reliability | Add Doctor diagnostics and guarded tab switching. | Doctor checks model/storage/page/conversation state, keeps safe local diagnostics, and active-tab changes wait while an AI run is in progress. |
+| IMP-027 | Next | P2 | Capture | Explore multi-page long screenshots. | Future design covers full-page and multi-page capture, stitching, redaction, and export without adding permissions until needed. |
+| IMP-028 | Next | P2 | Meetings | Improve meeting notes capture. | Future design covers quick recording, transcript cleanup, local summary/export, and clear disclosure for any browser speech-recognition cloud behavior. |
+| IMP-029 | Done | P1 | UX simplification | Remove pin/rename workspace management. | More sheet no longer shows Pin/Rename workspace; export and Doctor use conversation/current-tab language. |
+| IMP-030 | Next | P1 | Screenshots | Add quick screenshot capture. | User can capture the visible tab area locally, attach it to the conversation/OCR flow, and export it without unnecessary friction. |
+| IMP-031 | Next | P1 | Voice | Add Momo-style voice capture refinements. | Voice capture should be fast, obvious, locally organized, and clear about Chrome speech-recognition behavior. |
 
 ## Backlog
 
@@ -71,7 +75,7 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | IMP-008 | Done | Add workspace state model. | The extension needs to remember which conversation belongs to which active tab. | Local `tabWorkspaces` records map tab or pinned URL to local thread IDs without sending data anywhere. |
 | IMP-009 | Done | Auto-switch conversation on tab change. | User should not manually rebuild context every time they move between tabs. | Active tab change loads the matching tab workspace or creates a new one. |
 | IMP-010 | Done | Add "Pin this tab workspace". | Some work should survive tab reloads or tab ID changes. | User can pin/unpin a workspace from More -> Session & reading. |
-| IMP-011 | Done | Add workspace indicator. | Users need to know what the AI is currently grounded in. | Context strip clearly shows Current tab, Generic chat, Pinned workspace, or No readable page. |
+| IMP-011 | Done | Add current-tab indicator. | Users need to know what the AI is currently grounded in. | Context strip clearly shows Current tab, Generic chat, or No readable page. |
 | IMP-012 | Done | Cleanup stale tab workspaces. | Prevent local storage clutter. | Temporary workspaces older than the local retention window are cleaned when workspaces are saved. |
 
 ### P1: Context and Reading Quality
@@ -95,22 +99,25 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 
 | ID | Status | Work item | Why it matters | Acceptance criteria |
 | --- | --- | --- | --- | --- |
-| IMP-026 | Done | Add Doctor diagnostics and guarded tab switching. | Users need a reliable way to understand model, storage, permission, tab, and workspace state without opening DevTools. | Doctor shows pass/fail checks, copyable safe diagnostics, and tab switches are queued while an AI response is running instead of silently interrupting the model session. |
+| IMP-026 | Done | Add Doctor diagnostics and guarded tab switching. | Users need a reliable way to understand model, storage, permission, tab, and conversation state without opening DevTools. | Doctor shows pass/fail checks, copyable safe diagnostics, and tab switches are queued while an AI response is running instead of silently interrupting the model session. |
+| IMP-029 | Done | Remove pin/rename workspace management. | The user-tested workspace naming/pinning layer was confusing and rarely needed. | More sheet exposes Export conversation and New thread only; Doctor/export language uses conversation/current tab. |
 
 ### P2: Workspace Polish
 
 | ID | Status | Work item | Why it matters | Acceptance criteria |
 | --- | --- | --- | --- | --- |
-| IMP-020 | Done | Improve saved sessions as workspaces. | Saved tabs and conversations should feel connected. | A saved session can be reopened with its related local notes/conversation summary. |
-| IMP-021 | Done | Add lightweight workspace names. | Users need human labels for ongoing work. | User can rename a pinned workspace locally. |
-| IMP-022 | Done | Add local export of workspace. | Sensitive users may want portable local records. | Workspace can export to Markdown/text without any network transfer. |
+| IMP-020 | Done | Keep saved tab sessions simple. | Saved tabs and conversations should be useful without a new workspace concept. | A saved session can reopen tabs and optionally restore a related conversation summary, without workspace naming/pinning. |
+| IMP-021 | Dropped | Add lightweight workspace names. | QA showed this creates more confusion than value. | Pin/rename workspace controls are not shipped. |
+| IMP-022 | Done | Add local export of conversation. | Sensitive users may want portable local records. | Conversation can export to Markdown/text without any network transfer. |
 
 ### P2: Future Product Ideas
 
 | ID | Status | Work item | Why it matters | Acceptance criteria |
 | --- | --- | --- | --- | --- |
-| IMP-027 | Parked | Explore multi-page long screenshots. | Long screenshots are a natural browser-workbench capability for research, records, and sharing. | Design should cover full-page capture, multi-page/stitching behavior, local redaction, export formats, and permission impact before implementation. |
-| IMP-028 | Parked | Improve meeting notes capture. | Meeting notes are a high-value local AI workflow when capture, cleanup, and summarization are frictionless. | Design should cover quick start/stop, local transcript cleanup, summary/action items, export, privacy copy, and clear voice-processing disclosure. |
+| IMP-027 | Next | Explore multi-page long screenshots. | Long screenshots are a natural browser-workbench capability for research, records, and sharing. | Design should cover full-page capture, multi-page/stitching behavior, local redaction, export formats, and permission impact before implementation. |
+| IMP-028 | Next | Improve meeting notes capture. | Meeting notes are a high-value local AI workflow when capture, cleanup, and summarization are frictionless. | Design should cover quick start/stop, local transcript cleanup, summary/action items, export, privacy copy, and clear voice-processing disclosure. |
+| IMP-030 | Next | Add quick screenshot capture. | A fast visible-page screenshot is the simplest next capture workflow and can feed OCR/summarization. | User can capture the visible tab area, preview/attach it, and process it locally where supported. |
+| IMP-031 | Next | Add Momo-style voice capture refinements. | Voice should feel like a first-class capture path, not a hidden utility. | Fast start/stop, note cleanup, summary/action items, export, and clear speech-recognition disclosure are designed before implementation. |
 
 ### P2: Quality, Accessibility, and Store Assets
 

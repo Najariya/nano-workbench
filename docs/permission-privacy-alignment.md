@@ -9,7 +9,7 @@ Use this file before promoting any experiment build to the Chrome Web Store.
 | Manifest item | Current value | User-facing reason | Listing/privacy alignment |
 | --- | --- | --- | --- |
 | `sidePanel` | Required | Opens the workbench inside Chrome's side panel. | Listing describes a browser side-panel workbench. |
-| `storage` | Required | Saves local conversations, notes, reading lists, sessions, preferences, and workspace metadata. | Privacy policy says this data stays in the user's browser. |
+| `storage` | Required | Saves local conversations, notes, reading lists, sessions, preferences, diagnostics, and tab-context metadata. | Privacy policy says this data stays in the user's browser. |
 | `scripting` | Required | Reads visible text from the active page when the user asks the workbench to read or summarize it. | Listing and privacy policy describe page reading for normal web pages. |
 | `tabs` | Required | Follows the active tab, shows context, lists tabs for user-triggered tab/session tools, and reopens saved sessions. | Listing mentions active-tab reading, saved sessions, and tab tools. |
 | `contextMenus` | Required | Adds right-click actions for selected text and image OCR. | Listing and screenshots mention right-click selected text and right-click image OCR. |
@@ -21,7 +21,7 @@ Use this file before promoting any experiment build to the Chrome Web Store.
 
 The privacy policy and listing must keep these statements true:
 
-- The developer has no access to page content, prompts, documents, images, notes, or saved workspaces.
+- The developer has no access to page content, prompts, documents, images, notes, conversations, or tab-context data.
 - There is no developer-operated server.
 - There is no analytics, telemetry, advertising, sale of user data, profiling, or model training by the developer.
 - User content stays in Chrome local storage / IndexedDB unless the user chooses an external website or Chrome service.

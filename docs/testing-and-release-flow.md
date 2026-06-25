@@ -10,17 +10,17 @@ The published/store baseline is:
 6.7.x = store-stable line
 ```
 
-The per-tab workspace improvement line should use:
+The current-tab context improvement line should use:
 
 ```text
-6.8.x = workspace improvements line
+6.8.x = current-tab context, diagnostics, and capture improvements line
 ```
 
 Rules:
 
 - Keep the submitted Chrome Web Store package as `6.7.4`.
 - Do not bump `manifest.json` for planning-only commits.
-- When the first user-visible per-tab workspace code lands, bump the experiment branch to `6.8.0`.
+- When the first user-visible current-tab context code lands, bump the experiment branch to `6.8.0`.
 - If we need multiple test builds before release, use:
   - `6.8.0` for the first local test build
   - `6.8.1` for the next local test build
@@ -30,7 +30,7 @@ Rules:
 
 ```json
 "version": "6.8.0",
-"version_name": "6.8.0 - Per-tab workspace test"
+"version_name": "6.8.5 - Current tab context test"
 ```
 
 ## GitHub Branch
@@ -111,15 +111,15 @@ Confirm the existing `6.7.4` behavior still works:
 - History.
 - Local memory.
 
-### Phase 3: New workspace behavior
+### Phase 3: Current-tab context behavior
 
-After the per-tab workspace code is implemented:
+After the current-tab context code is implemented:
 
-- Tab A keeps its own conversation.
-- Tab B keeps its own conversation.
-- Switching between tabs restores the right conversation.
+- Switching tabs follows the active tab and clears stale page context.
+- The current tab re-reads when auto-read is enabled.
 - Generic chat stays separate.
-- Pin workspace survives tab reload.
+- Pin/Rename workspace controls are not shown.
+- Export conversation works after a conversation exists.
 - No new permission appears.
 - No user content leaves local browser storage.
 

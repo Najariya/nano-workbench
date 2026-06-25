@@ -28,7 +28,7 @@ If permissions changed, explain exactly why the change is necessary.
 
 ## Local-First Statement
 
-Local AI Workbench continues to run user workflows in the browser. The developer does not receive prompts, page content, documents, images, notes, conversations, or saved workspaces.
+Local AI Workbench continues to run user workflows in the browser. The developer does not receive prompts, page content, documents, images, notes, conversations, screenshots, or tab-context data.
 
 ## QA Evidence
 
@@ -47,7 +47,8 @@ Local AI Workbench continues to run user workflows in the browser. The developer
   - Right-click selected text.
   - Right-click image OCR.
   - Document attach.
-  - Saved sessions/workspaces.
+  - Saved tab sessions.
+  - Conversation export.
   - Settings/privacy link.
 
 ## Store Listing Notes
