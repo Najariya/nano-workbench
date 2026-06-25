@@ -46,6 +46,9 @@ Injects short page-reading scripts into pages the user chooses so the side panel
 **tabs**  
 Supports listing the current window's tabs for user-triggered tab cleanup, opening user-requested calendar/setup pages, and reopening saved tab sessions.
 
+**activeTab**
+Provides a temporary user-invoked grant for the active tab when the user opens or invokes the workbench, which helps screenshot capture run only on the page the user is actively working with.
+
 **downloads**
 Saves user-triggered screenshots and exported files locally under a clear Downloads folder path. Screenshots are not uploaded to a developer server.
 

@@ -33,7 +33,7 @@ Expected result: every command exits successfully with no syntax error.
 - No experimental WebGPU option appears in user-facing UI or listing copy.
 - Host permissions are still intentional and explained:
   - `<all_urls>`
-- `downloads` is justified if the screenshot capture build is being tested.
+- `activeTab` and `downloads` are justified if the screenshot capture build is being tested.
 - Privacy policy URL still points to:
   - `https://github.com/Najariya/nano-workbench/blob/main/PRIVACY.md`
 - Permission justifications in `STORE_LISTING_DRAFT.md` match `manifest.json`.
@@ -89,7 +89,8 @@ Expected result: every command exits successfully with no syntax error.
 
 ### Screenshot Capture
 
-- Confirm `chrome://extensions` shows version `6.8.6`.
+- Confirm `chrome://extensions` shows version `6.8.7`.
+- In extension details, confirm **Site access** is set to **On all sites** for this unpacked test build.
 - Open a normal `https://` web page.
 - Open **More -> Screenshots -> Capture visible area**.
 - Confirm a preview appears in the conversation.

@@ -167,6 +167,7 @@ The current experimental line uses the same broad web-page host access as the st
 This is intentional because the workbench reads normal web pages, follows the active tab, summarizes visible content, captures user-triggered screenshots, and avoids repeated page-by-page prompts. The code still limits page reading and screenshots to normal `http` and `https` pages. Before promotion, verify that:
 
 - No new required permission was added without a backlog item and user-facing reason.
+- `activeTab`, if present in the screenshot build, is explained as a temporary user-invoked active-tab grant.
 - `downloads`, if present in the screenshot build, is explained as local screenshot saving.
 - Optional `history` remains optional and user-triggered.
 - The listing explains host access plainly.

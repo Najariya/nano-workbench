@@ -118,6 +118,7 @@ The extension itself does not send your page content, prompts, notes, documents,
 | `scripting` | Runs short page-reading scripts on normal web pages so the extension can collect visible text and page signals for your requested action. |
 | `storage` | Saves local notes, memory, chats, reading lists, sessions, preferences, page logs, and transcripts in your browser. |
 | `tabs` | Identifies the active tab, tab title, URL, and tab state so the side panel can work with the page you are viewing. |
+| `activeTab` | Provides a temporary user-invoked grant for the active tab, used for current-page actions such as screenshots. |
 | `downloads` | Saves user-triggered screenshots and exported files locally in your Downloads folder. |
 | `tabGroups` | Supports user-triggered tab grouping and workspace organization. |
 | `contextMenus` | Adds right-click actions for selected text and images, such as asking the local AI or extracting text/details from an image. |

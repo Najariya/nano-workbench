@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
   "name": "Local AI Workbench",
-  "version": "6.8.6",
-  "version_name": "6.8.6 - Screenshot capture test",
+  "version": "6.8.7",
+  "version_name": "6.8.7 - Screenshot permission fix",
   "description": "On-device AI side panel for Chrome: summarize pages, read documents, draft text, and keep private local notes.",
   "minimum_chrome_version": "138",
-  "permissions": ["sidePanel", "storage", "scripting", "tabs", "downloads", "contextMenus", "tabGroups"],
+  "permissions": ["sidePanel", "storage", "scripting", "tabs", "activeTab", "downloads", "contextMenus", "tabGroups"],
   "optional_permissions": ["history"],
   "host_permissions": ["<all_urls>"],
   "background": {
