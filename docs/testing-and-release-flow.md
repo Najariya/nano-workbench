@@ -158,15 +158,16 @@ Do not upload a `6.8.x` package while it is still marked as an experiment in the
 
 ## Permission and Privacy Gate
 
-The current experimental line still uses the same broad web-page host access as the store baseline:
+The current experimental line uses the same broad web-page host access as the store baseline:
 
 ```json
-"host_permissions": ["http://*/*", "https://*/*"]
+"host_permissions": ["<all_urls>"]
 ```
 
-This is intentional because the workbench reads normal web pages, follows the active tab, summarizes visible content, and avoids repeated page-by-page prompts. Before promotion, verify that:
+This is intentional because the workbench reads normal web pages, follows the active tab, summarizes visible content, captures user-triggered screenshots, and avoids repeated page-by-page prompts. The code still limits page reading and screenshots to normal `http` and `https` pages. Before promotion, verify that:
 
 - No new required permission was added without a backlog item and user-facing reason.
+- `downloads`, if present in the screenshot build, is explained as local screenshot saving.
 - Optional `history` remains optional and user-triggered.
 - The listing explains host access plainly.
 - `PRIVACY.md` clearly says the developer has no access to user content.

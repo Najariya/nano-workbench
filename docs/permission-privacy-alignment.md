@@ -12,10 +12,11 @@ Use this file before promoting any experiment build to the Chrome Web Store.
 | `storage` | Required | Saves local conversations, notes, reading lists, sessions, preferences, diagnostics, and tab-context metadata. | Privacy policy says this data stays in the user's browser. |
 | `scripting` | Required | Reads visible text from the active page when the user asks the workbench to read or summarize it. | Listing and privacy policy describe page reading for normal web pages. |
 | `tabs` | Required | Follows the active tab, shows context, lists tabs for user-triggered tab/session tools, and reopens saved sessions. | Listing mentions active-tab reading, saved sessions, and tab tools. |
+| `downloads` | Required | Saves screenshots and exports into a clear local Downloads folder chosen by the extension filename. | Listing/privacy must say files are saved locally and not uploaded to the developer. |
 | `contextMenus` | Required | Adds right-click actions for selected text and image OCR. | Listing and screenshots mention right-click selected text and right-click image OCR. |
 | `tabGroups` | Required | Supports user-triggered tab grouping. | Listing describes tab cleanup/grouping as a user-triggered tool. |
 | `history` | Optional | Used only if the user asks for the clear-history tool. | Privacy policy states history access is optional and user-triggered. |
-| `http://*/*`, `https://*/*` | Host permissions | Lets the workbench read normal web pages and avoid repeated page-by-page prompts. | Store listing and privacy policy must explain broad page access clearly. |
+| `<all_urls>` | Host permissions | Lets Chrome's page-reading and screenshot APIs work across user-chosen browser pages without repeated page-by-page prompts. Code paths still reject Chrome internal pages and only read/capture normal `http` and `https` pages. | Store listing and privacy policy must explain broad page access clearly, including screenshot capture. |
 
 ## Required Privacy Position
 
@@ -25,6 +26,7 @@ The privacy policy and listing must keep these statements true:
 - There is no developer-operated server.
 - There is no analytics, telemetry, advertising, sale of user data, profiling, or model training by the developer.
 - User content stays in Chrome local storage / IndexedDB unless the user chooses an external website or Chrome service.
+- Screenshot image files are created only after a user action, saved locally through Chrome downloads, and are not sent to the developer.
 - Voice input may use Chrome's speech recognition service and is not represented as fully on-device.
 
 ## Promotion Check

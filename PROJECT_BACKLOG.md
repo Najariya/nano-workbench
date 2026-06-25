@@ -51,10 +51,10 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | IMP-024 | Done | P2 | Store assets | Add polished screenshot/video script for next version. | `store-assets/NEXT_VERSION_SCRIPT.md` covers summary, OCR, local privacy, and per-tab workspace visuals. |
 | IMP-025 | Done | P2 | Release notes | Create next-version release notes template. | `docs/release-notes-template.md` is ready for store update notes. |
 | IMP-026 | Done | P1 | Reliability | Add Doctor diagnostics and guarded tab switching. | Doctor checks model/storage/page/conversation state, keeps safe local diagnostics, and active-tab changes wait while an AI run is in progress. |
-| IMP-027 | Next | P2 | Capture | Explore multi-page long screenshots. | Future design covers full-page and multi-page capture, stitching, redaction, and export without adding permissions until needed. |
+| IMP-027 | In progress | P2 | Capture | Explore multi-page long screenshots. | Full-page capture scrolls the current page, stitches screenshots locally, restores scroll position, saves to Downloads, and documents permission impact. |
 | IMP-028 | Next | P2 | Meetings | Improve meeting notes capture. | Future design covers quick recording, transcript cleanup, local summary/export, and clear disclosure for any browser speech-recognition cloud behavior. |
 | IMP-029 | Done | P1 | UX simplification | Remove pin/rename workspace management. | More sheet no longer shows Pin/Rename workspace; export and Doctor use conversation/current-tab language. |
-| IMP-030 | Next | P1 | Screenshots | Add quick screenshot capture. | User can capture the visible tab area locally, attach it to the conversation/OCR flow, and export it without unnecessary friction. |
+| IMP-030 | In progress | P1 | Screenshots | Add quick screenshot capture. | User can capture the visible tab area locally, preview it, save it to Downloads, and send it to OCR/summarize without unnecessary friction. |
 | IMP-031 | Next | P1 | Voice | Add Momo-style voice capture refinements. | Voice capture should be fast, obvious, locally organized, and clear about Chrome speech-recognition behavior. |
 
 ## Backlog
@@ -114,9 +114,9 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 
 | ID | Status | Work item | Why it matters | Acceptance criteria |
 | --- | --- | --- | --- | --- |
-| IMP-027 | Next | Explore multi-page long screenshots. | Long screenshots are a natural browser-workbench capability for research, records, and sharing. | Design should cover full-page capture, multi-page/stitching behavior, local redaction, export formats, and permission impact before implementation. |
+| IMP-027 | In progress | Explore multi-page long screenshots. | Long screenshots are a natural browser-workbench capability for research, records, and sharing. | Full-page capture scrolls and stitches locally, restores page position, saves the PNG under a clear Downloads folder, and documents permission impact. |
 | IMP-028 | Next | Improve meeting notes capture. | Meeting notes are a high-value local AI workflow when capture, cleanup, and summarization are frictionless. | Design should cover quick start/stop, local transcript cleanup, summary/action items, export, privacy copy, and clear voice-processing disclosure. |
-| IMP-030 | Next | Add quick screenshot capture. | A fast visible-page screenshot is the simplest next capture workflow and can feed OCR/summarization. | User can capture the visible tab area, preview/attach it, and process it locally where supported. |
+| IMP-030 | In progress | Add quick screenshot capture. | A fast visible-page screenshot is the simplest next capture workflow and can feed OCR/summarization. | User can capture the visible tab area, preview it, save it locally, and process it with OCR/summarization where supported. |
 | IMP-031 | Next | Add Momo-style voice capture refinements. | Voice should feel like a first-class capture path, not a hidden utility. | Fast start/stop, note cleanup, summary/action items, export, and clear speech-recognition disclosure are designed before implementation. |
 
 ### P2: Quality, Accessibility, and Store Assets

@@ -32,8 +32,8 @@ Expected result: every command exits successfully with no syntax error.
 - No old `Gemini Nano Workbench` or `Ask Nano` branding remains.
 - No experimental WebGPU option appears in user-facing UI or listing copy.
 - Host permissions are still intentional and explained:
-  - `http://*/*`
-  - `https://*/*`
+  - `<all_urls>`
+- `downloads` is justified if the screenshot capture build is being tested.
 - Privacy policy URL still points to:
   - `https://github.com/Najariya/nano-workbench/blob/main/PRIVACY.md`
 - Permission justifications in `STORE_LISTING_DRAFT.md` match `manifest.json`.
@@ -86,6 +86,18 @@ Expected result: every command exits successfully with no syntax error.
 - Confirm low-confidence or hard-to-read outputs do not overclaim certainty.
 - Confirm **Copy text**, **Copy fields** when fields exist, and **Copy JSON** are available and copy the expected content.
 - Confirm medium, low, or partial OCR results show recheck guidance for important values.
+
+### Screenshot Capture
+
+- Confirm `chrome://extensions` shows version `6.8.6`.
+- Open a normal `https://` web page.
+- Open **More -> Screenshots -> Capture visible area**.
+- Confirm a preview appears in the conversation.
+- Confirm a PNG downloads under `Downloads/Local AI Workbench/Screenshots/`.
+- Click **Run OCR** on the capture and confirm OCR either produces text or clearly explains that image OCR is unavailable in the current Chrome build.
+- Open a long page and use **Capture full page**.
+- Confirm the page scrolls, returns near its original scroll position, shows a stitched preview, and downloads a PNG under the same folder.
+- Confirm screenshots are not saved to extension storage as page content and are not uploaded anywhere by the extension.
 
 ### Documents
 

@@ -32,6 +32,7 @@ The core AI work happens locally in Chrome through browser-provided on-device AI
 | 🚫 No backend server | The extension has no developer-operated backend, analytics, telemetry, or advertising service. |
 | 🔒 Local storage | Notes, chats, page logs, reading lists, work memory, saved sessions, preferences, and transcripts are stored in your browser. |
 | 🌐 Page access | The extension can read normal web pages only so it can summarize, answer questions, extract details, and follow the active tab. |
+| 📸 Local screenshots | Screenshots are captured only when you choose the action and are saved locally through Chrome downloads. |
 | 🖱️ User controlled | You choose what to read, summarize, attach, right-click, save, delete, or clear. |
 | 💬 Voice note caution | Voice transcription uses Chrome's Web Speech API and may use Google's speech service depending on Chrome, language, and device settings. |
 | 💰 No data business | We cannot sell or monetize data we never receive. |
@@ -43,6 +44,7 @@ Local AI Workbench provides a Chrome side panel for:
 - Summarizing and asking questions about the page or email you are viewing.
 - Reading selected text through the right-click menu.
 - Extracting text or details from images through the right-click menu.
+- Capturing visible or full-page screenshots that can be saved locally and sent to local OCR when supported.
 - Parsing attached documents locally where supported.
 - Drafting, rewriting, explaining, and organizing text.
 - Saving local notes, work memory, reading lists, tab sessions, and conversation history.
@@ -60,6 +62,7 @@ As the developer, I do not receive:
 - Your notes or memos.
 - Your attached documents.
 - Your image content.
+- Your screenshots.
 - Your browsing history.
 - Your voice recordings.
 - Your personal information.
@@ -74,6 +77,7 @@ To provide the features you request, the extension may process and store the fol
 - Email or webmail content when you open an email page and ask the extension to work with it.
 - Selected text sent through the right-click menu.
 - Text or details extracted from images.
+- Screenshots you choose to capture, saved as local image files through Chrome downloads.
 - Text extracted from attached documents.
 - Your prompts, AI responses, saved notes, memos, work memory, reading lists, saved tab sessions, page logs, persona settings, and app preferences.
 - Optional voice memo transcripts. The extension stores transcript text, not audio files.
@@ -110,10 +114,11 @@ The extension itself does not send your page content, prompts, notes, documents,
 | Permission | Why it is needed |
 | --- | --- |
 | `sidePanel` | Shows the Local AI Workbench interface inside Chrome's side panel. |
-| `host_permissions` for `http://*/*` and `https://*/*` | Lets the workbench read normal web pages you choose to work with, follow the active tab, summarize pages, extract visible text, inspect basic safety signals, and avoid repeated permission prompts. |
+| `host_permissions` for `<all_urls>` | Lets the workbench read and capture normal web pages you choose to work with, follow the active tab, summarize pages, extract visible text, inspect basic safety signals, and avoid repeated permission prompts. The extension code limits page reading and screenshots to normal `http` and `https` pages and rejects Chrome internal pages. |
 | `scripting` | Runs short page-reading scripts on normal web pages so the extension can collect visible text and page signals for your requested action. |
 | `storage` | Saves local notes, memory, chats, reading lists, sessions, preferences, page logs, and transcripts in your browser. |
 | `tabs` | Identifies the active tab, tab title, URL, and tab state so the side panel can work with the page you are viewing. |
+| `downloads` | Saves user-triggered screenshots and exported files locally in your Downloads folder. |
 | `tabGroups` | Supports user-triggered tab grouping and workspace organization. |
 | `contextMenus` | Adds right-click actions for selected text and images, such as asking the local AI or extracting text/details from an image. |
 | Optional `history` | Requested only if you choose the clear-history command. It is used to delete recent history after confirmation, not to read or transmit your history. |

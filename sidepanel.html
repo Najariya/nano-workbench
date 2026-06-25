@@ -103,6 +103,7 @@
     <div class="quick-actions" id="qaPrimary">
       <button class="chip primary-chip" data-action="summarize">✦ Summarize</button>
       <button class="chip" data-action="email">✉ Read email</button>
+      <button class="chip" id="captureQuickBtn">📸 Capture</button>
       <button class="chip" id="moreBtn">⋯ More</button>
       <button class="chip export-chip" id="exportQuickBtn" disabled>Export</button>
     </div>
@@ -138,6 +139,11 @@
       <div class="more-group">
         <span class="more-label">Images &amp; OCR</span>
         <button class="chip primary-chip" id="ocrGuideBtn">Extract text from image</button>
+      </div>
+      <div class="more-group">
+        <span class="more-label">Screenshots</span>
+        <button class="chip primary-chip" id="captureVisibleBtn">📸 Capture visible area</button>
+        <button class="chip" id="captureFullPageBtn">↕ Capture full page</button>
       </div>
       <div class="more-group">
         <span class="more-label">Recipes (multi-step)</span>
@@ -193,6 +199,8 @@
         <button class="cmd-item" data-cmd="check_site"><span>🛡</span> Check if this site is safe</button>
         <button class="cmd-item" data-cmd="research"><span>🔎</span> Deep research a question</button>
         <button class="cmd-item" data-cmd="reading_mode"><span>📖</span> Reading mode (clean view)</button>
+        <button class="cmd-item" data-cmd="capture_visible"><span>📸</span> Capture visible screenshot</button>
+        <button class="cmd-item" data-cmd="capture_full"><span>↕</span> Capture full-page screenshot</button>
         <button class="cmd-item" data-cmd="save_page"><span>📑</span> Save page to reading list</button>
         <button class="cmd-item" data-cmd="reading_list"><span>📚</span> Show reading list</button>
         <button class="cmd-item" data-cmd="add_event"><span>📅</span> Add event from this page</button>

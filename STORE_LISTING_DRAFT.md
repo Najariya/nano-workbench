@@ -23,7 +23,7 @@ Local AI Workbench is an on-device AI side panel for Chrome that helps users und
 
 Local AI Workbench brings Chrome's built-in on-device AI into a practical side-panel workspace.
 
-Use it to summarize articles and emails, ask questions about the current page, attach local documents, extract details from images, draft or rewrite text, save private work memory, and export useful answers.
+Use it to summarize articles and emails, ask questions about the current page, capture visible or full-page screenshots, attach local documents, extract details from images, draft or rewrite text, save private work memory, and export useful answers.
 
 The extension is built for local-first use. It has no developer-operated server, no analytics, no telemetry, and no advertising. Conversation history, memos, reading lists, saved sessions, preferences, and work memory are stored locally in the browser.
 
@@ -37,14 +37,17 @@ Displays the extension's main workbench interface in Chrome's side panel.
 **storage**  
 Stores user preferences, conversation history, local work memory, voice memo text, reading list items, saved tab sessions, and page logs locally in the browser.
 
-**host permissions: `http://*/*`, `https://*/*`**  
-Required because the extension's core purpose is to read and summarize the normal web pages, emails, links, products, and safety signals the user chooses to work with in the side panel. Requesting this once at install lets the workbench follow the active tab across normal web pages without repeated runtime prompts. The extension does not read Chrome internal pages and does not send page content to a developer server.
+**host permissions: `<all_urls>`**
+Required because the extension's core purpose is to read, summarize, and capture the normal web pages, emails, links, products, and safety signals the user chooses to work with in the side panel. Chrome's screenshot API requires broad host access for reliable side-panel capture. The extension code restricts page reading and screenshots to normal `http` and `https` pages, does not read Chrome internal pages, and does not send page content or screenshots to a developer server.
 
 **scripting**  
 Injects short page-reading scripts into pages the user chooses so the side panel can summarize page text, selected text, emails, links, products, and safety signals.
 
 **tabs**  
 Supports listing the current window's tabs for user-triggered tab cleanup, opening user-requested calendar/setup pages, and reopening saved tab sessions.
+
+**downloads**
+Saves user-triggered screenshots and exported files locally under a clear Downloads folder path. Screenshots are not uploaded to a developer server.
 
 **tabGroups**  
 Supports the user-triggered tab cleanup feature that groups related open tabs.
@@ -80,7 +83,8 @@ https://github.com/Najariya/nano-workbench/blob/main/PRIVACY.md
 6. Attach a small `.txt`, `.pdf`, or `.docx` file and ask a question about it.
 7. Select text on a page, right-click, and choose **Ask Local AI**.
 8. Right-click an image on a page and choose **Extract details from image** to verify the OCR workflow.
-9. Optional: use **Settings > Developer mode > Run check** to view model/storage/mic capability status.
+9. Use **More > Screenshots > Capture visible area** and **Capture full page** to verify local PNG downloads and the post-capture OCR action.
+10. Optional: use **Settings > Developer mode > Run check** to view model/storage/mic capability status.
 
 ## Listing Assets
 
