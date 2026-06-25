@@ -23,7 +23,7 @@ Local AI Workbench is an on-device AI side panel for Chrome that helps users und
 
 Local AI Workbench brings Chrome's built-in on-device AI into a practical side-panel workspace.
 
-Use it to summarize articles and emails, ask questions about the current page, compare multiple tabs, attach local documents, extract details from images, draft or rewrite text, save private work memory, and export useful answers.
+Use it to summarize articles and emails, ask questions about the current page, attach local documents, extract details from images, draft or rewrite text, save private work memory, and export useful answers.
 
 The extension is built for local-first use. It has no developer-operated server, no analytics, no telemetry, and no advertising. Conversation history, memos, reading lists, saved sessions, preferences, and work memory are stored locally in the browser.
 
@@ -38,22 +38,19 @@ Displays the extension's main workbench interface in Chrome's side panel.
 Stores user preferences, conversation history, local work memory, voice memo text, reading list items, saved tab sessions, and page logs locally in the browser.
 
 **activeTab**  
-Lets the extension read the active page only when the user opens or uses the workbench for that page.
+Lets the extension read the active page only after the user opens or uses the workbench for that page. This avoids requesting broad all-site host access in the first store submission.
 
 **scripting**  
 Injects short page-reading scripts into pages the user chooses so the side panel can summarize page text, selected text, emails, links, products, and safety signals.
 
 **tabs**  
-Supports multi-tab summarize/compare, reading selected open tabs, opening user-requested research/calendar/setup pages, and reopening saved tab sessions.
+Supports listing the current window's tabs for user-triggered tab cleanup, opening user-requested calendar/setup pages, and reopening saved tab sessions.
 
 **tabGroups**  
 Supports the user-triggered tab cleanup feature that groups related open tabs.
 
 **contextMenus**  
 Adds right-click actions for selected text and images: "Ask Local AI" and "Extract details from image".
-
-**host permissions: `http://*/*` and `https://*/*`**  
-Needed to read user-selected web pages across normal websites for summarization, email reading, tab comparison, link/product extraction, image extraction, and site-safety checks.
 
 **optional history**  
 Requested only if the user chooses the "Clear recent history" command. It is used only to delete the last 24 hours of browsing history after explicit confirmation.
@@ -62,7 +59,7 @@ Requested only if the user chooses the "Clear recent history" command. It is use
 
 - No developer-operated data collection.
 - No analytics, advertising, tracking, sale, or transfer of user data.
-- Page/email/document content is processed locally for the requested feature.
+- Page/email/document content is processed locally for the requested feature after the user opens or invokes the workbench on the active page.
 - Local data is stored in IndexedDB or `chrome.storage.local`.
 - Deep research opens normal web pages selected by the user flow.
 - Voice input may use Chrome's Web Speech API.

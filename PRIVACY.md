@@ -30,9 +30,9 @@ These are **user-initiated** and clearly labelled in the app. The extension stil
 ## Permissions and why they're used
 
 - `sidePanel` — show the side-panel interface.
-- `activeTab`, `scripting`, `host_permissions` (http/https) — read the text of the page you ask it to act on, and run on-page actions you trigger (extract products, gather links, find the cart button).
+- `activeTab`, `scripting` — read the active page only after you open or use the workbench for that page, and run on-page actions you trigger (extract products, gather links, find the cart button).
 - `storage` — save your notes, memory, persona, and preferences locally.
-- `tabs`, `tabGroups` — multi-tab summarize/compare and tidy/group tabs.
+- `tabs`, `tabGroups` — list, save, reopen, and tidy/group tabs when you trigger those actions.
 - `contextMenus` — the right-click "Ask Local AI" / "Extract from image" actions.
 - Optional `history` — only requested if you use "Clear recent history"; used solely to clear, never to read or transmit your history.
 

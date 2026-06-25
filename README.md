@@ -1,15 +1,17 @@
 # Local AI Workbench
 
-A Chrome side-panel workbench for Chrome's built-in on-device AI. It helps summarize pages and email, answer questions about the active tab, compare open tabs, parse attached documents, draft text, extract image details, save local notes, and manage private work memory.
+A Chrome side-panel workbench for Chrome's built-in on-device AI. It helps summarize pages and email, answer questions about the active tab, parse attached documents, draft text, extract image details, save local notes, and manage private work memory.
 
 The extension is designed around local processing: prompts run through Chrome's built-in AI APIs, and notes/history are stored in the browser with IndexedDB or `chrome.storage.local`.
+
+The first Chrome Web Store package uses `activeTab` instead of broad required host permissions, so page reading is triggered by the user's action on the active tab.
 
 ## Features
 
 - On-device page, article, and Gmail/Outlook email summarization.
 - Ask questions about the active tab or an attached document.
 - Parse local text, Markdown, CSV, JSON, PDF, DOCX, and image files.
-- Compare and summarize multiple open tabs.
+- Save, reopen, and tidy browser tab sessions.
 - Right-click selected text to ask Local AI, or right-click an image to extract text/details.
 - Voice input and voice memos through Chrome's Web Speech API.
 - Local conversation history, work memory, reading list, page log, and saved tab sessions.
