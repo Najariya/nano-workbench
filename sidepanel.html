@@ -354,7 +354,7 @@
         <div class="debug-row"><span>Events logged</span><span id="dbgCount">—</span></div>
 
         <div class="debug-head">Health check <button id="healthRun" class="link-btn">Run check</button></div>
-        <div id="healthList" class="health-list"><div class="sg-sub" style="margin:0;">Run a check to verify the model, storage, mic, permissions &amp; WebGPU.</div></div>
+        <div id="healthList" class="health-list"><div class="sg-sub" style="margin:0;">Run a check to verify the model, storage, mic &amp; permissions.</div></div>
 
         <div class="debug-head">Storage <button id="storageRefresh" class="link-btn">refresh</button></div>
         <div class="debug-row"><span>Backend</span><span id="dbgBackend">—</span></div>
@@ -367,12 +367,6 @@
         <div class="debug-row"><span>Benchmark</span><span id="perfBench">—</span></div>
         <p class="sg-sub" style="margin:6px 0 2px;">Chrome runs Gemini Nano on its own backend (GPU/CPU/NPU) — the API exposes no switch, so these measure real latency, not the device used. Lower TTFT &amp; higher tok/s = snappier.</p>
 
-        <div class="debug-head">Experimental: WebGPU engine</div>
-        <div class="set-row" style="padding:7px 0;">
-          <span class="set-label">Use a WebGPU model instead of Nano<small>Loads a separate small model on first use (opt-in)</small></span>
-          <label class="switch"><input type="checkbox" id="webgpuToggle" aria-label="Use WebGPU model" /><span class="track"></span><span class="knob"></span></label>
-        </div>
-        <div id="webgpuStatus" class="sg-sub" style="margin:2px 0 6px;"></div>
         <div class="debug-head">Event log <span><button id="dbgRefresh" class="link-btn">refresh</button> · <button id="dbgCopy" class="link-btn">copy</button> · <button id="dbgClear" class="link-btn">clear</button></span></div>
         <pre id="dbgLog" class="debug-log"></pre>
       </div>

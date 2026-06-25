@@ -11,6 +11,8 @@ On-device AI side panel for Chrome: summarize pages, read documents, draft text,
 
 **Category:** Productivity
 
+**Visibility:** Public listing
+
 **Language:** English
 
 ## Single Purpose
