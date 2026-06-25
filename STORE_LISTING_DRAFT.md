@@ -37,11 +37,8 @@ Displays the extension's main workbench interface in Chrome's side panel.
 **storage**  
 Stores user preferences, conversation history, local work memory, voice memo text, reading list items, saved tab sessions, and page logs locally in the browser.
 
-**activeTab**  
-Lets the extension read the active page after the user opens or uses the workbench for that page. This keeps page reading tied to the user's active-tab action.
-
-**optional host permissions: `http://*/*`, `https://*/*`**  
-Requested only when active-page reading cannot run with the temporary `activeTab` grant. This lets the user grant page-reading access at runtime so the workbench can follow the active tab across normal web pages without repeated per-site prompts. It is optional and is not required at install.
+**host permissions: `http://*/*`, `https://*/*`**  
+Required because the extension's core purpose is to read and summarize the normal web pages, emails, links, products, and safety signals the user chooses to work with in the side panel. Requesting this once at install lets the workbench follow the active tab across normal web pages without repeated runtime prompts. The extension does not read Chrome internal pages and does not send page content to a developer server.
 
 **scripting**  
 Injects short page-reading scripts into pages the user chooses so the side panel can summarize page text, selected text, emails, links, products, and safety signals.
@@ -62,7 +59,7 @@ Requested only if the user chooses the "Clear recent history" command. It is use
 
 - No developer-operated data collection.
 - No analytics, advertising, tracking, sale, or transfer of user data.
-- Page/email/document content is processed locally for the requested feature after the user opens or invokes the workbench on the active page.
+- Page/email/document content is processed locally for the requested feature when the user opens or invokes the workbench on a page, email, or document.
 - Local data is stored in IndexedDB or `chrome.storage.local`.
 - Deep research opens normal web pages selected by the user flow.
 - Voice input may use Chrome's Web Speech API.

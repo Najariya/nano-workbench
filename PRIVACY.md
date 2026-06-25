@@ -30,8 +30,7 @@ These are **user-initiated** and clearly labelled in the app. The extension stil
 ## Permissions and why they're used
 
 - `sidePanel` — show the side-panel interface.
-- `activeTab`, `scripting` — read the active page only after you open or use the workbench for that page, and run on-page actions you trigger (extract products, gather links, find the cart button).
-- Optional site access (`http://*/*`, `https://*/*`) — requested only if active-page reading needs your runtime approval. It lets the workbench read normal web pages after you grant access so it can follow the active tab without repeated per-site prompts; it is not required at install.
+- `host_permissions` (`http://*/*`, `https://*/*`) and `scripting` — read and summarize normal web pages, emails, links, products, and safety signals you choose to work with in the side panel. This access is requested once at install so the workbench can follow the active tab without repeated prompts. The extension cannot read Chrome internal pages and does not send page content to a developer server.
 - `storage` — save your notes, memory, persona, and preferences locally.
 - `tabs`, `tabGroups` — list, save, reopen, and tidy/group tabs when you trigger those actions.
 - `contextMenus` — the right-click "Ask Local AI" / "Extract from image" actions.
