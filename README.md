@@ -34,7 +34,10 @@ The extension is designed around local processing: prompts run through Chrome's 
 The source in this repository is the extension package. To create a zip for upload:
 
 ```sh
-zip -r gemini-nano-workbench-store.zip . -x ".git/*" ".DS_Store"
+zip -r -X gemini-nano-workbench-store-v6.7.zip \
+  manifest.json PRIVACY.md mic-permission.html mic-permission.js \
+  fonts icons safety.js sidepanel.css background.js docparse.js \
+  sidepanel.html sidepanel.js db.js md.js lib export.js
 ```
 
 Upload the resulting zip in the Chrome Web Store Developer Dashboard.

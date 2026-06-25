@@ -58,4 +58,4 @@ Any future changes to this policy will be reflected in this file in the project'
 
 ## Contact
 
-Questions? Open an issue on the project's GitHub repository.
+Questions? Open an issue at https://github.com/Najariya/nano-workbench/issues.
