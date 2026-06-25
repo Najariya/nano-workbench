@@ -138,3 +138,36 @@ Recommended merge target for this branch:
 ```text
 main <- codex/per-tab-workspaces
 ```
+
+## Release Promotion Checklist
+
+Use this sequence when an experimental build is ready to become the next store package:
+
+1. Confirm the test build in `manifest.json` is the version you want users to receive.
+2. Run every static check listed in `QA_CHECKLIST.md`.
+3. Run the manual Chrome checks for the version being promoted.
+4. Compare `manifest.json`, `STORE_LISTING_DRAFT.md`, and `PRIVACY.md` against `docs/permission-privacy-alignment.md`.
+5. Update release notes using `docs/release-notes-template.md`.
+6. Merge `codex/per-tab-workspaces` into `main` only after QA passes.
+7. Create the store ZIP from `main`, not from an unreviewed experiment folder.
+8. Inspect the ZIP contents before upload.
+9. Upload the ZIP in the Chrome Web Store Developer Dashboard.
+10. Update store listing text/screenshots/video only when they match the uploaded package.
+
+Do not upload a `6.8.x` package while it is still marked as an experiment in the backlog.
+
+## Permission and Privacy Gate
+
+The current experimental line still uses the same broad web-page host access as the store baseline:
+
+```json
+"host_permissions": ["http://*/*", "https://*/*"]
+```
+
+This is intentional because the workbench reads normal web pages, follows the active tab, summarizes visible content, and avoids repeated page-by-page prompts. Before promotion, verify that:
+
+- No new required permission was added without a backlog item and user-facing reason.
+- Optional `history` remains optional and user-triggered.
+- The listing explains host access plainly.
+- `PRIVACY.md` clearly says the developer has no access to user content.
+- The package still has no analytics, telemetry, ads, or developer-operated server.

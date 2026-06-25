@@ -160,6 +160,28 @@ Run these checks for the `6.8.2 - OCR workflow polish` build:
 - Confirm **Copy text**, **Copy fields** when fields exist, and **Copy JSON** copy the expected output.
 - Confirm `store-assets/README.md` keeps the OCR screenshot and promo frame in the listing story.
 
+## Workspace Polish Regression Gate
+
+Run these checks for the `6.8.3 - Workspace polish test` build:
+
+- Confirm `chrome://extensions` shows version `6.8.3`.
+- Pin a workspace, then use **More -> Session & reading -> Rename workspace**.
+- Confirm the new workspace name appears in the context strip and persists after switching tabs away and back.
+- Use **Export workspace** and confirm a local Markdown file downloads with workspace metadata and conversation turns.
+- Use **Save tab session** after asking a question.
+- Open **Saved sessions** and confirm the saved item shows a short conversation/workspace summary.
+- Click **Open** on the saved session and confirm its conversation is restored while the saved tabs reopen.
+- Confirm no new permission appears.
+- Confirm no workspace content leaves local browser storage except the user-triggered Markdown export.
+
+## Release and Store Documentation Gate
+
+- Confirm `docs/testing-and-release-flow.md` includes the promotion checklist.
+- Confirm `docs/permission-privacy-alignment.md` matches `manifest.json`, `STORE_LISTING_DRAFT.md`, and `PRIVACY.md`.
+- Confirm `docs/release-notes-template.md` is ready to copy for the next store release.
+- Confirm `store-assets/NEXT_VERSION_SCRIPT.md` covers page summary, right-click OCR, local privacy, and per-tab workspace visuals.
+- Confirm `docs/accessibility-review.md` lists keyboard/screen-reader checks for the current UI.
+
 ## Packaging Gate
 
 Only package after the above checks pass:

@@ -41,6 +41,14 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | IMP-017 | Done | P1 | OCR | Make image OCR action more prominent in onboarding and UI. | Onboarding, More sheet, context-menu copy, and store assets now surface the OCR workflow clearly. |
 | IMP-018 | Done | P1 | OCR | Improve OCR result confidence and recheck guidance. | Medium, low, or partial OCR outputs show explicit recheck guidance for important values. |
 | IMP-019 | Done | P1 | OCR | Add "copy clean text" and "copy fields" consistency. | OCR results expose Copy text, Copy fields when fields exist, and Copy JSON. |
+| IMP-006 | Done | P0 | Release | Document release promotion steps. | `docs/testing-and-release-flow.md` now defines promotion, packaging, and dashboard upload order. |
+| IMP-007 | Done | P0 | Store review | Keep permission/privacy copy aligned with manifest. | `docs/permission-privacy-alignment.md` maps permissions to listing and privacy policy language. |
+| IMP-020 | Done | P2 | Workspaces | Improve saved sessions as workspaces. | Saved sessions now keep local workspace/thread summary metadata and can restore the saved conversation. |
+| IMP-021 | Done | P2 | Workspaces | Add lightweight workspace names. | Pinned workspaces can be renamed locally from More -> Session & reading. |
+| IMP-022 | Done | P2 | Workspaces | Add local export of workspace. | Current workspace can export to local Markdown without network transfer. |
+| IMP-023 | Done | P2 | Accessibility | Review keyboard and screen-reader paths. | `docs/accessibility-review.md` records current coverage and manual checks. |
+| IMP-024 | Done | P2 | Store assets | Add polished screenshot/video script for next version. | `store-assets/NEXT_VERSION_SCRIPT.md` covers summary, OCR, local privacy, and per-tab workspace visuals. |
+| IMP-025 | Done | P2 | Release notes | Create next-version release notes template. | `docs/release-notes-template.md` is ready for store update notes. |
 
 ## Backlog
 
@@ -49,8 +57,8 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | ID | Status | Work item | Why it matters | Acceptance criteria |
 | --- | --- | --- | --- | --- |
 | IMP-003 | Done | Add regression checklist for 6.7.4. | Prevent experiments from breaking the version already submitted for review. | `QA_CHECKLIST.md` exists and can be run before packaging or merging. |
-| IMP-006 | Backlog | Document release promotion steps. | Avoid uploading an experimental ZIP by mistake. | A release note explains when to bump version, package, upload, and update listing text. |
-| IMP-007 | Backlog | Keep permission/privacy copy aligned with manifest. | Store review depends on consistency between package, listing, and privacy policy. | Manifest permissions match listing justifications and privacy policy. |
+| IMP-006 | Done | Document release promotion steps. | Avoid uploading an experimental ZIP by mistake. | A release note explains when to bump version, package, upload, and update listing text. |
+| IMP-007 | Done | Keep permission/privacy copy aligned with manifest. | Store review depends on consistency between package, listing, and privacy policy. | Manifest permissions match listing justifications and privacy policy. |
 
 ### P1: Per-Tab Workspaces
 
@@ -84,17 +92,17 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 
 | ID | Status | Work item | Why it matters | Acceptance criteria |
 | --- | --- | --- | --- | --- |
-| IMP-020 | Backlog | Improve saved sessions as workspaces. | Saved tabs and conversations should feel connected. | A saved session can be reopened with its related local notes/conversation summary. |
-| IMP-021 | Backlog | Add lightweight workspace names. | Users need human labels for ongoing work. | User can rename a pinned workspace locally. |
-| IMP-022 | Backlog | Add local export of workspace. | Sensitive users may want portable local records. | Workspace can export to Markdown/text without any network transfer. |
+| IMP-020 | Done | Improve saved sessions as workspaces. | Saved tabs and conversations should feel connected. | A saved session can be reopened with its related local notes/conversation summary. |
+| IMP-021 | Done | Add lightweight workspace names. | Users need human labels for ongoing work. | User can rename a pinned workspace locally. |
+| IMP-022 | Done | Add local export of workspace. | Sensitive users may want portable local records. | Workspace can export to Markdown/text without any network transfer. |
 
 ### P2: Quality, Accessibility, and Store Assets
 
 | ID | Status | Work item | Why it matters | Acceptance criteria |
 | --- | --- | --- | --- | --- |
-| IMP-023 | Backlog | Review keyboard and screen-reader paths. | The side panel should remain usable without a mouse. | Core actions have labels, focus order is sane, and status updates remain accessible. |
-| IMP-024 | Backlog | Add polished screenshot/video script for next version. | Store assets should show real value, not just UI surfaces. | Asset script covers summary, right-click OCR, local storage/privacy, and per-tab workspace if shipped. |
-| IMP-025 | Backlog | Create next-version release notes template. | Reviewers and users need a clean update story. | Release notes explain new features, permissions unchanged/changed, and privacy posture. |
+| IMP-023 | Done | Review keyboard and screen-reader paths. | The side panel should remain usable without a mouse. | Core actions have labels, focus order is sane, and status updates remain accessible. |
+| IMP-024 | Done | Add polished screenshot/video script for next version. | Store assets should show real value, not just UI surfaces. | Asset script covers summary, right-click OCR, local storage/privacy, and per-tab workspace if shipped. |
+| IMP-025 | Done | Create next-version release notes template. | Reviewers and users need a clean update story. | Release notes explain new features, permissions unchanged/changed, and privacy posture. |
 
 ## Per-Tab Workspace Draft
 
