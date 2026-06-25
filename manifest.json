@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Local AI Workbench",
-  "version": "6.7",
+  "version": "6.7.1",
   "description": "On-device AI side panel for Chrome: summarize pages, read documents, draft text, and keep private local notes.",
   "minimum_chrome_version": "138",
   "permissions": ["sidePanel", "storage", "activeTab", "scripting", "tabs", "contextMenus", "tabGroups"],

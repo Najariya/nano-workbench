@@ -36,7 +36,7 @@ The first Chrome Web Store package uses `activeTab` instead of broad required ho
 The source in this repository is the extension package. To create a zip for upload:
 
 ```sh
-zip -r -X local-ai-workbench-store-v6.7.zip \
+zip -r -X local-ai-workbench-store-v6.7.1.zip \
   manifest.json PRIVACY.md mic-permission.html mic-permission.js \
   fonts icons safety.js sidepanel.css background.js docparse.js \
   sidepanel.html sidepanel.js db.js md.js lib export.js
