@@ -15,6 +15,8 @@ const IMP_GATES = [
     id: "IMP-032",
     label: "Screenshot OCR",
     requires: ["screenshot-ocr", "screenshot-summary"],
+    completionTypes: ["screenshot-summary"],
+    completionPattern: /Screenshot text summarized/i,
     privacyTypes: ["screenshot-summary"],
     privacyPattern: /without storing screenshot text/i,
   },
@@ -22,6 +24,8 @@ const IMP_GATES = [
     id: "IMP-031",
     label: "Voice memo",
     requires: ["voice-memo"],
+    completionTypes: ["voice-memo"],
+    completionPattern: /Saved quick voice memo/i,
     privacyTypes: ["voice-memo"],
     privacyPattern: /transcript text is not stored in diagnostics/i,
   },
@@ -29,6 +33,8 @@ const IMP_GATES = [
     id: "IMP-028",
     label: "Meeting notes",
     requires: ["meeting-notes"],
+    completionTypes: ["meeting-notes"],
+    completionPattern: /Saved summarized meeting note|Saved meeting transcript without AI summary/i,
     privacyTypes: ["meeting-notes"],
     privacyPattern: /transcript text is not stored in diagnostics/i,
   },
@@ -58,12 +64,19 @@ function checkDoctorEvidence(reportText) {
         gate.privacyPattern.test(line)
       );
     });
+    const completionEvidence = workflowLines.some((line) => {
+      return (
+        gate.completionTypes.some((type) => new RegExp(`\\b${type}\\b`, "i").test(line)) &&
+        gate.completionPattern.test(line)
+      );
+    });
     return {
       id: gate.id,
       label: gate.label,
-      ok: missingTypes.length === 0 && privacyEvidence,
+      ok: missingTypes.length === 0 && privacyEvidence && completionEvidence,
       missingTypes,
       privacyEvidence,
+      completionEvidence,
     };
   });
 
@@ -92,6 +105,7 @@ function formatResult(result) {
     const gaps = [];
     if (item.missingTypes.length) gaps.push(`missing ${item.missingTypes.join(", ")}`);
     if (!item.privacyEvidence) gaps.push("missing safe-diagnostics privacy phrase");
+    if (!item.completionEvidence) gaps.push("missing saved-workflow completion evidence");
     lines.push(
       `${item.id} ${item.label}: ${item.ok ? "PASS" : "FAIL"}${gaps.length ? ` (${gaps.join("; ")})` : ""}`,
     );

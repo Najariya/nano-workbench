@@ -25,6 +25,16 @@ Recent workflow evidence
 [10:00:03] voice-memo: Saved quick voice memo
 `;
 
+const startedOnlyReport = `
+Local AI Workbench Doctor
+
+Recent workflow evidence
+[10:00:01] screenshot-ocr: Screenshot OCR completed - 2 slice(s), confidence medium
+[10:00:02] screenshot-summary: Screenshot text summarized - Summary generated locally without storing screenshot text in diagnostics.
+[10:00:03] voice-memo: Started quick voice memo - Chrome Speech Recognition; transcript text is not stored in diagnostics.
+[10:00:04] meeting-notes: Started microphone recording - Chrome Speech Recognition; transcript text is not stored in diagnostics.
+`;
+
 assert.equal(REQUIRED_EVENTS.length, 4);
 assert.deepEqual(
   IMP_GATES.map((gate) => gate.id),
@@ -62,6 +72,12 @@ assert.deepEqual(
 assert.match(formatResult(missing), /Missing: screenshot-summary, meeting-notes/);
 assert.match(formatResult(missing), /IMP-032 Screenshot OCR: FAIL/);
 assert.match(formatResult(missing), /IMP-028 Meeting notes: FAIL/);
+
+const startedOnly = checkDoctorEvidence(startedOnlyReport);
+assert.equal(startedOnly.ok, false);
+assert.equal(startedOnly.impResults.find((item) => item.id === "IMP-031").ok, false);
+assert.equal(startedOnly.impResults.find((item) => item.id === "IMP-028").ok, false);
+assert.match(formatResult(startedOnly), /missing saved-workflow completion evidence/);
 
 const noSection = checkDoctorEvidence("No recent evidence yet.");
 assert.equal(noSection.ok, false);
