@@ -26,9 +26,10 @@ node tests/screenshot-composer-button.test.js
 node tests/voice-meeting-helpers.test.js
 node tests/voice-meeting-ui-wiring.test.js
 node tests/workflow-evidence.test.js
+node tests/doctor-evidence-check.test.js
 ```
 
-Expected result: every command exits successfully. Syntax checks should report no syntax error, and the regression tests should report `screenshot-long-page.test.js passed`, `screenshot-composer-button.test.js passed`, `voice-meeting-helpers.test.js passed`, `voice-meeting-ui-wiring.test.js passed`, and `workflow-evidence.test.js passed`.
+Expected result: every command exits successfully. Syntax checks should report no syntax error, and the regression tests should report `screenshot-long-page.test.js passed`, `screenshot-composer-button.test.js passed`, `voice-meeting-helpers.test.js passed`, `voice-meeting-ui-wiring.test.js passed`, `workflow-evidence.test.js passed`, and `doctor-evidence-check.test.js passed`.
 
 ## Manifest and Privacy Checks
 
@@ -113,6 +114,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 - Confirm it saves multiple local PNGs named like `part-01-of-N`, shows a preview card for each part, and offers **OCR + summarize** / **Extract text** on each saved part.
 - Run OCR on one tall screenshot part and confirm the status reads the screenshot in slices instead of treating the full tall image as one tiny OCR input; inspect whether text quality improves on a dense screenshot, but treat dense/small-text OCR as a manual quality check rather than a capture blocker.
 - After OCR/summarize, run **Settings -> Doctor / Developer mode -> Copy report** and confirm **Recent workflow evidence** includes `screenshot-ocr` and `screenshot-summary` without OCR text or page content.
+- Save the copied Doctor report as a local text file and run `node tools/check-doctor-evidence.js <doctor-report.txt>` after the screenshot, voice memo, and meeting-note tests are complete.
 - Confirm screenshots are not saved to extension storage as page content and are not uploaded anywhere by the extension.
 
 ### Documents
