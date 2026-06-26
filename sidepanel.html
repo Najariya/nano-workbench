@@ -215,14 +215,14 @@
       </div>
 
       <textarea id="prompt" rows="2" placeholder="Ask anything · type / for commands" aria-label="Message Local AI"></textarea>
-      <div id="screenshotMenu" class="shot-menu" hidden>
-        <button id="composerCaptureVisible" class="shot-menu-item"><span>📸</span><span>Visible area</span></button>
-        <button id="composerCaptureFull" class="shot-menu-item"><span>↕</span><span>Full page</span></button>
+      <div id="screenshotMenu" class="shot-menu" role="menu" hidden>
+        <button id="composerCaptureVisible" class="shot-menu-item" role="menuitem"><span>📸</span><span>Visible area</span></button>
+        <button id="composerCaptureFull" class="shot-menu-item" role="menuitem"><span>↕</span><span>Full page</span></button>
       </div>
       <div class="composer-actions">
         <input type="file" id="fileInput" accept=".txt,.md,.csv,.json,.log,.rtf,.pdf,.docx,.png,.jpg,.jpeg,.webp,.gif,.bmp" hidden />
         <button id="attachBtn" class="icon-btn" title="Attach a document or image" aria-label="Attach a document or image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5 12.5 20a4.95 4.95 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L10.1 17.8a1.65 1.65 0 0 1-2.3-2.3l7.8-7.8"/></svg></button>
-        <button id="shotBtn" class="shot-fab" title="Capture screenshot" aria-label="Capture screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8a2 2 0 0 1 2-2h2l1.4-2h5.2L16 6h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.5"/></svg></button>
+        <button id="shotBtn" class="shot-fab" title="Capture screenshot (visible or full page)" aria-label="Capture screenshot" aria-haspopup="menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8a2 2 0 0 1 2-2h2l1.4-2h5.2L16 6h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.5"/></svg><span class="shot-label">Screenshot</span></button>
         <!-- Permanent mic: hold-to-talk, or double-click to latch hands-free -->
         <button id="micBtn" class="mic-fab" title="Tap to lock-record · hold to talk" aria-label="Voice input: tap to lock-record, hold to talk"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3Z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 11a6 6 0 0 0 12 0M12 18v3"/></svg></button>
         <span class="spacer"></span>
