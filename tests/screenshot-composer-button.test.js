@@ -27,6 +27,9 @@ assert.match(source, /composerCaptureVisible"\)&&\$\("composerCaptureVisible"\)\
 assert.match(source, /composerCaptureFull"\)&&\$\("composerCaptureFull"\)\.addEventListener/);
 assert.match(source, /captureScreenshot\("visible"\)/);
 assert.match(source, /captureScreenshot\("full"\)/);
+assert.match(source, /m\.className="primary-btn small",m\.textContent="OCR \+ summarize"/);
+assert.match(source, /g\.className="copy-btn",g\.textContent="Extract text"/);
+assert.match(source, /u\.append\(m,g,h\)/);
 assert.match(source, /async function screenshotOcrReadinessRows/);
 assert.match(source, /Screenshot capture APIs/);
 assert.match(source, /Screenshot OCR model/);
