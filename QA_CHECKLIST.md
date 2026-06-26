@@ -25,9 +25,10 @@ node tests/screenshot-long-page.test.js
 node tests/screenshot-composer-button.test.js
 node tests/voice-meeting-helpers.test.js
 node tests/voice-meeting-ui-wiring.test.js
+node tests/workflow-evidence.test.js
 ```
 
-Expected result: every command exits successfully. Syntax checks should report no syntax error, and the regression tests should report `screenshot-long-page.test.js passed`, `screenshot-composer-button.test.js passed`, `voice-meeting-helpers.test.js passed`, and `voice-meeting-ui-wiring.test.js passed`.
+Expected result: every command exits successfully. Syntax checks should report no syntax error, and the regression tests should report `screenshot-long-page.test.js passed`, `screenshot-composer-button.test.js passed`, `voice-meeting-helpers.test.js passed`, `voice-meeting-ui-wiring.test.js passed`, and `workflow-evidence.test.js passed`.
 
 ## Manifest and Privacy Checks
 
@@ -93,7 +94,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 
 ### Screenshot Capture
 
-- Confirm `chrome://extensions` shows version `6.8.15`.
+- Confirm `chrome://extensions` shows version `6.8.16`.
 - In extension details, confirm **Site access** is set to **On all sites** for this unpacked test build.
 - Open a normal `https://` web page.
 - Open **Settings -> Doctor / Developer mode -> Run Doctor** and confirm it reports **Screenshot capture APIs**, **Screenshot OCR model**, and **Screenshot OCR prep**.
@@ -109,6 +110,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 - Open a very long page and use **Capture full page**.
 - Confirm it saves multiple local PNGs named like `part-01-of-N`, shows a preview card for each part, and offers **OCR + summarize** / **Extract text** on each saved part.
 - Run OCR on one tall screenshot part and confirm the status reads the screenshot in slices instead of treating the full tall image as one tiny OCR input; inspect whether text quality improves on a dense screenshot.
+- After OCR/summarize, run **Settings -> Doctor / Developer mode -> Copy report** and confirm **Recent workflow evidence** includes `screenshot-ocr` and `screenshot-summary` without OCR text or page content.
 - Confirm screenshots are not saved to extension storage as page content and are not uploaded anywhere by the extension.
 
 ### Documents
@@ -123,6 +125,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 - Save a memory item in Settings and confirm it persists after reopening the side panel.
 - Open **Memos**, record a **Quick voice memo**, stop it, and confirm it saves a cleaned note with action items where applicable.
 - Confirm the saved voice memo exposes copy note, copy transcript, export Markdown, and delete actions.
+- After the memo test, run **Settings -> Doctor / Developer mode -> Copy report** and confirm **Recent workflow evidence** includes `voice-memo` without transcript text.
 - Confirm stored content remains local and no account/login is required.
 
 ### Meeting Notes and Voice Capture
@@ -134,6 +137,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 - Confirm the assistant creates **Summary**, **Key points**, **Decisions**, **Action items**, and **Follow-ups / open questions** sections.
 - Confirm the meeting note is saved under **Memos** with a Meeting badge, transcript copy, Markdown export, and delete action.
 - Confirm later meeting-note starts do not ask for `START` again in the same browser profile, but the saved/exported note still contains the speech-recognition disclosure.
+- After the meeting test, run **Settings -> Doctor / Developer mode -> Copy report** and confirm **Recent workflow evidence** includes `meeting-notes` without transcript text.
 
 ### Site Safety
 
