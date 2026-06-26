@@ -27,5 +27,10 @@ assert.match(source, /composerCaptureVisible"\)&&\$\("composerCaptureVisible"\)\
 assert.match(source, /composerCaptureFull"\)&&\$\("composerCaptureFull"\)\.addEventListener/);
 assert.match(source, /captureScreenshot\("visible"\)/);
 assert.match(source, /captureScreenshot\("full"\)/);
+assert.match(source, /async function screenshotOcrReadinessRows/);
+assert.match(source, /Screenshot capture APIs/);
+assert.match(source, /Screenshot OCR model/);
+assert.match(source, /Screenshot OCR prep/);
+assert.match(source, /LanguageModel\.availability\(\{expectedInputs:\[\{type:"image"\}\]\}\)/);
 
 console.log("screenshot-composer-button.test.js passed");

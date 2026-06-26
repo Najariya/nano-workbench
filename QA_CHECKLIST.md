@@ -92,9 +92,10 @@ Expected result: every command exits successfully. Syntax checks should report n
 
 ### Screenshot Capture
 
-- Confirm `chrome://extensions` shows version `6.8.13`.
+- Confirm `chrome://extensions` shows version `6.8.14`.
 - In extension details, confirm **Site access** is set to **On all sites** for this unpacked test build.
 - Open a normal `https://` web page.
+- Open **Settings -> Doctor / Developer mode -> Run Doctor** and confirm it reports **Screenshot capture APIs**, **Screenshot OCR model**, and **Screenshot OCR prep**.
 - Click the camera button beside the mic in the composer and choose **Visible area**.
 - Confirm a preview appears in the conversation.
 - Confirm a PNG downloads under `Downloads/Local AI Workbench/Screenshots/`.
