@@ -33,11 +33,11 @@ const context = {
   SCREENSHOT_MAX_TILES_PER_PART: 20,
   SCREENSHOT_OCR_MAX_SLICES: 12,
   SCREENSHOT_OCR_OVERLAP: 80,
-  SCREENSHOT_OCR_MIN_SLICE_HEIGHT: 1400,
-  SCREENSHOT_OCR_MAX_SLICE_HEIGHT: 2600,
-  SCREENSHOT_OCR_MIN_WIDTH: 1600,
-  SCREENSHOT_OCR_MAX_WIDTH: 2200,
-  SCREENSHOT_OCR_MAX_SCALE: 2.25,
+  SCREENSHOT_OCR_MIN_SLICE_HEIGHT: 1100,
+  SCREENSHOT_OCR_MAX_SLICE_HEIGHT: 2400,
+  SCREENSHOT_OCR_MIN_WIDTH: 2100,
+  SCREENSHOT_OCR_MAX_WIDTH: 2400,
+  SCREENSHOT_OCR_MAX_SCALE: 2.5,
   SCREENSHOT_OCR_MAX_PIXELS: 4800000,
   URL: {
     createObjectURL(blob) {
@@ -174,6 +174,9 @@ async function runScenario(fullHeight) {
   assert.ok(context.screenshotOcrScale(900, 1200) > 1);
   assert.ok(context.screenshotOcrScale(900, 1200) <= context.SCREENSHOT_OCR_MAX_SCALE);
   assert.ok(context.screenshotOcrScale(2800, 1200) < 1);
+  const newsPageScale = context.screenshotOcrScale(1534, 1100);
+  assert.ok(newsPageScale > 1.3);
+  assert.ok(1534 * newsPageScale >= 2000);
   const denseScale = context.screenshotOcrScale(1200, 5000);
   assert.ok(1200 * denseScale * 5000 * denseScale <= context.SCREENSHOT_OCR_MAX_PIXELS + 1);
 

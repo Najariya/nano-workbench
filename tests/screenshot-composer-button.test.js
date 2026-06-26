@@ -47,6 +47,7 @@ assert.match(source, /async function screenshotOcrReadinessRows/);
 assert.match(source, /Screenshot capture APIs/);
 assert.match(source, /Screenshot OCR model/);
 assert.match(source, /Screenshot OCR prep/);
+assert.match(source, /text-upscaled/);
 assert.match(source, /LanguageModel\.availability\(\{expectedInputs:\[\{type:"image"\}\]\}\)/);
 
 console.log("screenshot-composer-button.test.js passed");
