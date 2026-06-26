@@ -1,0 +1,31 @@
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+
+const html = fs.readFileSync("sidepanel.html", "utf8");
+const css = fs.readFileSync("sidepanel.css", "utf8");
+const source = fs.readFileSync("sidepanel.js", "utf8");
+
+assert.match(html, /id="shotBtn"/, "composer screenshot button is present");
+assert.match(html, /id="screenshotMenu"/, "composer screenshot menu is present");
+assert.match(html, /id="composerCaptureVisible"/, "visible capture menu item is present");
+assert.match(html, /id="composerCaptureFull"/, "full-page capture menu item is present");
+
+assert.match(css, /\.shot-fab/, "screenshot button has dedicated styling");
+assert.match(css, /\.shot-menu/, "screenshot menu has dedicated styling");
+
+assert.match(
+  source,
+  /\$\("shotBtn"\)&&\$\("shotBtn"\)\.addEventListener\("click"/,
+  "screenshot button is wired without reading the later shotBtn const early",
+);
+assert.doesNotMatch(
+  source,
+  /shotBtn&&shotBtn\.addEventListener\("click"/,
+  "screenshot button listener must not use shotBtn before initialization",
+);
+assert.match(source, /composerCaptureVisible"\)&&\$\("composerCaptureVisible"\)\.addEventListener/);
+assert.match(source, /composerCaptureFull"\)&&\$\("composerCaptureFull"\)\.addEventListener/);
+assert.match(source, /captureScreenshot\("visible"\)/);
+assert.match(source, /captureScreenshot\("full"\)/);
+
+console.log("screenshot-composer-button.test.js passed");
