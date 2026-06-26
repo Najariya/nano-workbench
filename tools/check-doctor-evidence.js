@@ -10,6 +10,30 @@ const REQUIRED_EVENTS = [
   { type: "meeting-notes", label: "Meeting notes" },
 ];
 
+const IMP_GATES = [
+  {
+    id: "IMP-032",
+    label: "Screenshot OCR",
+    requires: ["screenshot-ocr", "screenshot-summary"],
+    privacyTypes: ["screenshot-summary"],
+    privacyPattern: /without storing screenshot text/i,
+  },
+  {
+    id: "IMP-031",
+    label: "Voice memo",
+    requires: ["voice-memo"],
+    privacyTypes: ["voice-memo"],
+    privacyPattern: /transcript text is not stored in diagnostics/i,
+  },
+  {
+    id: "IMP-028",
+    label: "Meeting notes",
+    requires: ["meeting-notes"],
+    privacyTypes: ["meeting-notes"],
+    privacyPattern: /transcript text is not stored in diagnostics/i,
+  },
+];
+
 function checkDoctorEvidence(reportText) {
   const text = String(reportText || "");
   const hasWorkflowSection = /Recent workflow evidence/i.test(text);
@@ -21,17 +45,40 @@ function checkDoctorEvidence(reportText) {
     (found ? present : missing).push(item);
   }
 
+  const presentTypes = new Set(present.map((item) => item.type));
+  const workflowLines = text
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const impResults = IMP_GATES.map((gate) => {
+    const missingTypes = gate.requires.filter((type) => !presentTypes.has(type));
+    const privacyEvidence = workflowLines.some((line) => {
+      return (
+        gate.privacyTypes.some((type) => new RegExp(`\\b${type}\\b`, "i").test(line)) &&
+        gate.privacyPattern.test(line)
+      );
+    });
+    return {
+      id: gate.id,
+      label: gate.label,
+      ok: missingTypes.length === 0 && privacyEvidence,
+      missingTypes,
+      privacyEvidence,
+    };
+  });
+
   return {
-    ok: hasWorkflowSection && missing.length === 0,
+    ok: hasWorkflowSection && missing.length === 0 && impResults.every((item) => item.ok),
     hasWorkflowSection,
     present,
     missing,
+    impResults,
   };
 }
 
 function formatResult(result) {
   const lines = [];
-  lines.push(`Doctor workflow evidence: ${result.ok ? "PASS" : "FAIL"}`);
+  lines.push(`Doctor completion gate: ${result.ok ? "PASS" : "FAIL"}`);
   lines.push(`Workflow section: ${result.hasWorkflowSection ? "present" : "missing"}`);
   lines.push(
     "Present: " +
@@ -41,6 +88,14 @@ function formatResult(result) {
     "Missing: " +
       (result.missing.length ? result.missing.map((item) => item.type).join(", ") : "none"),
   );
+  for (const item of result.impResults || []) {
+    const gaps = [];
+    if (item.missingTypes.length) gaps.push(`missing ${item.missingTypes.join(", ")}`);
+    if (!item.privacyEvidence) gaps.push("missing safe-diagnostics privacy phrase");
+    lines.push(
+      `${item.id} ${item.label}: ${item.ok ? "PASS" : "FAIL"}${gaps.length ? ` (${gaps.join("; ")})` : ""}`,
+    );
+  }
   return lines.join("\n");
 }
 
@@ -62,6 +117,7 @@ if (require.main === module) {
 }
 
 module.exports = {
+  IMP_GATES,
   REQUIRED_EVENTS,
   checkDoctorEvidence,
   formatResult,

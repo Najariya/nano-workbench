@@ -114,7 +114,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 - Confirm it saves multiple local PNGs named like `part-01-of-N`, shows a preview card for each part, and offers **OCR + summarize** / **Extract text** on each saved part.
 - Run OCR on one tall screenshot part and confirm the status reads the screenshot in slices instead of treating the full tall image as one tiny OCR input; inspect whether text quality improves on a dense screenshot, but treat dense/small-text OCR as a manual quality check rather than a capture blocker.
 - After OCR/summarize, run **Settings -> Doctor / Developer mode -> Copy report** and confirm **Recent workflow evidence** includes `screenshot-ocr` and `screenshot-summary` without OCR text or page content.
-- Save the copied Doctor report as a local text file and run `node tools/check-doctor-evidence.js <doctor-report.txt>` after the screenshot, voice memo, and meeting-note tests are complete.
+- Save the copied Doctor report as a local text file and run `node tools/check-doctor-evidence.js <doctor-report.txt>` after the screenshot, voice memo, and meeting-note tests are complete. The output must show `Doctor completion gate: PASS` and individual `IMP-032`, `IMP-031`, and `IMP-028` rows as `PASS`.
 - Confirm screenshots are not saved to extension storage as page content and are not uploaded anywhere by the extension.
 
 ### Documents
