@@ -94,7 +94,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 
 ### Screenshot Capture
 
-- Confirm `chrome://extensions` shows version `6.8.17`.
+- Confirm `chrome://extensions` shows version `6.8.18`.
 - In extension details, confirm **Site access** is set to **On all sites** for this unpacked test build.
 - Open a normal `https://` web page.
 - Open **Settings -> Doctor / Developer mode -> Run Doctor** and confirm it reports **Screenshot capture APIs**, **Screenshot OCR model**, and **Screenshot OCR prep**.
@@ -137,6 +137,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 - Speak a short test phrase, confirm the recording bar shows captured word count, then click **Stop & summarize**.
 - Confirm the assistant creates **Summary**, **Key points**, **Decisions**, **Action items**, and **Follow-ups / open questions** sections.
 - Confirm the meeting note is saved under **Memos** with a Meeting badge, transcript copy, Markdown export, and delete action.
+- If the on-device model is unavailable or summarization fails, confirm the transcript is still saved under **Memos** as a meeting transcript and can be copied/exported.
 - Confirm later meeting-note starts do not ask for `START` again in the same browser profile, but the saved/exported note still contains the speech-recognition disclosure.
 - After the meeting test, run **Settings -> Doctor / Developer mode -> Copy report** and confirm **Recent workflow evidence** includes `meeting-notes` without transcript text.
 

@@ -30,6 +30,10 @@ assert.match(source, /async function ensureAudioNotesAcknowledged/);
 assert.match(source, /Type START to remember this and begin/);
 assert.match(source, /async function startMeetingNotes/);
 assert.match(source, /async function stopMeetingNotes/);
+assert.match(source, /function meetingFallbackNotes/);
+assert.match(source, /AI summary was not available, so the local transcript was saved for review\./);
+assert.match(source, /Saved meeting transcript without AI summary/);
+assert.match(source, /Meeting transcript - "\+new Date\(\)\.toLocaleDateString\(\)/);
 assert.match(source, /\$\("meetingStop"\)&&\$\("meetingStop"\)\.addEventListener\("click",\(\)=>stopMeetingNotes\(\)\)/);
 assert.match(source, /\$\("audioNotesBtn"\)&&\$\("audioNotesBtn"\)\.addEventListener\("click",\(\)=>\{closeMore\(\),startMeetingNotes\(\)\}\)/);
 

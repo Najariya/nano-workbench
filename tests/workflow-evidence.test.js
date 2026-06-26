@@ -17,6 +17,7 @@ assert.match(source, /Summary generated locally without storing screenshot text 
 
 assert.match(source, /recordDiag\("meeting-notes","Started microphone recording"/);
 assert.match(source, /recordDiag\("meeting-notes","Saved summarized meeting note"/);
+assert.match(source, /recordDiag\("meeting-notes","Saved meeting transcript without AI summary"/);
 assert.match(source, /transcript text is not stored in diagnostics/);
 
 assert.match(source, /recordDiag\("voice-memo","Started quick voice memo"/);
