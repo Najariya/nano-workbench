@@ -24,9 +24,10 @@ node --check sidepanel.js
 node tests/screenshot-long-page.test.js
 node tests/screenshot-composer-button.test.js
 node tests/voice-meeting-helpers.test.js
+node tests/voice-meeting-ui-wiring.test.js
 ```
 
-Expected result: every command exits successfully. Syntax checks should report no syntax error, and the regression tests should report `screenshot-long-page.test.js passed`, `screenshot-composer-button.test.js passed`, and `voice-meeting-helpers.test.js passed`.
+Expected result: every command exits successfully. Syntax checks should report no syntax error, and the regression tests should report `screenshot-long-page.test.js passed`, `screenshot-composer-button.test.js passed`, `voice-meeting-helpers.test.js passed`, and `voice-meeting-ui-wiring.test.js passed`.
 
 ## Manifest and Privacy Checks
 
