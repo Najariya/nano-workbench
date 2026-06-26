@@ -92,20 +92,20 @@ Expected result: every command exits successfully. Syntax checks should report n
 
 ### Screenshot Capture
 
-- Confirm `chrome://extensions` shows version `6.8.10`.
+- Confirm `chrome://extensions` shows version `6.8.12`.
 - In extension details, confirm **Site access** is set to **On all sites** for this unpacked test build.
 - Open a normal `https://` web page.
 - Click the camera button beside the mic in the composer and choose **Visible area**.
 - Confirm a preview appears in the conversation.
 - Confirm a PNG downloads under `Downloads/Local AI Workbench/Screenshots/`.
-- Confirm the screenshot card shows the OCR note about visible captures and partial long screenshots.
+- Confirm the screenshot card says OCR uses a cropped, high-contrast copy of the screenshot and still advises rechecking dense captures.
 - Click **Run OCR** on the capture and confirm OCR either produces text or clearly explains that image OCR is unavailable in the current Chrome build.
 - Open **More -> Screenshots -> Capture visible area** once to confirm the older menu path still works.
 - Open a long page, click the composer camera button, and choose **Full page**.
 - Confirm the page scrolls, returns near its original scroll position, shows a stitched preview, and downloads a PNG under the same folder.
 - Open a very long page and use **Capture full page**.
 - Confirm it saves multiple local PNGs named like `part-01-of-N`, shows a preview card for each part, and offers **Run OCR** / **OCR + summarize** on each saved part.
-- Run OCR on one tall screenshot part and confirm the status reads the screenshot in slices instead of treating the full tall image as one tiny OCR input.
+- Run OCR on one tall screenshot part and confirm the status reads the screenshot in slices instead of treating the full tall image as one tiny OCR input; inspect whether text quality improves on a dense screenshot.
 - Confirm screenshots are not saved to extension storage as page content and are not uploaded anywhere by the extension.
 
 ### Documents

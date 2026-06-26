@@ -35,6 +35,10 @@ const context = {
   SCREENSHOT_OCR_OVERLAP: 80,
   SCREENSHOT_OCR_MIN_SLICE_HEIGHT: 1400,
   SCREENSHOT_OCR_MAX_SLICE_HEIGHT: 2600,
+  SCREENSHOT_OCR_MIN_WIDTH: 1600,
+  SCREENSHOT_OCR_MAX_WIDTH: 2200,
+  SCREENSHOT_OCR_MAX_SCALE: 2.25,
+  SCREENSHOT_OCR_MAX_PIXELS: 4800000,
   URL: {
     createObjectURL(blob) {
       return `blob:mock-${blob.partIndex}`;
@@ -47,6 +51,28 @@ const context = {
 
 function plain(value) {
   return JSON.parse(JSON.stringify(value));
+}
+
+function fakeCanvas(width, height, draw) {
+  const data = new Uint8ClampedArray(width * height * 4);
+  for (let index = 0; index < data.length; index += 4) {
+    data[index] = 255;
+    data[index + 1] = 255;
+    data[index + 2] = 255;
+    data[index + 3] = 255;
+  }
+  if (draw) draw(data, width, height);
+  return {
+    width,
+    height,
+    getContext() {
+      return {
+        getImageData() {
+          return { width, height, data };
+        },
+      };
+    },
+  };
 }
 
 context.waitMs = async () => {};
@@ -144,6 +170,32 @@ async function runScenario(fullHeight) {
   const lastTallSlice = tallOcrSlices[tallOcrSlices.length - 1];
   assert.ok(lastTallSlice.y + lastTallSlice.height >= 20000);
   assert.ok(tallOcrSlices.every((slice) => slice.total === tallOcrSlices.length));
+
+  assert.ok(context.screenshotOcrScale(900, 1200) > 1);
+  assert.ok(context.screenshotOcrScale(900, 1200) <= context.SCREENSHOT_OCR_MAX_SCALE);
+  assert.ok(context.screenshotOcrScale(2800, 1200) < 1);
+  const denseScale = context.screenshotOcrScale(1200, 5000);
+  assert.ok(1200 * denseScale * 5000 * denseScale <= context.SCREENSHOT_OCR_MAX_PIXELS + 1);
+
+  const blankBounds = context.screenshotContentBounds(fakeCanvas(120, 80));
+  assert.deepEqual(plain(blankBounds), { x: 0, y: 0, width: 120, height: 80 });
+
+  const croppedBounds = context.screenshotContentBounds(
+    fakeCanvas(120, 80, (data, width) => {
+      for (let y = 24; y < 56; y += 1) {
+        for (let x = 36; x < 84; x += 1) {
+          const index = 4 * (y * width + x);
+          data[index] = 0;
+          data[index + 1] = 0;
+          data[index + 2] = 0;
+        }
+      }
+    }),
+  );
+  assert.ok(croppedBounds.x > 0);
+  assert.ok(croppedBounds.y > 0);
+  assert.ok(croppedBounds.width < 120);
+  assert.ok(croppedBounds.height < 80);
 
   console.log("screenshot-long-page.test.js passed");
 })();
