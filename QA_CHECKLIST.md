@@ -95,7 +95,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 
 ### Screenshot Capture
 
-- Confirm `chrome://extensions` shows version `6.8.21`.
+- Confirm `chrome://extensions` shows version `6.8.22`.
 - In extension details, confirm **Site access** is set to **On all sites** for this unpacked test build.
 - Open a normal `https://` web page.
 - Open **Settings -> Doctor / Developer mode -> Run Doctor** and confirm it reports **Screenshot capture APIs**, **Screenshot OCR model**, and **Screenshot OCR prep**.
@@ -114,6 +114,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 - Confirm it saves multiple local PNGs named like `part-01-of-N`, shows a preview card for each part, and offers **OCR + summarize** / **Extract text** on each saved part.
 - Run OCR on one tall screenshot part and confirm the status reads the screenshot in slices instead of treating the full tall image as one tiny OCR input; inspect whether text quality improves on a dense screenshot, but treat dense/small-text OCR as a manual quality check rather than a capture blocker.
 - After OCR/summarize, run **Settings -> Doctor / Developer mode -> Copy report** and confirm **Recent workflow evidence** includes `screenshot-ocr` and `screenshot-summary` without OCR text or page content.
+- Confirm Doctor shows an `IMP-032 Screenshot OCR` row. It should pass after screenshot OCR and summary evidence are present.
 - Save the copied Doctor report as a local text file and run `node tools/check-doctor-evidence.js <doctor-report.txt>` after the screenshot, voice memo, and meeting-note tests are complete. The output must show `Doctor completion gate: PASS` and individual `IMP-032`, `IMP-031`, and `IMP-028` rows as `PASS`.
 - Confirm screenshots are not saved to extension storage as page content and are not uploaded anywhere by the extension.
 
@@ -131,6 +132,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 - If AI cleanup is unavailable or fails, confirm the voice memo still saves as a structured transcript note with **Clean note** and **Action items** sections.
 - Confirm the saved voice memo exposes copy note, copy transcript, export Markdown, and delete actions.
 - After the memo test, run **Settings -> Doctor / Developer mode -> Copy report** and confirm **Recent workflow evidence** includes `voice-memo` without transcript text.
+- Confirm Doctor shows an `IMP-031 Voice memo` row. It should pass after voice memo evidence is present.
 - Confirm stored content remains local and no account/login is required.
 
 ### Meeting Notes and Voice Capture
@@ -144,6 +146,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 - If the on-device model is unavailable or summarization fails, confirm the transcript is still saved under **Memos** as a meeting transcript and can be copied/exported.
 - Confirm later meeting-note starts do not ask for `START` again in the same browser profile, but the saved/exported note still contains the speech-recognition disclosure.
 - After the meeting test, run **Settings -> Doctor / Developer mode -> Copy report** and confirm **Recent workflow evidence** includes `meeting-notes` without transcript text.
+- Confirm Doctor shows an `IMP-028 Meeting notes` row. It should pass after meeting-note evidence is present.
 
 ### Site Safety
 

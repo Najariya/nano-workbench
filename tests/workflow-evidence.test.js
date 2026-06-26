@@ -5,9 +5,18 @@ const source = fs.readFileSync("sidepanel.js", "utf8");
 
 assert.match(source, /const QA_EVIDENCE_TYPES=new Set\(\["screenshot","screenshot-ocr","screenshot-summary","voice-memo","meeting-notes"\]\)/);
 assert.match(source, /function workflowEvidenceReport\(\)/);
+assert.match(source, /const IMP_EVIDENCE_GATES=/);
+assert.match(source, /function workflowCompletionGateResults\(\)/);
+assert.match(source, /function workflowCompletionGateReport\(\)/);
+assert.match(source, /IMP completion gates/);
+assert.match(source, /Doctor completion gate: /);
+assert.match(source, /IMP-032/);
+assert.match(source, /IMP-031/);
+assert.match(source, /IMP-028/);
 assert.match(source, /Recent workflow evidence/);
 assert.match(source, /No recent screenshot OCR, voice memo, or meeting notes evidence yet\./);
-assert.match(source, /lastDoctorReport=.*workflowEvidenceReport\(\)/);
+assert.match(source, /lastDoctorReport=.*workflowEvidenceReport\(\).*workflowCompletionGateReport\(\)/);
+assert.match(source, /workflowCompletionGateResults\(\)\.forEach/);
 
 assert.match(source, /recordDiag\("screenshot-ocr"/);
 assert.match(source, /Screenshot OCR completed/);
