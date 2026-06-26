@@ -27,9 +27,10 @@ node tests/voice-meeting-helpers.test.js
 node tests/voice-meeting-ui-wiring.test.js
 node tests/workflow-evidence.test.js
 node tests/doctor-evidence-check.test.js
+node tests/live-workflow-evidence.test.js
 ```
 
-Expected result: every command exits successfully. Syntax checks should report no syntax error, and the regression tests should report `screenshot-long-page.test.js passed`, `screenshot-composer-button.test.js passed`, `voice-meeting-helpers.test.js passed`, `voice-meeting-ui-wiring.test.js passed`, `workflow-evidence.test.js passed`, and `doctor-evidence-check.test.js passed`.
+Expected result: every command exits successfully. Syntax checks should report no syntax error, and the regression tests should report `screenshot-long-page.test.js passed`, `screenshot-composer-button.test.js passed`, `voice-meeting-helpers.test.js passed`, `voice-meeting-ui-wiring.test.js passed`, `workflow-evidence.test.js passed`, `doctor-evidence-check.test.js passed`, and `live-workflow-evidence.test.js passed`.
 
 ## Manifest and Privacy Checks
 
@@ -116,6 +117,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 - After OCR/summarize, run **Settings -> Doctor / Developer mode -> Copy report** and confirm **Recent workflow evidence** includes `screenshot-ocr` and `screenshot-summary` without OCR text or page content.
 - Confirm Doctor shows an `IMP-032 Screenshot OCR` row. It should pass only after screenshot OCR and screenshot-summary completion evidence are present.
 - Save the copied Doctor report as a local text file and run `node tools/check-doctor-evidence.js <doctor-report.txt>` after the screenshot, voice memo, and meeting-note tests are complete. The output must show `Doctor completion gate: PASS` and individual `IMP-032`, `IMP-031`, and `IMP-028` rows as `PASS`.
+- Alternatively, after completing screenshot OCR + summary, voice memo, and meeting-note tests in the loaded unpacked extension, run `node tools/check-live-workflow-evidence.js --profile "$HOME/Library/Application Support/Google/Chrome/Default" --extension-path "/Users/naveenagrawal/Documents/Nano Workbench"` and confirm the same PASS output. This scans only safe diagnostic markers, not transcript/page content.
 - Confirm screenshots are not saved to extension storage as page content and are not uploaded anywhere by the extension.
 
 ### Documents
