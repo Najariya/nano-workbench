@@ -92,7 +92,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 
 ### Screenshot Capture
 
-- Confirm `chrome://extensions` shows version `6.8.12`.
+- Confirm `chrome://extensions` shows version `6.8.13`.
 - In extension details, confirm **Site access** is set to **On all sites** for this unpacked test build.
 - Open a normal `https://` web page.
 - Click the camera button beside the mic in the composer and choose **Visible area**.
@@ -124,6 +124,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 
 ### Meeting Notes and Voice Capture
 
+- Open **Settings -> Doctor / Developer mode -> Run Doctor** and confirm it reports **Voice capture API** and **Microphone permission** before recording.
 - Open **More -> Recipes -> Meeting notes** or type `/` and choose **Start meeting notes**.
 - On first use only, confirm the prompt explains that transcription uses your microphone and Chrome Speech Recognition; type `START`.
 - Speak a short test phrase, confirm the recording bar shows captured word count, then click **Stop & summarize**.

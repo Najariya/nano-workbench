@@ -87,8 +87,13 @@ vm.runInContext(helperSource, context);
 
   assert.match(html, /data-cmd="meeting_notes"/);
   assert.match(html, /data-cmd="voice_memo"/);
+  assert.match(html, /voice\/mic readiness/);
   assert.match(source, /meeting_notes:\{needs:null/);
   assert.match(source, /voice_memo:\{needs:null/);
+  assert.match(source, /async function voiceReadinessRows/);
+  assert.match(source, /Voice capture API/);
+  assert.match(source, /Microphone permission/);
+  assert.match(source, /navigator\.permissions\.query\(\{name:"microphone"\}\)/);
 
   console.log("voice-meeting-helpers.test.js passed");
 })();
