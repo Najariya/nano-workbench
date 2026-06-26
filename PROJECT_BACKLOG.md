@@ -54,8 +54,9 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | IMP-027 | In progress | P2 | Capture | Explore multi-page long screenshots. | Full-page capture scrolls the current page, stitches screenshots locally, restores scroll position, saves to Downloads, very long pages save as multiple local parts instead of failing, and `tests/screenshot-long-page.test.js` covers the 55-screen regression. |
 | IMP-028 | Next | P2 | Meetings | Improve meeting notes capture. | Future design covers quick recording, transcript cleanup, local summary/export, and clear disclosure for any browser speech-recognition cloud behavior. |
 | IMP-029 | Done | P1 | UX simplification | Remove pin/rename workspace management. | More sheet no longer shows Pin/Rename workspace; export and Doctor use conversation/current-tab language. |
-| IMP-030 | In progress | P1 | Screenshots | Add quick screenshot capture. | User can capture the visible tab area locally, preview it, save it to Downloads, and send it to OCR/summarize without unnecessary friction. |
+| IMP-030 | In progress | P1 | Screenshots | Add quick screenshot capture. | User can capture the visible tab area locally from a dedicated composer camera button, preview it, save it to Downloads, and send it to OCR/summarize without unnecessary friction. |
 | IMP-031 | Next | P1 | Voice | Add Momo-style voice capture refinements. | Voice capture should be fast, obvious, locally organized, and clear about Chrome speech-recognition behavior. |
+| IMP-032 | Next | P1 | Screenshot OCR | Improve screenshot OCR quality. | Tall screenshots preserve readable text for OCR where possible, long screenshots are handled part-by-part, and the UI sets expectations when screenshot OCR may be partial. |
 
 ## Backlog
 
@@ -94,6 +95,7 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | IMP-017 | Done | Make image OCR action more prominent in onboarding and UI. | This is a standout feature and should be obvious. | Onboarding, More sheet, and screenshots/video all make OCR discoverable. |
 | IMP-018 | Done | Improve OCR result confidence and recheck guidance. | Image extraction can be imperfect. | OCR output clearly marks low-confidence fields and recommends rechecking important values. |
 | IMP-019 | Done | Add "copy clean text" and "copy fields" consistency. | OCR users need fast copy/export. | Text, JSON, and detected fields have predictable copy actions. |
+| IMP-032 | Next | Improve screenshot OCR quality. | Captured screenshots are useful only if text remains legible enough for OCR and summary. | Tall screenshots preserve readable text for OCR where possible, long screenshots are handled part-by-part, and the UI sets expectations when screenshot OCR may be partial. |
 
 ### P1: Reliability and Diagnostics
 
@@ -116,7 +118,7 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | --- | --- | --- | --- | --- |
 | IMP-027 | In progress | Explore multi-page long screenshots. | Long screenshots are a natural browser-workbench capability for research, records, and sharing. | Full-page capture scrolls and stitches locally, restores page position, saves PNGs under a clear Downloads folder, splits very long pages into parts, has an automated 55-screen regression test, and documents permission impact. |
 | IMP-028 | Next | Improve meeting notes capture. | Meeting notes are a high-value local AI workflow when capture, cleanup, and summarization are frictionless. | Design should cover quick start/stop, local transcript cleanup, summary/action items, export, privacy copy, and clear voice-processing disclosure. |
-| IMP-030 | In progress | Add quick screenshot capture. | A fast visible-page screenshot is the simplest next capture workflow and can feed OCR/summarization. | User can capture the visible tab area, preview it, save it locally, and process it with OCR/summarization where supported. |
+| IMP-030 | In progress | Add quick screenshot capture. | A fast visible-page screenshot is the simplest next capture workflow and can feed OCR/summarization. | User can capture the visible tab area from a dedicated composer camera button, preview it, save it locally, and process it with OCR/summarization where supported. |
 | IMP-031 | Next | Add Momo-style voice capture refinements. | Voice should feel like a first-class capture path, not a hidden utility. | Fast start/stop, note cleanup, summary/action items, export, and clear speech-recognition disclosure are designed before implementation. |
 
 ### P2: Quality, Accessibility, and Store Assets

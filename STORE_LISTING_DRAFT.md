@@ -86,7 +86,7 @@ https://github.com/Najariya/nano-workbench/blob/main/PRIVACY.md
 6. Attach a small `.txt`, `.pdf`, or `.docx` file and ask a question about it.
 7. Select text on a page, right-click, and choose **Ask Local AI**.
 8. Right-click an image on a page and choose **Extract details from image** to verify the OCR workflow.
-9. Use **More > Screenshots > Capture visible area** and **Capture full page** to verify local PNG downloads, multi-part long-page capture, and the post-capture OCR action.
+9. Use the composer camera button beside the mic for **Visible area** and **Full page**, then verify local PNG downloads, multi-part long-page capture, and the post-capture OCR action.
 10. Optional: use **Settings > Developer mode > Run check** to view model/storage/mic capability status.
 
 ## Listing Assets
