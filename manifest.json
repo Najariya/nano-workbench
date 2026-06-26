@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Local AI Workbench",
-  "version": "6.8.18",
-  "version_name": "6.8.18 - Meeting transcript fallback",
+  "version": "6.8.19",
+  "version_name": "6.8.19 - OCR quality hints",
   "description": "On-device AI side panel for Chrome: summarize pages, read documents, draft text, and keep private local notes.",
   "minimum_chrome_version": "138",
   "permissions": ["sidePanel", "storage", "scripting", "tabs", "activeTab", "downloads", "contextMenus", "tabGroups"],

@@ -18,6 +18,7 @@ assert.match(css, /\.shot-fab/, "screenshot button has dedicated styling");
 assert.match(css, /\.shot-label/, "screenshot button label has dedicated styling");
 assert.match(css, /\.shot-fab\{height:34px;min-width:104px/, "screenshot button is promoted from icon-only to labeled control");
 assert.match(css, /\.shot-menu/, "screenshot menu has dedicated styling");
+assert.match(css, /\.ocr-quality-note/, "OCR quality warnings have dedicated styling");
 
 assert.match(
   source,
@@ -38,6 +39,10 @@ assert.match(source, /setAttribute\("aria-expanded",open\?"true":"false"\)/, "sc
 assert.match(source, /m\.className="primary-btn small",m\.textContent="OCR \+ summarize"/);
 assert.match(source, /g\.className="copy-btn",g\.textContent="Extract text"/);
 assert.match(source, /u\.append\(m,g,h\)/);
+assert.match(source, /function ocrQualityNote/);
+assert.match(source, /Very little text was extracted\. Try zooming in or using a visible-area capture\./);
+assert.match(source, /const originalRenderOcrResult=renderOcrResult/);
+assert.match(source, /className="ocr-quality-note"/);
 assert.match(source, /async function screenshotOcrReadinessRows/);
 assert.match(source, /Screenshot capture APIs/);
 assert.match(source, /Screenshot OCR model/);

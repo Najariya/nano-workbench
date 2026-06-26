@@ -94,7 +94,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 
 ### Screenshot Capture
 
-- Confirm `chrome://extensions` shows version `6.8.18`.
+- Confirm `chrome://extensions` shows version `6.8.19`.
 - In extension details, confirm **Site access** is set to **On all sites** for this unpacked test build.
 - Open a normal `https://` web page.
 - Open **Settings -> Doctor / Developer mode -> Run Doctor** and confirm it reports **Screenshot capture APIs**, **Screenshot OCR model**, and **Screenshot OCR prep**.
@@ -105,6 +105,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 - Confirm the screenshot card says OCR uses a cropped, high-contrast copy of the screenshot and still advises rechecking dense captures.
 - Confirm the screenshot card makes **OCR + summarize** the first/primary action, with **Extract text** as the secondary OCR option.
 - Click **OCR + summarize** on the capture and confirm OCR either produces text plus a summary or clearly explains that image OCR is unavailable in the current Chrome build.
+- For a weak/partial OCR result, confirm the OCR result shows a quality hint such as zoom in, capture a smaller visible area, or recheck values.
 - Open **More -> Screenshots -> Capture visible area** once to confirm the older menu path still works.
 - Open a long page, click **Screenshot**, and choose **Full page**.
 - Confirm the page scrolls, returns near its original scroll position, shows a stitched preview, and downloads a PNG under the same folder.
