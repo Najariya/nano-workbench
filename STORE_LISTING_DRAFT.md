@@ -23,7 +23,7 @@ Local AI Workbench is an on-device AI side panel for Chrome that helps users und
 
 Local AI Workbench brings Chrome's built-in on-device AI into a practical side-panel workspace.
 
-Use it to summarize articles and emails, ask questions about the current page, capture visible or full-page screenshots, attach local documents, extract details from images, draft or rewrite text, save private work memory, and export useful answers.
+Use it to summarize articles and emails, ask questions about the current page, capture visible or full-page screenshots, split very long pages into local screenshot parts, attach local documents, extract details from images, draft or rewrite text, save private work memory, and export useful answers.
 
 The extension is built for local-first use. It has no developer-operated server, no analytics, no telemetry, and no advertising. Conversation history, memos, reading lists, saved sessions, preferences, and work memory are stored locally in the browser.
 
@@ -86,7 +86,7 @@ https://github.com/Najariya/nano-workbench/blob/main/PRIVACY.md
 6. Attach a small `.txt`, `.pdf`, or `.docx` file and ask a question about it.
 7. Select text on a page, right-click, and choose **Ask Local AI**.
 8. Right-click an image on a page and choose **Extract details from image** to verify the OCR workflow.
-9. Use **More > Screenshots > Capture visible area** and **Capture full page** to verify local PNG downloads and the post-capture OCR action.
+9. Use **More > Screenshots > Capture visible area** and **Capture full page** to verify local PNG downloads, multi-part long-page capture, and the post-capture OCR action.
 10. Optional: use **Settings > Developer mode > Run check** to view model/storage/mic capability status.
 
 ## Listing Assets

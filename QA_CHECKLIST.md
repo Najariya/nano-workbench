@@ -21,9 +21,10 @@ node --check md.js
 node --check mic-permission.js
 node --check safety.js
 node --check sidepanel.js
+node tests/screenshot-long-page.test.js
 ```
 
-Expected result: every command exits successfully with no syntax error.
+Expected result: every command exits successfully. Syntax checks should report no syntax error, and the screenshot regression test should report `screenshot-long-page.test.js passed`.
 
 ## Manifest and Privacy Checks
 
@@ -89,7 +90,7 @@ Expected result: every command exits successfully with no syntax error.
 
 ### Screenshot Capture
 
-- Confirm `chrome://extensions` shows version `6.8.7`.
+- Confirm `chrome://extensions` shows version `6.8.8`.
 - In extension details, confirm **Site access** is set to **On all sites** for this unpacked test build.
 - Open a normal `https://` web page.
 - Open **More -> Screenshots -> Capture visible area**.
@@ -98,6 +99,8 @@ Expected result: every command exits successfully with no syntax error.
 - Click **Run OCR** on the capture and confirm OCR either produces text or clearly explains that image OCR is unavailable in the current Chrome build.
 - Open a long page and use **Capture full page**.
 - Confirm the page scrolls, returns near its original scroll position, shows a stitched preview, and downloads a PNG under the same folder.
+- Open a very long page and use **Capture full page**.
+- Confirm it saves multiple local PNGs named like `part-01-of-N`, shows a preview card for each part, and offers **Run OCR** / **OCR + summarize** on each saved part.
 - Confirm screenshots are not saved to extension storage as page content and are not uploaded anywhere by the extension.
 
 ### Documents

@@ -1,0 +1,129 @@
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const vm = require("node:vm");
+
+const source = fs.readFileSync("sidepanel.js", "utf8");
+
+function sliceBetween(start, end) {
+  const startIndex = source.indexOf(start);
+  assert.notEqual(startIndex, -1, `Missing start marker: ${start}`);
+  const endIndex = source.indexOf(end, startIndex + start.length);
+  assert.notEqual(endIndex, -1, `Missing end marker: ${end}`);
+  return source.slice(startIndex, endIndex);
+}
+
+const safeFilePartSource = sliceBetween(
+  "function safeFilePart",
+  "function screenshotFileName",
+);
+const screenshotFileNameSource = sliceBetween(
+  "function screenshotFileName",
+  "async function dataUrlToBlob",
+);
+const captureFullPageImageSource = sliceBetween(
+  "async function captureFullPageImage",
+  "function renderScreenshotResult",
+);
+
+const context = {
+  SCREENSHOT_MAX_TILES_PER_PART: 20,
+  URL: {
+    createObjectURL(blob) {
+      return `blob:mock-${blob.partIndex}`;
+    },
+  },
+  captureMetricsScript() {},
+  scrollForCaptureScript() {},
+  restoreCaptureScrollScript() {},
+};
+
+function plain(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+context.waitMs = async () => {};
+context.captureVisibleDataUrl = async () => `data:image/png;base64,${context.captures.length}`;
+context.stitchCaptures = async (frames, options) => {
+  const record = {
+    frames: frames.map((frame) => frame.y),
+    options: { ...options },
+  };
+  context.stitched.push(record);
+  return { partIndex: context.stitched.length, record };
+};
+context.runCaptureScript = async (tab, script, args = []) => {
+  if (script === context.captureMetricsScript) return context.metrics;
+  if (script === context.scrollForCaptureScript) {
+    context.captures.push(args[0]);
+    return { y: args[0] };
+  }
+  if (script === context.restoreCaptureScrollScript) {
+    context.restoredTo = args;
+    return null;
+  }
+  throw new Error("Unexpected capture script");
+};
+
+vm.createContext(context);
+vm.runInContext(safeFilePartSource, context);
+vm.runInContext(screenshotFileNameSource, context);
+vm.runInContext(captureFullPageImageSource, context);
+
+async function runScenario(fullHeight) {
+  context.metrics = { height: 1000, fullHeight, width: 800, x: 12, y: 345 };
+  context.captures = [];
+  context.stitched = [];
+  context.progress = [];
+  context.restoredTo = null;
+
+  const result = await context.captureFullPageImage(
+    { id: 1, windowId: 1 },
+    { setText: (text) => context.progress.push(text) },
+  );
+
+  return {
+    result,
+    captures: [...context.captures],
+    stitched: [...context.stitched],
+    progress: [...context.progress],
+    restoredTo: context.restoredTo,
+  };
+}
+
+(async () => {
+  const shortPage = await runScenario(10000);
+  assert.equal(shortPage.result.parts.length, 1);
+  assert.equal(shortPage.result.meta.tiles, 10);
+  assert.deepEqual(plain(shortPage.result.parts.map((part) => part.meta.tiles)), [10]);
+  assert.deepEqual(plain(shortPage.restoredTo), [12, 345]);
+
+  const veryLongPage = await runScenario(55000);
+  assert.equal(veryLongPage.result.parts.length, 3);
+  assert.equal(veryLongPage.result.meta.tiles, 55);
+  assert.equal(veryLongPage.result.meta.parts, 3);
+  assert.deepEqual(
+    plain(veryLongPage.result.parts.map((part) => part.meta.tiles)),
+    [20, 20, 15],
+  );
+  assert.deepEqual(
+    plain(veryLongPage.result.parts.map((part) => part.meta.startY)),
+    [0, 20000, 40000],
+  );
+  assert.deepEqual(
+    plain(veryLongPage.result.parts.map((part) => part.meta.endY)),
+    [20000, 40000, 55000],
+  );
+  assert.deepEqual(plain(veryLongPage.restoredTo), [12, 345]);
+  assert.equal(veryLongPage.captures.length, 55);
+  assert.ok(veryLongPage.progress.some((text) => text.includes("will save in parts")));
+
+  const filename = context.screenshotFileName(
+    { title: "Very Long Page" },
+    "full",
+    1,
+    3,
+  );
+  assert.match(filename, /full-page-part-01-of-03-very-long-page\.png$/);
+
+  console.log("screenshot-long-page.test.js passed");
+})();

@@ -10,7 +10,7 @@ The Chrome Web Store package declares broad host permissions at install time so 
 
 - On-device page, article, and Gmail/Outlook email summarization.
 - Ask questions about the active tab or an attached document.
-- Capture visible or full-page screenshots and send them to OCR where Chrome supports image input.
+- Capture visible or full-page screenshots, split very long pages into local parts, and send captures to OCR where Chrome supports image input.
 - Parse local text, Markdown, CSV, JSON, PDF, DOCX, and image files.
 - Save, reopen, and tidy browser tab sessions.
 - Right-click selected text to ask Local AI, or right-click an image to extract text/details.
