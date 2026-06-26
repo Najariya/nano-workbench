@@ -28,7 +28,7 @@ The privacy policy and listing must keep these statements true:
 - There is no analytics, telemetry, advertising, sale of user data, profiling, or model training by the developer.
 - User content stays in Chrome local storage / IndexedDB unless the user chooses an external website or Chrome service.
 - Screenshot image files are created only after a user action, saved locally through Chrome downloads, and are not sent to the developer.
-- Voice input may use Chrome's speech recognition service and is not represented as fully on-device.
+- Voice input, voice memos, and meeting notes may use Chrome's speech recognition service and are not represented as fully on-device. Saved voice/meeting transcripts remain local browser data.
 
 ## Promotion Check
 

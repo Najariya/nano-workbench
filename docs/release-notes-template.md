@@ -62,4 +62,4 @@ Local AI Workbench continues to run user workflows in the browser. The developer
 
 - Chrome's built-in on-device model must be available on the user's device.
 - OCR depends on Chrome exposing image input for the on-device model.
-- Voice input may use Chrome speech recognition and may not be fully on-device.
+- Voice input, voice memos, and meeting notes may use Chrome speech recognition and may not be fully on-device.

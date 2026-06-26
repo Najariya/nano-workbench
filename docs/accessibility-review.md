@@ -12,6 +12,7 @@ _Scope: `6.8.x` experiment branch_
 | Keyboard flow | Pass | Buttons, checkboxes, text areas, file input trigger, and command items are native focusable controls. |
 | Conversation controls | Pass | Export conversation and New thread use visible text and disabled states when unavailable. |
 | OCR controls | Pass | OCR actions use visible text: Copy text, Copy fields, Copy JSON, Add to calendar. |
+| Voice and meeting memos | Needs manual check | New memo actions use buttons for copy note, copy transcript, export Markdown, and delete. Manual keyboard pass still required in Chrome. |
 | Focus risk | Watch | The More sheet closes after action buttons; manual testing should confirm focus returns to the panel naturally. |
 | Dynamic chat output | Watch | AI messages render Markdown; manual testing should confirm long outputs remain readable with keyboard scrolling. |
 

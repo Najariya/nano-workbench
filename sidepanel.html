@@ -117,7 +117,7 @@
     <!-- Recording indicator for audio notes -->
     <div id="meetingBar" class="meeting-bar" hidden>
       <span class="rec-dot"></span>
-      <span class="meeting-label">Recording your mic…</span>
+      <span class="meeting-label">Meeting notes…</span>
       <span id="meetingText" class="meeting-text"></span>
       <button id="meetingStop" class="chip">Stop &amp; summarize</button>
     </div>
@@ -151,7 +151,7 @@
         <button class="chip" data-recipe="headlines">📰 News headlines</button>
         <button class="chip" data-recipe="extract_products">🛍 Extract products</button>
         <button class="chip" data-recipe="gather_links">🔗 Gather links/contacts</button>
-        <button class="chip" id="audioNotesBtn">🎙 Audio notes</button>
+        <button class="chip" id="audioNotesBtn">🎙 Meeting notes</button>
       </div>
       <div class="more-group">
         <span class="more-label">Writing (uses selected text)</span>
@@ -201,6 +201,8 @@
         <button class="cmd-item" data-cmd="reading_mode"><span>📖</span> Reading mode (clean view)</button>
         <button class="cmd-item" data-cmd="capture_visible"><span>📸</span> Capture visible screenshot</button>
         <button class="cmd-item" data-cmd="capture_full"><span>↕</span> Capture full-page screenshot</button>
+        <button class="cmd-item" data-cmd="meeting_notes"><span>🎙</span> Start meeting notes</button>
+        <button class="cmd-item" data-cmd="voice_memo"><span>🎤</span> Record voice memo</button>
         <button class="cmd-item" data-cmd="save_page"><span>📑</span> Save page to reading list</button>
         <button class="cmd-item" data-cmd="reading_list"><span>📚</span> Show reading list</button>
         <button class="cmd-item" data-cmd="add_event"><span>📅</span> Add event from this page</button>
@@ -246,7 +248,7 @@
   <!-- MEMOS (voice → AI-organized note) -->
   <section class="panel" data-panel="memos">
     <div class="panel-head"><span>Voice memos</span><button id="clearMemos" class="link-btn">Clear all</button></div>
-    <button id="recordMemo" class="memo-record">🎙 Record a memo</button>
+    <button id="recordMemo" class="memo-record">🎙 Quick voice memo</button>
     <div id="memoStatus" class="memo-status" hidden></div>
     <ul id="memoList" class="list"></ul>
     <div class="empty" id="memoEmpty">Tap “Record a memo”, speak, and I'll save it as a tidy note.</div>

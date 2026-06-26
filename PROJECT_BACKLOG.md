@@ -52,11 +52,11 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | IMP-025 | Done | P2 | Release notes | Create next-version release notes template. | `docs/release-notes-template.md` is ready for store update notes. |
 | IMP-026 | Done | P1 | Reliability | Add Doctor diagnostics and guarded tab switching. | Doctor checks model/storage/page/conversation state, keeps safe local diagnostics, and active-tab changes wait while an AI run is in progress. |
 | IMP-027 | In progress | P2 | Capture | Explore multi-page long screenshots. | Full-page capture scrolls the current page, stitches screenshots locally, restores scroll position, saves to Downloads, very long pages save as multiple local parts instead of failing, and `tests/screenshot-long-page.test.js` covers the 55-screen regression. |
-| IMP-028 | Next | P2 | Meetings | Improve meeting notes capture. | Future design covers quick recording, transcript cleanup, local summary/export, and clear disclosure for any browser speech-recognition cloud behavior. |
+| IMP-028 | In progress | P2 | Meetings | Improve meeting notes capture. | Build `6.8.10` adds meeting-note start/stop, first-use speech disclosure, local transcript capture, AI notes with action items, Memos saving, transcript copy, and Markdown export; manual Chrome mic QA remains. |
 | IMP-029 | Done | P1 | UX simplification | Remove pin/rename workspace management. | More sheet no longer shows Pin/Rename workspace; export and Doctor use conversation/current-tab language. |
 | IMP-030 | In progress | P1 | Screenshots | Add quick screenshot capture. | User can capture the visible tab area locally from a dedicated composer camera button, preview it, save it to Downloads, and send it to OCR/summarize without unnecessary friction. |
-| IMP-031 | Next | P1 | Voice | Add Momo-style voice capture refinements. | Voice capture should be fast, obvious, locally organized, and clear about Chrome speech-recognition behavior. |
-| IMP-032 | Next | P1 | Screenshot OCR | Improve screenshot OCR quality. | Tall screenshots preserve readable text for OCR where possible, long screenshots are handled part-by-part, and the UI sets expectations when screenshot OCR may be partial. |
+| IMP-031 | In progress | P1 | Voice | Add Momo-style voice capture refinements. | Build `6.8.10` adds quick voice memos with cleanup/action items, saved local transcripts, copy/export actions, and speech-recognition disclosure; manual mic QA remains. |
+| IMP-032 | In progress | P1 | Screenshot OCR | Improve screenshot OCR quality. | Build `6.8.10` reads tall screenshots in OCR slices, preserves screenshot width before OCR, adds partial-OCR guidance, and extends `tests/screenshot-long-page.test.js`; manual OCR quality QA remains. |
 
 ## Backlog
 
@@ -95,7 +95,7 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | IMP-017 | Done | Make image OCR action more prominent in onboarding and UI. | This is a standout feature and should be obvious. | Onboarding, More sheet, and screenshots/video all make OCR discoverable. |
 | IMP-018 | Done | Improve OCR result confidence and recheck guidance. | Image extraction can be imperfect. | OCR output clearly marks low-confidence fields and recommends rechecking important values. |
 | IMP-019 | Done | Add "copy clean text" and "copy fields" consistency. | OCR users need fast copy/export. | Text, JSON, and detected fields have predictable copy actions. |
-| IMP-032 | Next | Improve screenshot OCR quality. | Captured screenshots are useful only if text remains legible enough for OCR and summary. | Tall screenshots preserve readable text for OCR where possible, long screenshots are handled part-by-part, and the UI sets expectations when screenshot OCR may be partial. |
+| IMP-032 | In progress | Improve screenshot OCR quality. | Captured screenshots are useful only if text remains legible enough for OCR and summary. | Tall screenshots are sliced before OCR instead of downscaled as one long image, the UI sets partial-OCR expectations, and automated slice coverage exists; manual OCR quality QA remains. |
 
 ### P1: Reliability and Diagnostics
 
@@ -117,9 +117,9 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 | ID | Status | Work item | Why it matters | Acceptance criteria |
 | --- | --- | --- | --- | --- |
 | IMP-027 | In progress | Explore multi-page long screenshots. | Long screenshots are a natural browser-workbench capability for research, records, and sharing. | Full-page capture scrolls and stitches locally, restores page position, saves PNGs under a clear Downloads folder, splits very long pages into parts, has an automated 55-screen regression test, and documents permission impact. |
-| IMP-028 | Next | Improve meeting notes capture. | Meeting notes are a high-value local AI workflow when capture, cleanup, and summarization are frictionless. | Design should cover quick start/stop, local transcript cleanup, summary/action items, export, privacy copy, and clear voice-processing disclosure. |
+| IMP-028 | In progress | Improve meeting notes capture. | Meeting notes are a high-value local AI workflow when capture, cleanup, and summarization are frictionless. | Meeting notes can start from More/slash command, transcribe the mic, summarize into sections/action items, save to Memos, copy transcript, export Markdown, and disclose Chrome speech behavior; manual mic QA remains. |
 | IMP-030 | In progress | Add quick screenshot capture. | A fast visible-page screenshot is the simplest next capture workflow and can feed OCR/summarization. | User can capture the visible tab area from a dedicated composer camera button, preview it, save it locally, and process it with OCR/summarization where supported. |
-| IMP-031 | Next | Add Momo-style voice capture refinements. | Voice should feel like a first-class capture path, not a hidden utility. | Fast start/stop, note cleanup, summary/action items, export, and clear speech-recognition disclosure are designed before implementation. |
+| IMP-031 | In progress | Add Momo-style voice capture refinements. | Voice should feel like a first-class capture path, not a hidden utility. | Quick voice memos clean up speech into notes/action items, retain local transcripts, expose copy/export actions, and disclose Chrome speech behavior; manual mic QA remains. |
 
 ### P2: Quality, Accessibility, and Store Assets
 

@@ -24,9 +24,17 @@ const captureFullPageImageSource = sliceBetween(
   "async function captureFullPageImage",
   "function renderScreenshotResult",
 );
+const screenshotOcrSlicesSource = sliceBetween(
+  "function screenshotOcrSlices",
+  "function contrastCanvas",
+);
 
 const context = {
   SCREENSHOT_MAX_TILES_PER_PART: 20,
+  SCREENSHOT_OCR_MAX_SLICES: 12,
+  SCREENSHOT_OCR_OVERLAP: 80,
+  SCREENSHOT_OCR_MIN_SLICE_HEIGHT: 1400,
+  SCREENSHOT_OCR_MAX_SLICE_HEIGHT: 2600,
   URL: {
     createObjectURL(blob) {
       return `blob:mock-${blob.partIndex}`;
@@ -68,6 +76,7 @@ vm.createContext(context);
 vm.runInContext(safeFilePartSource, context);
 vm.runInContext(screenshotFileNameSource, context);
 vm.runInContext(captureFullPageImageSource, context);
+vm.runInContext(screenshotOcrSlicesSource, context);
 
 async function runScenario(fullHeight) {
   context.metrics = { height: 1000, fullHeight, width: 800, x: 12, y: 345 };
@@ -124,6 +133,17 @@ async function runScenario(fullHeight) {
     3,
   );
   assert.match(filename, /full-page-part-01-of-03-very-long-page\.png$/);
+
+  const visibleOcrSlices = context.screenshotOcrSlices(1400, 1000);
+  assert.equal(visibleOcrSlices.length, 1);
+
+  const tallOcrSlices = context.screenshotOcrSlices(1400, 20000);
+  assert.ok(tallOcrSlices.length > 1);
+  assert.ok(tallOcrSlices.length <= context.SCREENSHOT_OCR_MAX_SLICES);
+  assert.equal(tallOcrSlices[0].y, 0);
+  const lastTallSlice = tallOcrSlices[tallOcrSlices.length - 1];
+  assert.ok(lastTallSlice.y + lastTallSlice.height >= 20000);
+  assert.ok(tallOcrSlices.every((slice) => slice.total === tallOcrSlices.length));
 
   console.log("screenshot-long-page.test.js passed");
 })();

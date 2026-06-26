@@ -90,18 +90,20 @@ Expected result: every command exits successfully. Syntax checks should report n
 
 ### Screenshot Capture
 
-- Confirm `chrome://extensions` shows version `6.8.9`.
+- Confirm `chrome://extensions` shows version `6.8.10`.
 - In extension details, confirm **Site access** is set to **On all sites** for this unpacked test build.
 - Open a normal `https://` web page.
 - Click the camera button beside the mic in the composer and choose **Visible area**.
 - Confirm a preview appears in the conversation.
 - Confirm a PNG downloads under `Downloads/Local AI Workbench/Screenshots/`.
+- Confirm the screenshot card shows the OCR note about visible captures and partial long screenshots.
 - Click **Run OCR** on the capture and confirm OCR either produces text or clearly explains that image OCR is unavailable in the current Chrome build.
 - Open **More -> Screenshots -> Capture visible area** once to confirm the older menu path still works.
 - Open a long page, click the composer camera button, and choose **Full page**.
 - Confirm the page scrolls, returns near its original scroll position, shows a stitched preview, and downloads a PNG under the same folder.
 - Open a very long page and use **Capture full page**.
 - Confirm it saves multiple local PNGs named like `part-01-of-N`, shows a preview card for each part, and offers **Run OCR** / **OCR + summarize** on each saved part.
+- Run OCR on one tall screenshot part and confirm the status reads the screenshot in slices instead of treating the full tall image as one tiny OCR input.
 - Confirm screenshots are not saved to extension storage as page content and are not uploaded anywhere by the extension.
 
 ### Documents
@@ -114,8 +116,18 @@ Expected result: every command exits successfully. Syntax checks should report n
 
 - Ask at least one question and confirm it appears in **History**.
 - Save a memory item in Settings and confirm it persists after reopening the side panel.
-- Record or type a memo if voice is available.
+- Open **Memos**, record a **Quick voice memo**, stop it, and confirm it saves a cleaned note with action items where applicable.
+- Confirm the saved voice memo exposes copy note, copy transcript, export Markdown, and delete actions.
 - Confirm stored content remains local and no account/login is required.
+
+### Meeting Notes and Voice Capture
+
+- Open **More -> Recipes -> Meeting notes** or type `/` and choose **Start meeting notes**.
+- On first use only, confirm the prompt explains that transcription uses your microphone and Chrome Speech Recognition; type `START`.
+- Speak a short test phrase, confirm the recording bar shows captured word count, then click **Stop & summarize**.
+- Confirm the assistant creates **Summary**, **Key points**, **Decisions**, **Action items**, and **Follow-ups / open questions** sections.
+- Confirm the meeting note is saved under **Memos** with a Meeting badge, transcript copy, Markdown export, and delete action.
+- Confirm later meeting-note starts do not ask for `START` again in the same browser profile, but the saved/exported note still contains the speech-recognition disclosure.
 
 ### Site Safety
 

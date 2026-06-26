@@ -23,11 +23,11 @@ Local AI Workbench is an on-device AI side panel for Chrome that helps users und
 
 Local AI Workbench brings Chrome's built-in on-device AI into a practical side-panel workspace.
 
-Use it to summarize articles and emails, ask questions about the current page, capture visible or full-page screenshots, split very long pages into local screenshot parts, attach local documents, extract details from images, draft or rewrite text, save private work memory, and export useful answers.
+Use it to summarize articles and emails, ask questions about the current page, capture visible or full-page screenshots, split very long pages into local screenshot parts, attach local documents, extract details from images, draft or rewrite text, save private work memory, capture voice/meeting notes, and export useful answers.
 
-The extension is built for local-first use. It has no developer-operated server, no analytics, no telemetry, and no advertising. Conversation history, memos, reading lists, saved sessions, preferences, and work memory are stored locally in the browser.
+The extension is built for local-first use. It has no developer-operated server, no analytics, no telemetry, and no advertising. Conversation history, memos, meeting-note transcripts, reading lists, saved sessions, preferences, and work memory are stored locally in the browser.
 
-Some optional user-triggered features may open normal web pages or use Chrome services. Deep research opens a search page and result pages. Calendar export opens Google Calendar and downloads an ICS file. Voice input uses Chrome's Web Speech API, which may process audio through Google's speech service depending on the user's Chrome setup.
+Some optional user-triggered features may open normal web pages or use Chrome services. Deep research opens a search page and result pages. Calendar export opens Google Calendar and downloads an ICS file. Voice input, voice memos, and meeting notes use Chrome's Web Speech API, which may process audio through Google's speech service depending on the user's Chrome setup.
 
 ## Permission Justifications
 
@@ -35,7 +35,7 @@ Some optional user-triggered features may open normal web pages or use Chrome se
 Displays the extension's main workbench interface in Chrome's side panel.
 
 **storage**  
-Stores user preferences, conversation history, local work memory, voice memo text, reading list items, saved tab sessions, and page logs locally in the browser.
+Stores user preferences, conversation history, local work memory, voice memo text, meeting-note transcripts, reading list items, saved tab sessions, and page logs locally in the browser.
 
 **host permissions: `<all_urls>`**
 Required because the extension's core purpose is to read, summarize, and capture the normal web pages, emails, links, products, and safety signals the user chooses to work with in the side panel. Chrome's screenshot API requires broad host access for reliable side-panel capture. The extension code restricts page reading and screenshots to normal `http` and `https` pages, does not read Chrome internal pages, and does not send page content or screenshots to a developer server.
@@ -68,7 +68,7 @@ Requested only if the user chooses the "Clear recent history" command. It is use
 - Page/email/document content is processed locally for the requested feature when the user opens or invokes the workbench on a page, email, or document.
 - Local data is stored in IndexedDB or `chrome.storage.local`.
 - Deep research opens normal web pages selected by the user flow.
-- Voice input may use Chrome's Web Speech API.
+- Voice input, voice memos, and meeting notes may use Chrome's Web Speech API.
 
 ## Privacy Policy URL
 
@@ -87,7 +87,8 @@ https://github.com/Najariya/nano-workbench/blob/main/PRIVACY.md
 7. Select text on a page, right-click, and choose **Ask Local AI**.
 8. Right-click an image on a page and choose **Extract details from image** to verify the OCR workflow.
 9. Use the composer camera button beside the mic for **Visible area** and **Full page**, then verify local PNG downloads, multi-part long-page capture, and the post-capture OCR action.
-10. Optional: use **Settings > Developer mode > Run check** to view model/storage/mic capability status.
+10. Use **More > Meeting notes** to verify mic transcript capture, local notes, action items, Memos saving, and Markdown export.
+11. Optional: use **Settings > Developer mode > Run check** to view model/storage/mic capability status.
 
 ## Listing Assets
 
