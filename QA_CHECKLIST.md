@@ -94,7 +94,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 
 ### Screenshot Capture
 
-- Confirm `chrome://extensions` shows version `6.8.19`.
+- Confirm `chrome://extensions` shows version `6.8.20`.
 - In extension details, confirm **Site access** is set to **On all sites** for this unpacked test build.
 - Open a normal `https://` web page.
 - Open **Settings -> Doctor / Developer mode -> Run Doctor** and confirm it reports **Screenshot capture APIs**, **Screenshot OCR model**, and **Screenshot OCR prep**.
@@ -126,6 +126,7 @@ Expected result: every command exits successfully. Syntax checks should report n
 - Ask at least one question and confirm it appears in **History**.
 - Save a memory item in Settings and confirm it persists after reopening the side panel.
 - Open **Memos**, record a **Quick voice memo**, stop it, and confirm it saves a cleaned note with action items where applicable.
+- If AI cleanup is unavailable or fails, confirm the voice memo still saves as a structured transcript note with **Clean note** and **Action items** sections.
 - Confirm the saved voice memo exposes copy note, copy transcript, export Markdown, and delete actions.
 - After the memo test, run **Settings -> Doctor / Developer mode -> Copy report** and confirm **Recent workflow evidence** includes `voice-memo` without transcript text.
 - Confirm stored content remains local and no account/login is required.

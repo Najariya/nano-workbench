@@ -21,7 +21,8 @@ assert.match(source, /recordDiag\("meeting-notes","Saved meeting transcript with
 assert.match(source, /transcript text is not stored in diagnostics/);
 
 assert.match(source, /recordDiag\("voice-memo","Started quick voice memo"/);
-assert.match(source, /recordDiag\("voice-memo","Saved quick voice memo"/);
+assert.match(source, /recordDiag\("voice-memo",a\?"Saved quick voice memo transcript without AI cleanup":"Saved quick voice memo"/);
+assert.match(source, /Saved quick voice memo transcript without AI cleanup/);
 assert.match(source, /Chrome Speech Recognition; transcript text is not stored in diagnostics\./);
 
 assert.doesNotMatch(source, /recordDiag\("screenshot-ocr"[^;]+a\.text/);

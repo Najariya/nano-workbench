@@ -49,6 +49,10 @@ for (const section of [
 
 assert.match(source, /\$\("recordMemo"\)\.addEventListener\("click",toggleMemoRecording\)/);
 assert.match(source, /async function toggleMemoRecording/);
+assert.match(source, /function voiceMemoFallbackNote/);
+assert.match(source, /Voice memo transcript/);
+assert.match(source, /Saved quick voice memo transcript without AI cleanup/);
+assert.match(source, /Voice memo transcript saved/);
 assert.match(source, /Chrome Speech Recognition/);
 assert.match(source, /chrome\.tabs\.create\(\{url:chrome\.runtime\.getURL\("mic-permission\.html"\)\}\)/);
 
