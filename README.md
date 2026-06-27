@@ -34,16 +34,16 @@ The Chrome Web Store package declares broad host permissions at install time so 
 
 ## Chrome Web Store Package
 
-The source in this repository is the extension package. To create a zip for upload:
+The source in this repository is the extension package. The current frozen next-release candidate is `6.8.24`. To create a zip for upload:
 
 ```sh
-zip -r -X local-ai-workbench-store-v6.7.4.zip \
+zip -r -X local-ai-workbench-store-v6.8.24.zip \
   manifest.json PRIVACY.md mic-permission.html mic-permission.js \
   fonts icons safety.js sidepanel.css background.js docparse.js \
   sidepanel.html sidepanel.js db.js md.js lib export.js
 ```
 
-Upload the resulting zip in the Chrome Web Store Developer Dashboard.
+Upload the resulting zip in the Chrome Web Store Developer Dashboard only after the currently submitted `6.7.4` review is complete or you decide to replace that submission.
 
 ## Privacy
 

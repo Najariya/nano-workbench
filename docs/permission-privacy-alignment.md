@@ -1,8 +1,8 @@
 # Permission and Privacy Alignment
 
-_Branch: `codex/per-tab-workspaces`_
+_Branch: `main` after `6.8.24` promotion_
 
-Use this file before promoting any experiment build to the Chrome Web Store.
+Use this file before uploading any package to the Chrome Web Store.
 
 ## Current Manifest Surface
 

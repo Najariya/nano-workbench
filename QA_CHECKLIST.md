@@ -4,9 +4,10 @@ Use this checklist before promoting experimental branch work into a release pack
 
 ## Baseline
 
-- Store-stable baseline: `main`, version `6.7.4`.
-- Experiment branch: `codex/per-tab-workspaces`.
-- Do not upload an experiment ZIP until the checklist passes and the version is intentionally bumped.
+- Current frozen candidate on `main`: version `6.8.24`.
+- Previously submitted Chrome Web Store package: version `6.7.4`.
+- Development branches preserved for history: `codex/screenshot-capture` and `codex/per-tab-workspaces`.
+- Do not upload the `6.8.24` ZIP to the Chrome Web Store until the `6.7.4` review is complete or you deliberately replace that submission.
 
 ## Static Checks
 

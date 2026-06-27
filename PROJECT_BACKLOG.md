@@ -1,9 +1,9 @@
 # Local AI Workbench Project Backlog
 
-_Branch: `codex/per-tab-workspaces`_
+_Branch: `main` after promotion from `codex/screenshot-capture` / `codex/per-tab-workspaces`_
 _Created: June 25, 2026_
 
-This backlog is for refining Local AI Workbench after the first Chrome Web Store submission. The current public/store-ready baseline is **6.7.4** on `main`. This branch is for product improvement experiments and should not be packaged for the store until items are reviewed, tested, and deliberately promoted.
+This backlog is for refining Local AI Workbench after the first Chrome Web Store submission. The currently submitted Web Store package remains **6.7.4** until that review completes. The frozen next-release candidate is **6.8.24** on `main`; do not upload it to the Web Store until the older review is complete or the submission is deliberately replaced.
 
 ## Product Direction
 
@@ -17,7 +17,7 @@ Local AI Workbench should become a calm, private, on-device AI work surface insi
 
 ## Guardrails
 
-- Keep `main` store-stable unless we intentionally promote a tested release.
+- Keep `main` clear about the frozen candidate version and avoid changing it without a new version bump and QA pass.
 - Do not change Chrome permissions casually; every permission must have a visible user-facing purpose.
 - Do not reintroduce experimental WebGPU options into the store path.
 - Do not weaken the privacy message: the developer has no access to user content.

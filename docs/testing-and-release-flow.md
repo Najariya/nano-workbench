@@ -1,6 +1,6 @@
 # Testing and Release Flow
 
-_Branch: `codex/per-tab-workspaces`_
+_Branch: `main` after promotion; historical experiment branches: `codex/per-tab-workspaces`, `codex/screenshot-capture`_
 
 ## Version Series
 
@@ -16,9 +16,16 @@ The current-tab context improvement line should use:
 6.8.x = current-tab context, diagnostics, and capture improvements line
 ```
 
+Current release state:
+
+```text
+6.7.4 = previously submitted Chrome Web Store package, pending review
+6.8.24 = frozen next-release candidate on main
+```
+
 Rules:
 
-- Keep the submitted Chrome Web Store package as `6.7.4`.
+- Keep the submitted Chrome Web Store package as `6.7.4` until review completes, unless the submission is deliberately replaced.
 - Do not bump `manifest.json` for planning-only commits.
 - When the first user-visible current-tab context code lands, bump the experiment branch to `6.8.0`.
 - If we need multiple test builds before release, use:
@@ -33,21 +40,28 @@ Rules:
 "version_name": "6.8.5 - Current tab context test"
 ```
 
-## GitHub Branch
+## GitHub Branches
 
-Experimental work lives here:
+The frozen next-release candidate lives here:
+
+```text
+main
+```
+
+Historical experimental work is preserved here:
 
 ```text
 codex/per-tab-workspaces
+codex/screenshot-capture
 ```
 
 GitHub URL:
 
 ```text
-https://github.com/Najariya/nano-workbench/tree/codex/per-tab-workspaces
+https://github.com/Najariya/nano-workbench
 ```
 
-Do not merge this branch into `main` until the QA checklist passes.
+Do not start a new release change on `main` without bumping `manifest.json` and re-running the QA checklist.
 
 ## Local Test Folder
 
@@ -57,9 +71,9 @@ Use a separate local worktree folder for testing:
 /Users/naveenagrawal/Documents/Nano Workbench Labs/per-tab-workspaces
 ```
 
-This folder should point to the experiment branch. Load this folder in Chrome with **Load unpacked**.
+This folder is still available for testing the same promoted build. Load this folder in Chrome with **Load unpacked** if you want to keep testing separate from the main repo folder.
 
-The main repo folder can remain on `main`:
+The main repo folder now also carries the frozen candidate:
 
 ```text
 /Users/naveenagrawal/Documents/Nano Workbench
@@ -125,7 +139,7 @@ After the current-tab context code is implemented:
 
 ## Merge Rule
 
-Only merge into `main` after:
+Only update `main` for a release after:
 
 - `QA_CHECKLIST.md` passes.
 - Manifest version is intentionally bumped to the release version.
@@ -133,10 +147,10 @@ Only merge into `main` after:
 - Privacy policy still matches behavior.
 - A release ZIP is generated and inspected.
 
-Recommended merge target for this branch:
+Recommended merge target for experiment branches:
 
 ```text
-main <- codex/per-tab-workspaces
+main <- codex/per-tab-workspaces or codex/screenshot-capture
 ```
 
 ## Release Promotion Checklist
@@ -148,13 +162,13 @@ Use this sequence when an experimental build is ready to become the next store p
 3. Run the manual Chrome checks for the version being promoted.
 4. Compare `manifest.json`, `STORE_LISTING_DRAFT.md`, and `PRIVACY.md` against `docs/permission-privacy-alignment.md`.
 5. Update release notes using `docs/release-notes-template.md`.
-6. Merge `codex/per-tab-workspaces` into `main` only after QA passes.
+6. Merge the chosen experiment branch into `main` only after QA passes.
 7. Create the store ZIP from `main`, not from an unreviewed experiment folder.
 8. Inspect the ZIP contents before upload.
 9. Upload the ZIP in the Chrome Web Store Developer Dashboard.
 10. Update store listing text/screenshots/video only when they match the uploaded package.
 
-Do not upload a `6.8.x` package while it is still marked as an experiment in the backlog.
+Do not upload `6.8.24` while `6.7.4` is still under review unless you deliberately cancel/replace the older submission.
 
 ## Permission and Privacy Gate
 
