@@ -2,6 +2,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 
 const source = fs.readFileSync("sidepanel.js", "utf8");
+const html = fs.readFileSync("sidepanel.html", "utf8");
 
 assert.match(source, /const QA_EVIDENCE_TYPES=new Set\(\["screenshot","screenshot-ocr","screenshot-summary","voice-memo","meeting-notes"\]\)/);
 assert.match(source, /function workflowEvidenceReport\(\)/);
@@ -23,6 +24,11 @@ assert.match(source, /Recent workflow evidence/);
 assert.match(source, /No recent screenshot OCR, voice memo, or meeting notes evidence yet\./);
 assert.match(source, /lastDoctorReport=.*workflowEvidenceReport\(\).*workflowCompletionGateReport\(\)/);
 assert.match(source, /workflowCompletionGateResults\(\)\.forEach/);
+assert.match(html, /id="doctorEvidenceCopy"/);
+assert.match(html, />Copy evidence</);
+assert.match(source, /doctorEvidenceCopyBtn=\$\("doctorEvidenceCopy"\)/);
+assert.match(source, /workflowEvidenceReport\(\)\+"\\n\\n"\+workflowCompletionGateReport\(\)/);
+assert.match(source, /Workflow evidence copied/);
 
 assert.match(source, /recordDiag\("screenshot-ocr"/);
 assert.match(source, /Screenshot OCR completed/);
